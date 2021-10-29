@@ -1,5 +1,4 @@
 function drawBookTitlePoint(vertices) {
-  console.log(vertices);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const pointX = vertices[0]['x'];
