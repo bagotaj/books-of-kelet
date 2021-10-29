@@ -1,3 +1,6 @@
+const button = document.getElementById('makeBookTitlesButton');
+button.addEventListener('click', makeBookTitles);
+
 function makeBookTitles() {
   const bookTitlesWithCoordinates = [];
 
