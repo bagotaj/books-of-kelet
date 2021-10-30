@@ -1,5 +1,5 @@
 function createBookTitlesTable(edit) {
-  const bookTitles = JSON.parse(localStorage.getItem('bookTitles'));
+  const bookTitles = getItemFromLocalStorage('bookTitles');
 
   const tableBody = document.getElementById('tableBody');
 
@@ -11,9 +11,21 @@ function createBookTitlesTable(edit) {
     let tr = document.createElement('tr');
 
     if (edit) {
+      let buttonSave = document.createElement('button');
+      buttonSave.innerText = 'Mentés';
+      let buttonDelete = document.createElement('button');
+      buttonDelete.innerText = 'Törlés';
       let input = document.createElement('input');
       input.value = text;
-      td.appendChild(input);
+
+      const fieldOfColumns = [input, buttonSave, buttonDelete];
+
+      for (let i = 0; i < 3; i++) {
+        let td = document.createElement('td');
+
+        td.appendChild(fieldOfColumns[i]);
+        tr.appendChild(td);
+      }
     } else {
       let p = document.createElement('p');
       p.innerText = text;
@@ -21,9 +33,9 @@ function createBookTitlesTable(edit) {
         drawBookTitlePoint(bookTitlePointCoords)
       );
       td.appendChild(p);
+      tr.appendChild(td);
     }
 
-    tr.appendChild(td);
     tableBody.appendChild(tr);
   }
 }
