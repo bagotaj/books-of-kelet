@@ -11,12 +11,17 @@ function createBookTitlesTable(edit) {
     let tr = document.createElement('tr');
 
     if (edit) {
+      let input = document.createElement('input');
+      input.id = i;
+      input.value = text;
       let buttonSave = document.createElement('button');
       buttonSave.innerText = 'Mentés';
+      buttonSave.addEventListener('click', () => dataManipulation('save', i));
       let buttonDelete = document.createElement('button');
       buttonDelete.innerText = 'Törlés';
-      let input = document.createElement('input');
-      input.value = text;
+      buttonDelete.addEventListener('click', () =>
+        dataManipulation('delete', i)
+      );
 
       const fieldOfColumns = [input, buttonSave, buttonDelete];
 
