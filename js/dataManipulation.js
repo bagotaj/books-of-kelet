@@ -1,6 +1,4 @@
 function dataManipulation(type, index, newcoords) {
-  const bookTitles = getItemFromLocalStorage('bookTitles');
-
   const data = document.getElementById(index);
 
   if (type === 'save') {
