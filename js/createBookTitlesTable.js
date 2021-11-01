@@ -1,6 +1,4 @@
 function createBookTitlesTable(edit) {
-  const bookTitles = getItemFromLocalStorage('bookTitles');
-
   const tableBody = document.getElementById('tableBody');
 
   for (let i = 0; i < bookTitles.length; i++) {
@@ -32,11 +30,13 @@ function createBookTitlesTable(edit) {
         tr.appendChild(td);
       }
     } else {
+      const canvasTop = document.getElementById('canvas');
       let p = document.createElement('p');
       p.innerText = text;
-      p.addEventListener('click', () =>
-        drawBookTitlePoint(bookTitlePointCoords)
-      );
+      p.addEventListener('click', () => {
+        drawBookTitlePoint(bookTitlePointCoords);
+        canvasTop.scrollIntoView();
+      });
       td.appendChild(p);
       tr.appendChild(td);
     }
