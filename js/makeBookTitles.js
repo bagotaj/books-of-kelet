@@ -10,7 +10,9 @@ function makeBookTitles() {
     const paragraphText = makeParagraphs(wordsOfParagraphs);
 
     bookTitlesWithCoordinates.push({
+      display: 'on',
       boundingBox: boundingBox,
+      oldparagraph: paragraphText,
       paragraph: paragraphText,
     });
   }
