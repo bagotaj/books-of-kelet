@@ -4,6 +4,7 @@ function dataManipulation(type, index, newcoords) {
   if (type === 'save') {
     if (index === 'newBookTitleInput') {
       bookTitles.push({
+        display: 'on',
         boundingBox: {
           vertices: [
             {
@@ -20,7 +21,7 @@ function dataManipulation(type, index, newcoords) {
 
     saveItemToLocalStorage('bookTitles', bookTitles);
   } else if (type === 'delete') {
-    bookTitles.splice(index, 1);
+    bookTitles[index]['display'] = 'off';
 
     saveItemToLocalStorage('bookTitles', bookTitles);
   }
