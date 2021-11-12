@@ -10,15 +10,15 @@ function followWindowSize(canvas, window) {
   canvas.height = result.height;
 }
 
-const canvas2 = createCanvasEdit();
-const ctx2 = canvas2.getContext('2d');
+const canvasEdit = createCanvasEdit();
+const ctxEdit = canvasEdit.getContext('2d');
 
 let newCoords = { x: '', y: '' };
 
-canvas2.addEventListener(
+canvasEdit.addEventListener(
   'click',
   function (event) {
-    newCoords = getMousePosition(canvas2, event);
+    newCoords = getMousePosition(canvasEdit, event);
 
     addNewBookCoords(newCoords);
 
@@ -46,8 +46,8 @@ canvas2.addEventListener(
   false
 );
 
-function getMousePosition(canvas2, event) {
-  let rect = canvas2.getBoundingClientRect();
+function getMousePosition(canvasEdit, event) {
+  let rect = canvasEdit.getBoundingClientRect();
   return {
     x: event.clientX - rect.left,
     y: event.clientY - rect.top,
