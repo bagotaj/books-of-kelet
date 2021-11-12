@@ -23,6 +23,9 @@
     <div class="canvas-wrapper-index">
       <canvas id="canvas"></canvas>
     </div>
+    <div id="book-shelves-right-id" class="book-shelves">
+      <canvas id="canvasBookTitles"></canvas>
+    </div>
     <div class="container">
       <table>
         <thead>
@@ -33,13 +36,16 @@
         <tbody id="tableBody"></tbody>
       </table>
     </div>
+    <script src="./data/dbbooks.js"></script>
     <script src="./js/db.js"></script>
     <script src="./js/localStorageItems.js"></script>
     <script src="./js/basicvariables.js"></script>
     <script src="./js/drawBoundingBoxes.js"></script>
+    <script src="./js/showBookshelves.js"></script>
     <script src="./js/drawBookTitlePoint.js"></script>
-    <script src="./js/createBookTitlesTable.js"></script>
+    <script src="./js/createMainBookTitlesTable.js"></script>
     <script src="./js/drawBooksImage.js"></script>
+    <script src="./js/bookTitleCanvas.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
