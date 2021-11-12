@@ -17,13 +17,13 @@ function drawBookTitlePoint(vertices) {
 function blinkTitlePoint(pointX, pointY) {
   clicked = true;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctxBookTitle.clearRect(0, 0, canvas.width, canvas.height);
 
-  ctx.beginPath();
-  ctx.fillStyle = 'red';
-  ctx.arc(
-    pointX / imgNewSizeRatio,
-    pointY / imgNewSizeRatio,
+  ctxBookTitle.beginPath();
+  ctxBookTitle.fillStyle = 'red';
+  ctxBookTitle.arc(
+    pointX / imgSizeRatioBookTitle,
+    pointY / imgSizeRatioBookTitle,
     5,
     0,
     2 * Math.PI
@@ -31,7 +31,7 @@ function blinkTitlePoint(pointX, pointY) {
   if (color === 'red') {
     color = '';
   } else {
-    ctx.fill();
+    ctxBookTitle.fill();
     color = 'red';
   }
 }
