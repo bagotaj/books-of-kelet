@@ -26,5 +26,5 @@ function dataManipulation(type, index, newcoords) {
     saveItemToLocalStorage('bookTitles', bookTitles);
   }
 
-  createBookTitlesTable(edit);
+  createBookTitlesTable();
 }
