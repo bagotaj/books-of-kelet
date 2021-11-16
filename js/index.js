@@ -13,5 +13,4 @@ function followWindowSize(canvas, window) {
 const canvas = createCanvas();
 const ctx = canvas.getContext('2d');
 
-// drawBooksImage();
 createMainBookTitlesTable();
