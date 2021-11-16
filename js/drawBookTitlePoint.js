@@ -1,17 +1,18 @@
 let clicked = false;
 let color = 'red';
+let blink;
 
 function drawBookTitlePoint(vertices) {
-  pointX = vertices[0]['x'];
-  pointY = vertices[0]['y'];
-
-  const blink = setInterval(() => {
-    blinkTitlePoint(pointX, pointY);
-  }, 1000);
+  let pointX = vertices[0]['x'];
+  let pointY = vertices[0]['y'];
 
   if (clicked) {
     clearInterval(blink);
   }
+
+  blink = setInterval(() => {
+    blinkTitlePoint(pointX, pointY);
+  }, 1000);
 }
 
 function blinkTitlePoint(pointX, pointY) {
