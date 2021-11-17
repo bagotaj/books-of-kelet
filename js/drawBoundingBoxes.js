@@ -1,4 +1,20 @@
-function drawBoundingBoxes(imgNewSizeRatio) {
+function drawBoundingBoxes(imgNewSizeRatio, imageName) {
+  let checkedImageName = false;
+
+  for (let imageNameInDB in dbbooks) {
+    if (imageNameInDB === imageName) {
+      checkedImageName = true;
+    }
+  }
+
+  if (checkedImageName) {
+    bookTitles = dbbooks[imageName]['bookdata'];
+  } else {
+    bookTitles = getItemFromLocalStorage('bookTitles');
+  }
+
+  ctxEdit.clearRect(0, 0, canvasEdit.width, canvasEdit.height);
+
   for (let i = 0; i < bookTitles.length; i++) {
     if (bookTitles[i]['display'] === 'on') {
       const vertices = bookTitles[i]['boundingBox']['vertices'];
