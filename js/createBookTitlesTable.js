@@ -1,9 +1,9 @@
 function createBookTitlesTable() {
   const tableBody = document.getElementById('tableBody');
+  tableBody.innerHTML = '';
 
   for (let i = 0; i < bookTitles.length; i++) {
     if (bookTitles[i]['display'] === 'on') {
-      const bookTitlePointCoords = bookTitles[i]['boundingBox']['vertices'];
       const text = bookTitles[i]['paragraph'];
 
       let tr = document.createElement('tr');
