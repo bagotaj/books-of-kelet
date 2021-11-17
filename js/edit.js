@@ -6,8 +6,8 @@ function createCanvasEdit() {
 }
 
 function followWindowSize(canvas, window) {
-  canvas.width = result.width;
-  canvas.height = result.height;
+  canvasEdit.width = result.width;
+  canvasEdit.height = result.height;
 }
 
 const canvasEdit = createCanvasEdit();
@@ -83,5 +83,4 @@ function vector(p1, p2, m) {
 
 const edit = true;
 
-drawBoundingBoxes(imgNewSizeRatio);
-createBookTitlesTable(edit);
+MakeThumbnailsTableBody();
