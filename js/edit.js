@@ -5,7 +5,7 @@ function createCanvasEdit() {
   return result;
 }
 
-function followWindowSize(canvas, window) {
+function followWindowSize(canvasEdit, window) {
   canvasEdit.width = result.width;
   canvasEdit.height = result.height;
 }
