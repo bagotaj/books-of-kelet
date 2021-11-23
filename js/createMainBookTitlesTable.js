@@ -1,49 +1,33 @@
 function createMainBookTitlesTable() {
   const tableBody = document.getElementById('tableBody');
+  const sortedBookTitles = makeSortedBookTitles();
 
-  for (const imageTitle in dbbooks) {
-    const bookTitlesData = dbbooks[imageTitle]['bookdata'];
+  for (let i = 0; i < sortedBookTitles.length; i++) {
+    if (sortedBookTitles[i]['display'] === 'on') {
+      const bookTitlePointCoords =
+        sortedBookTitles[i]['boundingBox']['vertices'];
+      const text = sortedBookTitles[i]['paragraph'];
 
-    bookTitlesData.sort(function (a, b) {
-      var titleA = a.paragraph.toUpperCase();
-      var titleB = b.paragraph.toUpperCase();
-      if (titleA < titleB) {
-        return -1;
-      }
-      if (titleA > titleB) {
-        return 1;
-      }
+      let td = document.createElement('td');
+      let tr = document.createElement('tr');
 
-      return 0;
-    });
+      const canvasTop = document.getElementById('canvas');
 
-    for (let i = 0; i < bookTitlesData.length; i++) {
-      if (bookTitlesData[i]['display'] === 'on') {
-        const bookTitlePointCoords =
-          bookTitlesData[i]['boundingBox']['vertices'];
-        const text = bookTitlesData[i]['paragraph'];
-
-        let td = document.createElement('td');
-        let tr = document.createElement('tr');
-
-        const canvasTop = document.getElementById('canvas');
-
-        let p = document.createElement('p');
-        p.innerText = text;
-        p.addEventListener('click', () => {
-          showBookshelves(imageTitle);
-          drawBookTitlePoint(bookTitlePointCoords);
-          canvasTop.scrollIntoView({
-            behavior: 'smooth',
-          });
+      let p = document.createElement('p');
+      p.innerText = text;
+      p.addEventListener('click', () => {
+        showBookshelves(sortedBookTitles[i]['imageTitle']);
+        drawBookTitlePoint(bookTitlePointCoords);
+        canvasTop.scrollIntoView({
+          behavior: 'smooth',
         });
-        td.appendChild(p);
-        tr.appendChild(td);
+      });
+      td.appendChild(p);
+      tr.appendChild(td);
 
-        tableBody.appendChild(tr);
-      } else {
-        continue;
-      }
+      tableBody.appendChild(tr);
+    } else {
+      continue;
     }
   }
 }
