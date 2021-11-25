@@ -16,7 +16,10 @@ function createMainBookTitlesTable() {
       let p = document.createElement('p');
       p.innerText = text;
       p.addEventListener('click', () => {
-        showBookshelves(sortedBookTitles[i]['imageTitle']);
+        showBookshelves(
+          sortedBookTitles[i]['imageTitle'],
+          sortedBookTitles[i]['shelfName']
+        );
         drawBookTitlePoint(bookTitlePointCoords);
         canvasTop.scrollIntoView({
           behavior: 'smooth',
