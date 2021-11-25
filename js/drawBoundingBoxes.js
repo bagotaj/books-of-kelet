@@ -1,14 +1,16 @@
 function drawBoundingBoxes(imgNewSizeRatio, imageName) {
   let checkedImageName = false;
+  let shelfName;
 
-  for (let imageNameInDB in dbbooks) {
-    if (imageNameInDB === imageName) {
+  for (let shelfNameInDB in dbbooks) {
+    if (dbbooks[shelfNameInDB]['imageName'] === imageName) {
       checkedImageName = true;
+      shelfName = shelfNameInDB;
     }
   }
 
   if (checkedImageName) {
-    bookTitles = dbbooks[imageName]['bookdata'];
+    bookTitles = dbbooks[shelfName]['bookdata'];
   } else {
     bookTitles = getItemFromLocalStorage('bookTitles');
   }
