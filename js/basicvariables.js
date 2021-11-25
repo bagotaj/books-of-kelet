@@ -4,4 +4,10 @@ const textAnnotations = db[0]['textAnnotations'];
 let bookTitles;
 const imgNewSizeRatio = 6.048;
 const imgSizeRatioBookTitle = 7.56;
-const listOfImages = ['IMG_3365', 'IMG_3366', 'IMG_3367', 'IMG_3424'];
+const listOfImages = [
+  'IMG_3365',
+  'IMG_3366',
+  'IMG_3367',
+  'IMG_3424',
+  'IMG_3425',
+];
