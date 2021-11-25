@@ -10,4 +10,5 @@ const listOfImages = [
   'IMG_3367',
   'IMG_3424',
   'IMG_3425',
+  'IMG_3426',
 ];
