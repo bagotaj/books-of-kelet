@@ -1,11 +1,12 @@
 function makeSortedBookTitles() {
   let sortedBookTitles = [];
 
-  for (const imageTitle in dbbooks) {
-    const bookTitlesData = dbbooks[imageTitle]['bookdata'];
+  for (const shelfName in dbbooks) {
+    const bookTitlesData = dbbooks[shelfName]['bookdata'];
 
     for (let i = 0; i < bookTitlesData.length; i++) {
-      bookTitlesData[i]['imageTitle'] = imageTitle;
+      bookTitlesData[i]['imageTitle'] = dbbooks[shelfName]['imageName'];
+      bookTitlesData[i]['shelfName'] = shelfName;
       sortedBookTitles.push(bookTitlesData[i]);
     }
   }
