@@ -2,18 +2,18 @@ let clickedShelfPoint = false;
 let colorShelfPoint = 'red';
 let blinkShelvesPoint;
 
-function showBookshelves(bookTitlesOnImage) {
+function showBookshelves(bookTitlesOnImage, shelfName) {
   const bookshelvesright = document.getElementById('book-shelves-right-id');
   bookshelvesright.style.display = 'block';
   bookshelvesright.style.backgroundImage = `url(../img/${bookTitlesOnImage}.jpeg)`;
   bookshelvesright.style.backgroundRepeat = 'no-repeat';
   bookshelvesright.style.backgroundSize = 'cover';
 
-  drawBookshelvesPoint(bookTitlesOnImage);
+  drawBookshelvesPoint(shelfName);
 }
 
-function drawBookshelvesPoint(imageName) {
-  const bookShelfPointData = dbbooks[imageName]['shelfcoords'];
+function drawBookshelvesPoint(shelfName) {
+  const bookShelfPointData = dbbooks[shelfName]['shelfcoords'];
 
   let pointXShelves = bookShelfPointData['x'];
   let pointYShelves = bookShelfPointData['y'];
