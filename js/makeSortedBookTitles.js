@@ -5,9 +5,14 @@ function makeSortedBookTitles() {
     const bookTitlesData = dbbooks[shelfName]['bookdata'];
 
     for (let i = 0; i < bookTitlesData.length; i++) {
-      bookTitlesData[i]['imageTitle'] = dbbooks[shelfName]['imageName'];
-      bookTitlesData[i]['shelfName'] = shelfName;
-      sortedBookTitles.push(bookTitlesData[i]);
+      if (bookTitlesData[i]['display'] === 'on') {
+        bookTitlesData[i]['imageTitle'] = dbbooks[shelfName]['imageName'];
+        bookTitlesData[i]['shelfName'] = shelfName;
+
+        sortedBookTitles.push(bookTitlesData[i]);
+      } else {
+        continue;
+      }
     }
   }
 
