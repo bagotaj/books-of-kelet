@@ -1,7 +1,5 @@
-const blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
-const textAnnotations = db[0]['textAnnotations'];
-// const bookTitles = getItemFromLocalStorage('bookTitles');
 let bookTitles;
+const blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
 const imgNewSizeRatio = 6.048;
 const imgSizeRatioBookTitle = 7.56;
 const listOfImages = [
@@ -11,4 +9,7 @@ const listOfImages = [
   'IMG_3424',
   'IMG_3425',
   'IMG_3426',
+  'IMG_3421',
 ];
+const numberPerPage = 50;
+const textAnnotations = db[0]['textAnnotations'];
