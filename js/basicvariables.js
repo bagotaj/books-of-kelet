@@ -1,4 +1,4 @@
-let bookTitles;
+let bookTitles = makeSortedBookTitles();
 const blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
 const imgNewSizeRatio = 6.048;
 const imgSizeRatioBookTitle = 7.56;
@@ -12,4 +12,5 @@ const listOfImages = [
   'IMG_3421',
 ];
 const numberPerPage = 50;
+let sortedBookTitlesByABC = makeSortedBookTitlesByABC();
 const textAnnotations = db[0]['textAnnotations'];
