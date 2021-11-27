@@ -4,9 +4,7 @@ function makePagination() {
   const tr = document.createElement('tr');
   const td = document.createElement('td');
 
-  let numberOfBookTitles = makeSortedBookTitles();
-
-  const numberOfPages = Math.ceil(numberOfBookTitles.length / numberPerPage);
+  const numberOfPages = Math.ceil(sortedBookTitlesByABC.length / numberPerPage);
 
   for (let i = 0; i < numberOfPages; i++) {
     const btn = document.createElement('button');
@@ -32,13 +30,12 @@ function makePagination() {
   tfoot.appendChild(tr);
 }
 
-function getSortedBookTitles(currentPage) {
-  let numberOfBookTitles = makeSortedBookTitles();
+function getSortedBookTitlesByCurrentPage(currentPage) {
   let paginatedBookTitles;
 
   const trimStart = (currentPage - 1) * numberPerPage;
   const trimEnd = trimStart + numberPerPage;
-  paginatedBookTitles = numberOfBookTitles.slice(trimStart, trimEnd);
+  paginatedBookTitles = sortedBookTitlesByABC.slice(trimStart, trimEnd);
 
   return paginatedBookTitles;
 }
