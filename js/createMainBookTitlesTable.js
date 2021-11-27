@@ -2,7 +2,7 @@ function createMainBookTitlesTable(currentPage = 1) {
   const tableBody = document.getElementById('tableBody');
   tableBody.innerHTML = '';
 
-  const sortedBookTitles = getSortedBookTitles(currentPage);
+  const sortedBookTitles = getSortedBookTitlesByCurrentPage(currentPage);
 
   for (let i = 0; i < sortedBookTitles.length; i++) {
     const bookTitlePointCoords = sortedBookTitles[i]['boundingBox']['vertices'];
