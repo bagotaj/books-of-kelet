@@ -14,4 +14,5 @@ const canvas = createCanvas();
 const ctx = canvas.getContext('2d');
 
 createMainBookTitlesTable();
+createABCLinkButtons();
 makePagination();
