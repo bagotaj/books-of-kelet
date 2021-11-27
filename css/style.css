@@ -108,6 +108,24 @@ table {
   margin: 0 auto 20px auto;
 }
 
+thead tr:last-child td {
+  padding-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+tfoot tr td {
+  padding-top: 15px;
+}
+
+a {
+  margin-left: 16px;
+}
+
+.a-clicked {
+  font-weight: 800;
+}
+
 .thumbnailImageTable {
   width: 100%;
   margin-top: 15px;
@@ -124,4 +142,5 @@ input {
 
 td p {
   cursor: pointer;
+  margin-bottom: 15px;
 }
