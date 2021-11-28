@@ -25,7 +25,7 @@ function blinkTitlePoint(pointX, pointY) {
   ctxBookTitle.arc(
     pointX / imgSizeRatioBookTitle,
     pointY / imgSizeRatioBookTitle,
-    5,
+    7,
     0,
     2 * Math.PI
   );
