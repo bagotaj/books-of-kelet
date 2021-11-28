@@ -1,5 +1,6 @@
 let bookTitles = makeSortedBookTitles();
 const blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
+const canvasTop = document.getElementById('canvas');
 const imgNewSizeRatio = 6.048;
 const imgSizeRatioBookTitle = 7.56;
 const listOfImages = [
@@ -10,6 +11,7 @@ const listOfImages = [
   'IMG_3425',
   'IMG_3426',
   'IMG_3421',
+  'IMG_3422',
 ];
 const numberPerPage = 50;
 let sortedBookTitlesByABC = makeSortedBookTitlesByABC();
