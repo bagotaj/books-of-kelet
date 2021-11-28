@@ -2,12 +2,27 @@ let clickedShelfPoint = false;
 let colorShelfPoint = 'red';
 let blinkShelvesPoint;
 
-function showBookshelves(bookTitlesOnImage, shelfName) {
-  const bookshelvesright = document.getElementById('book-shelves-right-id');
-  bookshelvesright.style.display = 'block';
-  bookshelvesright.style.backgroundImage = `url(../img/${bookTitlesOnImage}.jpeg)`;
-  bookshelvesright.style.backgroundRepeat = 'no-repeat';
-  bookshelvesright.style.backgroundSize = 'cover';
+function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
+  const bookshelves = document.getElementById('book-shelves-id');
+  if (shelfCoordsX < 700) {
+    if (document.getElementsByClassName('book-shelves-left').length > 0) {
+      document
+        .getElementsByClassName('book-shelves-left')[0]
+        .classList.remove('book-shelves-left');
+    }
+    bookshelves.classList.add('book-shelves-right');
+  } else {
+    if (document.getElementsByClassName('book-shelves-right').length > 0) {
+      document
+        .getElementsByClassName('book-shelves-right')[0]
+        .classList.remove('book-shelves-right');
+    }
+    bookshelves.classList.add('book-shelves-left');
+  }
+  bookshelves.style.display = 'block';
+  bookshelves.style.backgroundImage = `url(../img/${bookTitlesOnImage}.jpeg)`;
+  bookshelves.style.backgroundRepeat = 'no-repeat';
+  bookshelves.style.backgroundSize = 'cover';
 
   drawBookshelvesPoint(shelfName);
 }
