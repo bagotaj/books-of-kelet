@@ -8,6 +8,8 @@ function makeSortedBookTitles() {
       if (bookTitlesData[i]['display'] === 'on') {
         bookTitlesData[i]['imageTitle'] = dbbooks[shelfName]['imageName'];
         bookTitlesData[i]['shelfName'] = shelfName;
+        bookTitlesData[i]['shelfCoords'] =
+          dbbooks[shelfName]['shelfcoords']['x'];
 
         sortedBookTitles.push(bookTitlesData[i]);
       } else {
