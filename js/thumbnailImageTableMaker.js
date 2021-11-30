@@ -5,17 +5,21 @@ function MakeThumbnailsTableBody() {
 
   for (let i = 0; i < listOfImages.length; i++) {
     let td = document.createElement('td');
-    let img = document.createElement('img');
-    img.src = `../img/${listOfImages[i]}.jpeg`;
-    img.height = 100;
 
-    img.addEventListener('click', () => {
-      addImageBackgroundToCanvasEdit(listOfImages[i]);
-      drawBoundingBoxes(imgNewSizeRatio, listOfImages[i]);
-      createBookTitlesTable();
-    });
+    for (let j = 0; j < listOfImages[i]['images'].length; j++) {
+      let img = document.createElement('img');
+      img.src = `../img/${listOfImages[i]['images'][j]}.jpeg`;
+      img.height = 100;
 
-    td.appendChild(img);
+      img.addEventListener('click', () => {
+        addImageBackgroundToCanvasEdit(listOfImages[i]['images'][j]);
+        drawBoundingBoxes(imgNewSizeRatio, listOfImages[i]['images'][j]);
+        createBookTitlesTable();
+      });
+
+      td.appendChild(img);
+    }
+
     tr.appendChild(td);
   }
   thumbnailsTableBody.appendChild(tr);
