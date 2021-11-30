@@ -1,7 +1,11 @@
 function createCanvas() {
   const result = document.getElementById('canvas');
   result.width = window.innerWidth;
-  result.height = 500;
+  if (window.innerHeight < 500) {
+    result.height = 100;
+  } else {
+    result.height = 500;
+  }
   return result;
 }
 
