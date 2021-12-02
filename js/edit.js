@@ -1,4 +1,7 @@
 function createCanvasEdit() {
+  imgNewSizeRatio = 6.048;
+  imgSizeRatioBookTitle = 7.56;
+
   const result = document.getElementById('canvasEdit');
   result.width = window.innerWidth;
   result.height = 500;
