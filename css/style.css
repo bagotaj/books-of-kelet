@@ -81,9 +81,8 @@ button:hover {
 
 .canvas-wrapper-index {
   width: 100%;
-  height: 500px;
-  background-image: url('../img/kelet-header.jpeg');
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .canvas-wrapper-edit {
@@ -172,14 +171,6 @@ td p:hover {
   table {
     max-width: 90%;
     margin: 0 auto 20px auto;
-  }
-
-  .canvas-wrapper-index {
-    width: 100vw;
-    height: 100px;
-    background-image: url('../img/kelet-header.jpeg');
-    background-repeat: no-repeat;
-    background-size: contain;
   }
 
   .book-shelves {
