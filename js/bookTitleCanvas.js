@@ -1,7 +1,9 @@
 function createBookTitleCanvas() {
   const result = document.getElementById('canvasBookTitles');
-  result.width = 534;
-  result.height = 400;
+  let canvasHeight = setCanvasHeightIndex();
+
+  result.height = canvasHeight * 0.8;
+  result.width = result.height * 1.335;
   return result;
 }
 
