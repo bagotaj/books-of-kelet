@@ -2,23 +2,18 @@ function createCanvas() {
   const result = document.getElementById('canvas');
   result.width = window.innerWidth;
   setCanvasWrapperIndex(result);
-  // if (window.innerHeight < 500) {
-  //   result.height = 100;
-  //   imgNewSizeRatio = 6.048 * 5;
-  //   imgSizeRatioBookTitle = 7.56 * 5;
-  // } else {
-  //   result.height = 500;
-  //   imgNewSizeRatio = 6.048;
-  //   imgSizeRatioBookTitle = 7.56;
-  // }
+  setBookShelvesClassIndex();
+
   return result;
 }
 
 window.addEventListener('resize', function () {
   canvas.width = window.innerWidth;
 
-  if (window.innerWidth < backgroundShelves) {
+  if (window.innerWidth < backgroundShelvesWidth) {
     setCanvasWrapperIndex(canvas);
+    setBookShelvesClassIndex();
+    createBookTitleCanvas();
   }
 });
 
@@ -29,13 +24,30 @@ createMainBookTitlesTable();
 createABCLinkButtons();
 makePagination();
 
+function setCanvasHeightIndex() {
+  let canvasHeight = (window.innerWidth * 500) / backgroundShelvesWidth;
+
+  return canvasHeight;
+}
+
 function setCanvasWrapperIndex(canvas) {
-  const canvasWrapperIndex = document.querySelectorAll('.canvas-wrapper-index');
-  let canvasHeight = (window.innerWidth * 500) / backgroundShelves;
+  const canvasWrapperIndexClass = document.querySelectorAll(
+    '.canvas-wrapper-index'
+  );
+  let canvasHeight = setCanvasHeightIndex();
 
   canvas.height = canvasHeight;
-
-  canvasWrapperIndex[0].style.height = canvasHeight;
-  canvasWrapperIndex[0].style.backgroundImage =
+  imgSizeRatioBookTitle = 7.56 / ((canvasHeight * 0.8) / 400);
+  shelvesCoordsRatio = canvasHeight / 500;
+  canvasWrapperIndexClass[0].style.height = canvasHeight;
+  canvasWrapperIndexClass[0].style.backgroundImage =
     "url('../img/kelet-header.jpeg')";
+}
+
+function setBookShelvesClassIndex() {
+  const bookShelvesClass = document.querySelectorAll('.book-shelves');
+
+  let canvasHeight = setCanvasHeightIndex();
+
+  bookShelvesClass[0].style.height = canvasHeight * 0.8;
 }
