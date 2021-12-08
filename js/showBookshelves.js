@@ -4,7 +4,7 @@ let blinkShelvesPoint;
 
 function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
   const bookshelves = document.getElementById('book-shelves-id');
-  if (shelfCoordsX < 700) {
+  if (shelfCoordsX * shelvesCoordsRatio < window.innerWidth / 2) {
     if (document.getElementsByClassName('book-shelves-left').length > 0) {
       document
         .getElementsByClassName('book-shelves-left')[0]
@@ -30,8 +30,8 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
 function drawBookshelvesPoint(shelfName) {
   const bookShelfPointData = dbbooks[shelfName]['shelfcoords'];
 
-  let pointXShelves = bookShelfPointData['x'];
-  let pointYShelves = bookShelfPointData['y'];
+  let pointXShelves = bookShelfPointData['x'] * shelvesCoordsRatio;
+  let pointYShelves = bookShelfPointData['y'] * shelvesCoordsRatio;
 
   if (clickedShelfPoint) {
     clearInterval(blinkShelvesPoint);
