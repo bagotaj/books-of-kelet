@@ -30,8 +30,8 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
 function drawBookshelvesPoint(shelfName) {
   const bookShelfPointData = dbbooks[shelfName]['shelfcoords'];
 
-  let pointXShelves = bookShelfPointData['x'] * shelvesCoordsRatio;
-  let pointYShelves = bookShelfPointData['y'] * shelvesCoordsRatio;
+  let pointXShelves = bookShelfPointData['x'];
+  let pointYShelves = bookShelfPointData['y'];
 
   if (clickedShelfPoint) {
     clearInterval(blinkShelvesPoint);
@@ -49,7 +49,13 @@ function blinkShelfPoint(pointXShelves, pointYShelves) {
 
   ctx.beginPath();
   ctx.fillStyle = 'red';
-  ctx.arc(pointXShelves, pointYShelves, 15, 0, 2 * Math.PI);
+  ctx.arc(
+    pointXShelves * shelvesCoordsRatio,
+    pointYShelves * shelvesCoordsRatio,
+    15,
+    0,
+    2 * Math.PI
+  );
   if (colorShelfPoint === 'red') {
     colorShelfPoint = '';
   } else {
