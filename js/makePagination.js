@@ -1,5 +1,6 @@
 function makePagination() {
   const tfoot = document.querySelector('#tableFooter');
+  tfoot.innerHTML = '';
 
   const tr = document.createElement('tr');
   const td = document.createElement('td');
