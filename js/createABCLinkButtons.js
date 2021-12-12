@@ -74,6 +74,7 @@ function createABCLinkButtons() {
       a.classList.add('a-clicked');
       sortedBookTitlesByABC = makeSortedBookTitlesByABC(e.target.value);
       createMainBookTitlesTable();
+      makePagination();
     });
 
     td.appendChild(a);
