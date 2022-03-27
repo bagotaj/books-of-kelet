@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books of Kelet</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu">
+        <ul>
+          <li>A KELET KÖNYVEI</li>
+          <li>
+            <input type="text" class="searchinput" /><button class="searchbtn">
+              Keresés
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="canvas-wrapper-index">
+      <canvas id="canvas"></canvas>
+    </div>
+    <div id="book-shelves-id" class="book-shelves">
+      <canvas id="canvasBookTitles"></canvas>
+    </div>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <td colspan="2"><h1>Könyvek</h1></td>
+          </tr>
+          <tr id="theadABC"></tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot id="tableFooter"></tfoot>
+      </table>
+    </div>
+    <script src="../assets/data/dbbooks.js"></script>
+    <script src="../src/db.js"></script>
+    <script src="../src/localStorageItems.js"></script>
+    <script src="../src/makeSortedBookTitles.js"></script>
+    <script src="../src/makeSortedBookTitlesByABC.js"></script>
+    <script src="../src/basicvariables.js"></script>
+    <script src="../src/drawBoundingBoxes.js"></script>
+    <script src="../src/showBookshelves.js"></script>
+    <script src="../src/drawBookTitlePoint.js"></script>
+    <script src="../src/createABCLinkButtons.js"></script>
+    <script src="../src/makePagination.js"></script>
+    <script src="../src/createMainBookTitlesTable.js"></script>
+    <script src="../src/drawBooksImage.js"></script>
+    <script src="../src/index.js"></script>
+    <script src="../src/bookTitleCanvas.js"></script>
+  </body>
+</html>

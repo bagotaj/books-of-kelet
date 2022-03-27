@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books of Kelet</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu">
+        <ul>
+          <li>A KELET KÖNYVEI - SZERKESZTÉS</li>
+          <li>
+            <input type="text" class="searchinput" /><button class="searchbtn">
+              Keresés
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="canvas-wrapper-edit">
+      <canvas id="canvasEdit"></canvas>
+    </div>
+    <div>
+      <table class="thumbnailImageTable">
+        <tbody id="thumbnailsTableBody"></tbody>
+      </table>
+    </div>
+    <div class="make-book-title-container">
+      <button id="makeBookTitlesButton">Könyvcímek generálása</button>
+    </div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <td><h1>Könyvek</h1></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="newBookTitleInput" /></td>
+            <td colspan="2"><input type="text" id="coordinatesInput" /></td>
+            <td><button id="addNewItemButton">Új tétel</button></td>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <script src="../assets/data/dbbooks.js"></script>
+    <script src="../src/db.js"></script>
+    <script src="../src/localStorageItems.js"></script>
+    <script src="../src/makeSortedBookTitles.js"></script>
+    <script src="../src/makeSortedBookTitlesByABC.js"></script>
+    <script src="../src/basicvariables.js"></script>
+    <script src="../src/thumbnailImageTableMaker.js"></script>
+    <script src="../src/drawBoundingBoxes.js"></script>
+    <script src="../src/dataManipulation.js"></script>
+    <script src="../src/createBookTitlesTable.js"></script>
+    <script src="../src/makeBookTitles.js"></script>
+    <script src="../src/addNewBookItem.js"></script>
+    <script src="../src/edit.js"></script>
+  </body>
+</html>
