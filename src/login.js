@@ -1,12 +1,13 @@
 // import { app } from './firebaseApp.js';
 
-firebase.initializeApp(firebaseConfig);
-
 let User = null;
 
 const checkLogin = () => {
   const loginContainer = document.querySelector('.loginContainer');
   const loggedinContainer = document.querySelector('.loggedinContainer');
+  const loggedinTextContainer = document.querySelector(
+    '.loggedinTextContainer'
+  );
   loginContainer.classList.remove('fade');
 
   const loggedinContainerContent = document.querySelector('.content');
@@ -16,10 +17,12 @@ const checkLogin = () => {
       User = Object.assign({}, user);
       loginContainer.classList.add('fade');
       loggedinContainer.classList.remove('fade');
-      loggedinContainerContent.textContent = `Welcome ${user.email}!`;
+      loggedinTextContainer.classList.remove('fade');
+      loggedinContainerContent.textContent = `Welcome ${user.displayName}!`;
     } else {
       loginContainer.classList.remove('fade');
       loggedinContainer.classList.add('fade');
+      loggedinTextContainer.classList.add('fade');
     }
   });
 };
@@ -41,13 +44,18 @@ const setLoginForm = () => {
     registrationForm.classList.remove('fade');
   });
 
-  const loggedinContainerButton = document.querySelector(
-    '.loggedinContainer button'
-  );
+  const loggedinContainerButton = document.querySelector('#logoutButton');
   loggedinContainerButton.addEventListener('click', (event) => {
     event.preventDefault();
     firebase.auth().signOut();
   });
+
+  // const loggedinContainerUpdateButton =
+  //   document.querySelector('#dataupdateButton');
+  // loggedinContainerUpdateButton.addEventListener('click', (event) => {
+  //   event.preventDefault();
+  //   uplodDATA();
+  // });
 };
 
 const loginSubmitButton = document.querySelector('#submitButton');
@@ -62,6 +70,22 @@ loginSubmitButton.addEventListener('click', (event) => {
   firebase
     .auth()
     .signInWithEmailAndPassword(emailInput.value, passwordInput.value)
+    .then((userCredential) => {
+      // Signed in
+      const user = firebase.auth().currentUser;
+      user
+        .updateProfile({
+          displayName: usernameInput.value,
+        })
+        .then(() => {
+          // setUserSigned(userCredential.user);
+
+          console.log('Update is successful');
+        })
+        .catch(function (error) {
+          console.error(error.message);
+        });
+    })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -83,6 +107,22 @@ registrationFormButton.addEventListener('click', (event) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = firebase.auth().currentUser;
+        user
+          .updateProfile({
+            displayName: usernameInput.value,
+          })
+          .then(() => {
+            // setUserSigned(userCredential.user);
+
+            console.log('Update is successful');
+          })
+          .catch(function (error) {
+            console.error(error.message);
+          });
+      })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -95,33 +135,3 @@ registrationFormButton.addEventListener('click', (event) => {
 
 checkLogin();
 setLoginForm();
-
-// function handleLogin(e) {
-//   e.preventDefault();
-//   console.log(usernameInput.value, emailInput.value, passwordInput.value);
-
-//   // app
-//   //   .auth()
-//   //   .signInWithEmailAndPassword(emailInput.value, passwordInput.value)
-//   //   .then((userCredential) => {
-//   //     // Signed in
-//   //     const user = app.auth().currentUser;
-//   //     user
-//   //       .updateProfile({
-//   //         displayName: usernameInput.value,
-//   //       })
-//   //       .then(() => {
-//   //         setUserSigned(userCredential.user);
-
-//   //         console.log('Update is successful');
-//   //       })
-//   //       .catch(function (error) {
-//   //         console.error(error.message);
-//   //       });
-//   //   })
-//   //   .catch((error) => {
-//   //     let errorCode = error.code;
-//   //     let errorMessage = error.message;
-//   //     console.log(errorCode, errorMessage);
-//   //   });
-// }
