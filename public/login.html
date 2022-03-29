@@ -18,6 +18,27 @@
       <nav class="menu">
         <ul>
           <li>A KELET KÖNYVEI</li>
+          <li>
+            <div class="loggedinContainer fade">
+              <button
+                type="button"
+                class="searchbtn"
+                value="dataupdate"
+                id="dataupdateButton"
+              >
+                Update data
+              </button>
+              <p class="content"></p>
+              <button
+                type="button"
+                class="searchbtn"
+                value="logout"
+                id="logoutButton"
+              >
+                Log out
+              </button>
+            </div>
+          </li>
         </ul>
       </nav>
     </header>
@@ -91,9 +112,8 @@
         </form>
       </div>
     </div>
-    <div class="loggedinContainer fade">
-      <div class="content"></div>
-      <button type="button" value="logout">Log out</button>
+    <div class="container loggedinTextContainer fade">
+      <div class="contentData"></div>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -104,6 +124,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
     <script src="../src/firebaseapikey.js"></script>
+    <script src="../assets/data/dbbooks.js"></script>
+    <script src="../assets/data/importData.js"></script>
+    <script src="../src/getDB.js"></script>
     <script src="../src/login.js"></script>
   </body>
 </html>
