@@ -61,6 +61,16 @@ button:hover {
   border: 1px solid;
 }
 
+.loggedinContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.loggedinContainer p {
+  margin-left: 1rem;
+  margin-bottom: auto;
+}
+
 .book-shelves {
   display: none;
   position: absolute;
