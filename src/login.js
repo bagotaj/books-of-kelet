@@ -19,6 +19,7 @@ const checkLogin = () => {
       loggedinContainer.classList.remove('fade');
       loggedinTextContainer.classList.remove('fade');
       loggedinContainerContent.textContent = `Welcome ${user.displayName}!`;
+      getDBfromDatabase();
     } else {
       loginContainer.classList.remove('fade');
       loggedinContainer.classList.add('fade');
