@@ -1,13 +1,15 @@
 const db = firebase.firestore();
 
-db.collection('test').onSnapshot((querySnapshot) => {
-  const results = [];
+function getDBfromDatabase() {
+  db.collection('test').onSnapshot((querySnapshot) => {
+    const results = [];
 
-  querySnapshot.forEach((doc) => {
-    results.push(doc.data());
+    querySnapshot.forEach((doc) => {
+      results.push(doc.data());
+    });
+    makeListFromData(results);
   });
-  makeListFromData(results);
-});
+}
 
 function makeListFromData(results) {
   results.forEach((value) => {
