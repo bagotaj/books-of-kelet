@@ -5,8 +5,8 @@ let User = null;
 const checkLogin = () => {
   const loginContainer = document.querySelector('.loginContainer');
   const loggedinContainer = document.querySelector('.loggedinContainer');
-  const loggedinTextContainer = document.querySelector(
-    '.loggedinTextContainer'
+  const loggedinContentContainer = document.querySelector(
+    '.loggedinContentContainer'
   );
   loginContainer.classList.remove('fade');
 
@@ -17,13 +17,13 @@ const checkLogin = () => {
       User = Object.assign({}, user);
       loginContainer.classList.add('fade');
       loggedinContainer.classList.remove('fade');
-      loggedinTextContainer.classList.remove('fade');
+      loggedinContentContainer.classList.remove('fade');
       loggedinContainerContent.textContent = `Welcome ${user.displayName}!`;
       getDBfromDatabase();
     } else {
       loginContainer.classList.remove('fade');
       loggedinContainer.classList.add('fade');
-      loggedinTextContainer.classList.add('fade');
+      loggedinContentContainer.classList.add('fade');
     }
   });
 };
