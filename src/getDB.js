@@ -1,7 +1,7 @@
-const db = firebase.firestore();
+const dbconnection = firebase.firestore();
 
 function getDBfromDatabase() {
-  db.collection('test').onSnapshot((querySnapshot) => {
+  dbconnection.collection('test').onSnapshot((querySnapshot) => {
     const results = [];
 
     querySnapshot.forEach((doc) => {
