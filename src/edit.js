@@ -1,3 +1,8 @@
+let imageUploadButton = document.querySelector('#imageUploadButton');
+imageUploadButton.addEventListener('click', () => {
+  location.href = '/public/imageupload.html';
+});
+
 function createCanvasEdit() {
   imgNewSizeRatio = 6.048;
   imgSizeRatioBookTitle = 7.56;
