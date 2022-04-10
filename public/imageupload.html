@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books of Kelet</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="menu">
+        <ul>
+          <li>A KELET KÖNYVEI</li>
+          <li>
+            <input type="text" class="searchinput" /><button class="searchbtn">
+              Keresés
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="canvas-wrapper-index">
+      <canvas id="imageuploadcanvas"></canvas>
+    </div>
+    <div class="container">
+      <div>
+        <p>Kép neve:</p>
+        <input type="text" id="namebox" />
+      </div>
+      <img id="myimg" />
+      <p id="UpProgress"></p>
+      <div>
+        <button
+          type="button"
+          class="searchbtn"
+          value="selectimage"
+          id="selectButton"
+        >
+          Kép kiválasztása
+        </button>
+        <button
+          type="button"
+          class="searchbtn"
+          value="selectimage"
+          id="uploadButton"
+        >
+          Kép feltöltése
+        </button>
+        <button
+          type="button"
+          class="searchbtn"
+          value="selectimage"
+          id="retrievalButton"
+        >
+          Kép megjelenítése
+        </button>
+      </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <script src="../src/firebaseapikey.js"></script>
+    <script src="../assets/data/dbbooks.js"></script>
+    <script src="../src/db.js"></script>
+    <script src="../src/makeSortedBookTitles.js"></script>
+    <script src="../src/makeSortedBookTitlesByABC.js"></script>
+    <script src="../src/basicvariables.js"></script>
+    <script src="../src/uploadImageToFirebaseStorage.js"></script>
+    <script src="../src/imageupload.js"></script>
+  </body>
+</html>
