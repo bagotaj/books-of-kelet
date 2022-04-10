@@ -1,6 +1,7 @@
 // Source https://youtu.be/ZH-PnY-JGBU
 
 const dbconnection = firebase.firestore();
+const storageconnection = firebase.storage();
 
 let ImgName, ImgUrl;
 let files = [];
@@ -29,8 +30,7 @@ let uploadButton = document.querySelector('#uploadButton');
 uploadButton.addEventListener('click', () => {
   // Namebox - give the name to the image file
   ImgName = document.getElementById('namebox').value;
-  let uploadTask = firebase
-    .storage()
+  let uploadTask = storageconnection
     .ref(`assets/img/${ImgName}.jpeg`)
     .put(files[0]);
 
@@ -46,29 +46,29 @@ uploadButton.addEventListener('click', () => {
       alert('error in saving the image');
     },
 
-    // submit image link to database
+    // submit image link to database / image added to database
     () => {
-      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-        ImgUrl = url;
+      // uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+      //   ImgUrl = url;
 
-        dbconnection
-          .collection('images')
-          .add({
-            Name: ImgName,
-            Link: ImgUrl,
-          })
-          .then(() => {
-            console.log('Document written');
-          })
-          .catch((error) => {
-            console.error('Error adding document: ', error);
-          });
+      //   dbconnection
+      //     .collection('images')
+      //     .add({
+      //       Name: ImgName,
+      //       Link: ImgUrl,
+      //     })
+      //     .then(() => {
+      //       console.log('Document written');
+      //     })
+      //     .catch((error) => {
+      //       console.error('Error adding document: ', error);
+      //     });
 
-        // firebase.auth().database().ref(`images/${ImgName}`).set({
-        //       Name: ImgName,
-        //       Link: ImgUrl,
-        //     });
-      });
+      //   // firebase.auth().database().ref(`images/${ImgName}`).set({
+      //   //       Name: ImgName,
+      //   //       Link: ImgUrl,
+      //   //     });
+      // });
 
       alert('image added successfully');
     }
@@ -80,22 +80,15 @@ let retrievalButton = document.querySelector('#retrievalButton');
 retrievalButton.addEventListener('click', () => {
   ImgName = document.getElementById('namebox').value;
 
-  // NEM JO!!!
-  dbconnection.collection('images').onSnapshot((querySnapshot) => {
-    const results = [];
-
-    querySnapshot.forEach((doc) => {
-      results.push(doc.data());
+  storageconnection
+    .ref(`assets/img/${ImgName}.jpeg`)
+    .getDownloadURL()
+    .then((url) => {
+      // show downloaded image on the site
+      document.getElementById('myimg').src = url;
+    })
+    .catch((error) => {
+      // Handle any errors
+      alert('error in saving the image', error);
     });
-    makeListFromData(results);
-  });
-
-  // instead firebase.firestore() ?
-  // firebase
-  //   .database()
-  //   .ref(`images/${ImgName}`)
-  //   .on('value', (snapshot) => {
-  //     // show downloaded image on the site
-  //     document.getElementById('myimg').src = snapshot.val().Link;
-  //   });
 });
