@@ -50,13 +50,6 @@ const setLoginForm = () => {
     event.preventDefault();
     firebase.auth().signOut();
   });
-
-  // const loggedinContainerUpdateButton =
-  //   document.querySelector('#dataupdateButton');
-  // loggedinContainerUpdateButton.addEventListener('click', (event) => {
-  //   event.preventDefault();
-  //   uplodDATA();
-  // });
 };
 
 const loginSubmitButton = document.querySelector('#submitButton');
