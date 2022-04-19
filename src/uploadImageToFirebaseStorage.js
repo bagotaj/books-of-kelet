@@ -1,8 +1,5 @@
 // Source https://youtu.be/ZH-PnY-JGBU
 
-const dbconnection = firebase.firestore();
-const storageconnection = firebase.storage();
-
 let ImgName, ImgUrl;
 let files = [];
 let reader;
