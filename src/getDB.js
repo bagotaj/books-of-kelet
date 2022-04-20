@@ -1,5 +1,3 @@
-const dbconnection = firebase.firestore();
-
 function getDBfromDatabase() {
   dbconnection.collection('test').onSnapshot((querySnapshot) => {
     const results = [];
