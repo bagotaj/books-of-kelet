@@ -20,6 +20,31 @@
           <li>A KELET KÖNYVEI</li>
           <li>
             <div class="loggedinContainer fade">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="createFirebaseDBRadio"
+                  value="books"
+                  id="flexRadioBooks"
+                />
+                <label class="form-check-label" for="flexRadioBooks">
+                  Könyvek
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="createFirebaseDBRadio"
+                  value="shelves"
+                  id="flexRadioShelves"
+                  checked
+                />
+                <label class="form-check-label" for="flexRadioShelves">
+                  Polcok
+                </label>
+              </div>
               <button
                 type="button"
                 class="searchbtn"
@@ -159,6 +184,7 @@
 
     <script src="../src/firebaseapikey.js"></script>
     <script src="../assets/data/dbbooks.js"></script>
+    <script src="../src/createFirebaseDB.js"></script>
     <script src="../assets/data/importData.js"></script>
     <script src="../src/db.js"></script>
     <script src="../src/localStorageItems.js"></script>
