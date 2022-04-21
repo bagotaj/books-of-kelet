@@ -1,8 +1,6 @@
-// import { app } from './firebaseApp.js';
-
 let User = null;
 
-const checkLogin = () => {
+const checkLogin = (() => {
   const loginContainer = document.querySelector('.loginContainer');
   const loggedinContainer = document.querySelector('.loggedinContainer');
   const loggedinContentContainer = document.querySelector(
@@ -26,9 +24,9 @@ const checkLogin = () => {
       loggedinContentContainer.classList.add('fade');
     }
   });
-};
+})();
 
-const setLoginForm = () => {
+const setLoginForm = (() => {
   const switchLogin = document.querySelector('#switch-login');
   const switchRegister = document.querySelector('#switch-register');
 
@@ -50,7 +48,7 @@ const setLoginForm = () => {
     event.preventDefault();
     firebase.auth().signOut();
   });
-};
+})();
 
 const loginSubmitButton = document.querySelector('#submitButton');
 
@@ -92,21 +90,24 @@ const registrationFormButton = document.querySelector('#regSubmitButton');
 registrationFormButton.addEventListener('click', (event) => {
   event.preventDefault();
 
-  let usernameInput = document.querySelector('#inputUsername');
-  let emailInput = document.querySelector('#inputEmail1');
-  let passwordInput = document.querySelector('#inputPassword1');
-  let repPasswordInput = document.querySelector('#repeatPassword1');
+  let regUsernameInput = document.querySelector('#regUsername');
+  let regEmailInput = document.querySelector('#regEmail1');
+  let regPasswordInput = document.querySelector('#regPassword1');
+  let repRegPasswordInput = document.querySelector('#repeatPassword1');
 
-  if (passwordInput.value === repPasswordInput.value) {
+  if (regPasswordInput.value === repRegPasswordInput.value) {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
+      .createUserWithEmailAndPassword(
+        regEmailInput.value,
+        regPasswordInput.value
+      )
       .then((userCredential) => {
         // Signed in
         const user = firebase.auth().currentUser;
         user
           .updateProfile({
-            displayName: usernameInput.value,
+            displayName: regUsernameInput.value,
           })
           .then(() => {
             // setUserSigned(userCredential.user);
@@ -126,6 +127,3 @@ registrationFormButton.addEventListener('click', (event) => {
     alert('Passwords do not match!');
   }
 });
-
-checkLogin();
-setLoginForm();
