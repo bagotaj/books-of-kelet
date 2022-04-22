@@ -1,5 +1,6 @@
 function createABCLinkButtons() {
   const theadTR = document.querySelector('#theadABC');
+  theadTR.innerHTML = '';
 
   const td = document.createElement('td');
   const div = document.createElement('div');
@@ -60,6 +61,12 @@ function createABCLinkButtons() {
     '9',
   ];
 
+  const checkNextLetter = (letter) => {
+    let indexOfLetter = abc.indexOf(letter);
+
+    return abc[indexOfLetter + 1];
+  };
+
   for (let i = 0; i < abc.length; i++) {
     const a = document.createElement('a');
     a.value = abc[i];
@@ -73,7 +80,9 @@ function createABCLinkButtons() {
     a.addEventListener('click', (e) => {
       td.getElementsByClassName('a-clicked')[0].classList.remove('a-clicked');
       a.classList.add('a-clicked');
-      sortedBookTitlesByABC = makeSortedBookTitlesByABC(e.target.value);
+      let letterStart = e.target.value;
+      let letterEnd = checkNextLetter(letterStart);
+      getBooksByABC(letterStart, letterEnd);
       createMainBookTitlesTable();
       makePagination();
     });
