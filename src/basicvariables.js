@@ -12,5 +12,6 @@ const listOfImages = [
   { column: 6, images: ['IMG_3414', 'IMG_3415', 'IMG_3427', 'IMG_3428'] },
 ];
 const numberPerPage = 50;
-let sortedBookTitlesByABC = makeSortedBookTitlesByABC();
+// let sortedBookTitlesByABC = [];
+// console.log('basicvariables', sortedBookTitlesByABC);
 const textAnnotations = db[0]['textAnnotations'];
