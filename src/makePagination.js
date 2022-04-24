@@ -1,4 +1,4 @@
-function makePagination() {
+function makePagination(sortedBookTitlesByABC) {
   const tfoot = document.querySelector('#tableFooter');
   tfoot.innerHTML = '';
 
@@ -37,6 +37,6 @@ function getSortedBookTitlesByCurrentPage(currentPage) {
   const trimStart = (currentPage - 1) * numberPerPage;
   const trimEnd = trimStart + numberPerPage;
   paginatedBookTitles = sortedBookTitlesByABC.slice(trimStart, trimEnd);
-
+  console.log('getSortedFunction / byABC', paginatedBookTitles);
   return paginatedBookTitles;
 }
