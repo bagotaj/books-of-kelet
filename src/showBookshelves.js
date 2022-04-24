@@ -28,18 +28,37 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
 }
 
 function drawBookshelvesPoint(shelfName) {
-  const bookShelfPointData = dbbooks[shelfName]['shelfcoords'];
+  let bookShelfPointData = dbconnection
+    .collection('shelves')
+    .where('shelfName', '==', shelfName);
 
-  let pointXShelves = bookShelfPointData['x'];
-  let pointYShelves = bookShelfPointData['y'];
+  bookShelfPointData
+    .get()
+    .then((querySnapshot) => {
+      let shelves = [];
 
-  if (clickedShelfPoint) {
-    clearInterval(blinkShelvesPoint);
-  }
+      querySnapshot.forEach((shelf) => {
+        shelves.push(shelf.data());
+      });
 
-  blinkShelvesPoint = setInterval(() => {
-    blinkShelfPoint(pointXShelves, pointYShelves);
-  }, 1000);
+      return shelves;
+    })
+    .then((shelves) => {
+      let pointXShelves = shelves[0]['shelfCoords']['x'];
+      let pointYShelves = shelves[0]['shelfCoords']['y'];
+
+      if (clickedShelfPoint) {
+        clearInterval(blinkShelvesPoint);
+      }
+
+      blinkShelvesPoint = setInterval(() => {
+        blinkShelfPoint(pointXShelves, pointYShelves);
+      }, 1000);
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
 }
 
 function blinkShelfPoint(pointXShelves, pointYShelves) {
