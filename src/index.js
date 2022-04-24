@@ -1,28 +1,31 @@
-function createCanvas() {
-  const result = document.getElementById('canvas');
-  result.width = window.innerWidth;
-  setCanvasWrapperIndex(result);
-  setBookShelvesClassIndex();
+let ctx;
 
-  return result;
-}
+function initializeSite() {
+  console.log('initialization');
+  const canvas = createCanvas();
+  ctx = canvas.getContext('2d');
 
-window.addEventListener('resize', function () {
-  canvas.width = window.innerWidth;
+  getBooksByABC('A', 'B');
 
-  if (window.innerWidth < backgroundShelvesWidth) {
-    setCanvasWrapperIndex(canvas);
+  function createCanvas() {
+    const result = document.getElementById('canvas');
+    result.width = window.innerWidth;
+    setCanvasWrapperIndex(result);
     setBookShelvesClassIndex();
-    createBookTitleCanvas();
+
+    return result;
   }
-});
 
-const canvas = createCanvas();
-const ctx = canvas.getContext('2d');
+  window.addEventListener('resize', function () {
+    canvas.width = window.innerWidth;
 
-createMainBookTitlesTable();
-createABCLinkButtons();
-makePagination();
+    if (window.innerWidth < backgroundShelvesWidth) {
+      setCanvasWrapperIndex(canvas);
+      setBookShelvesClassIndex();
+      createBookTitleCanvas();
+    }
+  });
+}
 
 function setCanvasHeightIndex() {
   let canvasHeight = (window.innerWidth * 500) / backgroundShelvesWidth;
@@ -51,3 +54,5 @@ function setBookShelvesClassIndex() {
 
   bookShelvesClass[0].style.height = canvasHeight * 0.8;
 }
+
+initializeSite();
