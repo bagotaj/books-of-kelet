@@ -1,16 +1,13 @@
 let ctx;
 
 function initializeSite() {
-  console.log('initialization');
   const canvas = createCanvas();
   ctx = canvas.getContext('2d');
-
-  getBooksByABC('A', 'B');
 
   function createCanvas() {
     const result = document.getElementById('canvas');
     result.width = window.innerWidth;
-    setCanvasWrapperIndex(result);
+    getImage(result, 'kelet-header');
     setBookShelvesClassIndex();
 
     return result;
@@ -20,7 +17,7 @@ function initializeSite() {
     canvas.width = window.innerWidth;
 
     if (window.innerWidth < backgroundShelvesWidth) {
-      setCanvasWrapperIndex(canvas);
+      getImage(canvas, 'kelet-header');
       setBookShelvesClassIndex();
       createBookTitleCanvas();
     }
@@ -33,7 +30,8 @@ function setCanvasHeightIndex() {
   return canvasHeight;
 }
 
-function setCanvasWrapperIndex(canvas) {
+function setCanvasWrapperIndex(canvas, imageURL) {
+  console.log(imageURL);
   const canvasWrapperIndexClass = document.querySelectorAll(
     '.canvas-wrapper-index'
   );
@@ -43,8 +41,7 @@ function setCanvasWrapperIndex(canvas) {
   imgSizeRatioBookTitle = 7.56 / ((canvasHeight * 0.8) / 400);
   shelvesCoordsRatio = canvasHeight / 500;
   canvasWrapperIndexClass[0].style.height = canvasHeight;
-  canvasWrapperIndexClass[0].style.backgroundImage =
-    "url('../assets/img/kelet-header.jpeg')";
+  canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
 }
 
 function setBookShelvesClassIndex() {
@@ -56,3 +53,5 @@ function setBookShelvesClassIndex() {
 }
 
 initializeSite();
+getBooksByABC('A', 'B');
+createABCLinkButtons();
