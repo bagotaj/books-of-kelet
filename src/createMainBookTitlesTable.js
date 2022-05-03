@@ -4,8 +4,16 @@ function createMainBookTitlesTable(books) {
 
   // const sortedBookTitles = getSortedBookTitlesByCurrentPage(currentPage);
 
-  for (let i = 0; i < books.length; i++) {
-    if (books[i]['display'] === 'on') {
+  if (books === undefined || books.length === 0) {
+    let p = document.createElement('p');
+    let td = document.createElement('td');
+    let tr = document.createElement('tr');
+    p.innerText = 'Nincs ilyen könyv.';
+    td.appendChild(p);
+    tr.appendChild(td);
+    tableBody.appendChild(tr);
+  } else {
+    for (let i = 0; i < books.length; i++) {
       const bookTitlePointCoords = books[i]['boundingBox']['vertices'];
       const text = books[i]['paragraph'];
 
