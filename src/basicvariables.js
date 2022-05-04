@@ -1,5 +1,5 @@
 let bookTitles = makeSortedBookTitles();
-const blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
+// const blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
 const backgroundShelvesWidth = 1359;
 const canvasTop = document.getElementById('canvas');
 let imgNewSizeRatio = 6.048;
@@ -14,4 +14,4 @@ const listOfImages = [
 const numberPerPage = 50;
 // let sortedBookTitlesByABC = [];
 // console.log('basicvariables', sortedBookTitlesByABC);
-const textAnnotations = db[0]['textAnnotations'];
+// const textAnnotations = db[0]['textAnnotations'];
