@@ -38,19 +38,19 @@ function getBooksByABC(letterStart, letterEnd) {
     });
 }
 
-function getImage(canvas, ImgName) {
-  let imageURL;
-
+function getImage(mainCanvas, ImgName) {
   storageconnection
     .ref(`assets/img/${ImgName}.jpeg`)
     .getDownloadURL()
     .then((url) => {
-      setCanvasWrapperIndex(canvas, url);
+      if (mainCanvas === 'bookshelves') {
+        setBookshelvesBackgroundImage(url);
+      } else {
+        setCanvasWrapperIndex(canvas, url);
+      }
     })
     .catch((error) => {
       // Handle any errors
       alert('error in saving the image', error);
     });
-
-  return imageURL;
 }
