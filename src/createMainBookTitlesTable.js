@@ -2,8 +2,6 @@ function createMainBookTitlesTable(books) {
   const tableBody = document.getElementById('tableBody');
   tableBody.innerHTML = '';
 
-  // const sortedBookTitles = getSortedBookTitlesByCurrentPage(currentPage);
-
   if (books === undefined || books.length === 0) {
     let p = document.createElement('p');
     let td = document.createElement('td');
