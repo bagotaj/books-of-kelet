@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Books of Kelet</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="../assets/css/style.css" />
   </head>
   <body>
@@ -13,30 +19,117 @@
         <ul>
           <li>A KELET KÖNYVEI</li>
           <li>
-            <input type="text" class="searchinput" /><button class="searchbtn">
-              Keresés
-            </button>
+            <div class="loggedinContainer fade">
+              <div class="form-check">
+                <input type="text" class="searchinput" /><button
+                  class="searchbtn"
+                >
+                  Keresés
+                </button>
+              </div>
+              <p class="content"></p>
+              <button
+                type="button"
+                class="searchbtn"
+                value="logout"
+                id="logoutButton"
+              >
+                Kilépés
+              </button>
+            </div>
           </li>
         </ul>
       </nav>
     </header>
-    <div class="canvas-wrapper-index">
-      <canvas id="canvas"></canvas>
+    <div class="loginContainer fade">
+      <div class="container" id="loginForm">
+        <h1>Belépés</h1>
+        <form>
+          <div class="mb-3">
+            <label for="inputUsername" class="form-label">Felhasználónév</label>
+            <input type="text" class="form-control" id="inputUsername" />
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail1" class="form-label">Email cím</label>
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" class="form-text">
+              Nem osztjuk meg az email címed harmadik féllel.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputPassword1" class="form-label">Jelszó</label>
+            <input type="password" class="form-control" id="inputPassword1" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitButton">
+            Belépés
+          </button>
+          <button type="button" class="btn btn-primary" id="switch-register">
+            Regisztráció
+          </button>
+        </form>
+      </div>
+      <div class="container fade" id="registrationForm">
+        <h1>Regisztráció</h1>
+        <form>
+          <div class="mb-3">
+            <label for="regUsername" class="form-label">Felhasználónév</label>
+            <input type="text" class="form-control" id="regUsername" />
+          </div>
+          <div class="mb-3">
+            <label for="regEmail1" class="form-label">Email cím</label>
+            <input
+              type="regemail"
+              class="form-control"
+              id="regEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" class="form-text">
+              Nem osztjuk meg az email címed harmadik féllel.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="regPassword1" class="form-label">Jelszó</label>
+            <input type="password" class="form-control" id="regPassword1" />
+          </div>
+          <div class="mb-3">
+            <label for="repeatPassword1" class="form-label"
+              >Jelszó mégegyszer</label
+            >
+            <input type="password" class="form-control" id="repeatPassword1" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="regSubmitButton">
+            Regisztráció
+          </button>
+          <button type="button" class="btn btn-primary" id="switch-login">
+            Van már felhasználói fiókod? Belépés
+          </button>
+        </form>
+      </div>
     </div>
-    <div id="book-shelves-id" class="book-shelves">
-      <canvas id="canvasBookTitles"></canvas>
-    </div>
-    <div class="container">
-      <table>
-        <thead>
-          <tr>
-            <td colspan="2"><h1>Könyvek</h1></td>
-          </tr>
-          <tr id="theadABC"></tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-        <tfoot id="tableFooter"></tfoot>
-      </table>
+    <div class="loggedinContentContainer fade">
+      <div class="canvas-wrapper-index">
+        <canvas id="canvas"></canvas>
+      </div>
+      <div id="book-shelves-id" class="book-shelves">
+        <canvas id="canvasBookTitles"></canvas>
+      </div>
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <td colspan="2"><h1>Könyvek</h1></td>
+            </tr>
+            <tr id="theadABC"></tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+          <tfoot id="tableFooter"></tfoot>
+        </table>
+      </div>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -49,7 +142,7 @@
 
     <script src="../assets/data/dbbooks.js"></script>
     <script src="../src/firebaseapikey.js"></script>
-    <script src="../src/db.js"></script>
+    <!-- <script src="../src/db.js"></script> -->
     <script src="../src/localStorageItems.js"></script>
     <script src="../src/makeSortedBookTitles.js"></script>
     <script src="../src/makeSortedBookTitlesByABC.js"></script>
@@ -61,6 +154,7 @@
     <script src="../src/makePagination.js"></script>
     <script src="../src/createMainBookTitlesTable.js"></script>
     <script src="../src/getDB.js"></script>
+    <script src="../src/login.js"></script>
     <script src="../src/drawBooksImage.js"></script>
     <script src="../src/index.js"></script>
     <script src="../src/bookTitleCanvas.js"></script>
