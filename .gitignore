@@ -11,11 +11,11 @@
 # production
 /build
 
-#database
+# database
 /public/assets/data
 /public/assets/temporarydb
 
-#passwords
+# passwords
 pass.txt
 
 # misc
