@@ -20,11 +20,17 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
     bookshelves.classList.add('book-shelves-left');
   }
   bookshelves.style.display = 'block';
-  bookshelves.style.backgroundImage = `url(../assets/img/${bookTitlesOnImage}.jpeg)`;
+  getImage('bookshelves', bookTitlesOnImage);
+  // bookshelves.style.backgroundImage = `url(../assets/img/${bookTitlesOnImage}.jpeg)`;
   bookshelves.style.backgroundRepeat = 'no-repeat';
   bookshelves.style.backgroundSize = 'cover';
 
   drawBookshelvesPoint(shelfName);
+}
+
+function setBookshelvesBackgroundImage(imageURL) {
+  const bookshelves = document.getElementById('book-shelves-id');
+  bookshelves.style.backgroundImage = `url(${imageURL})`;
 }
 
 function drawBookshelvesPoint(shelfName) {
