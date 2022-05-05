@@ -54,3 +54,25 @@ function getImage(mainCanvas, ImgName) {
       alert('error in saving the image', error);
     });
 }
+
+function checkUsersData(userId) {
+  let admin;
+
+  booksRef = dbconnection.collection('users').where('admin', '==', true);
+
+  booksRef
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((user) => {
+        if (user.data()['UID'] === userId) {
+          admin = true;
+        }
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+
+  return admin;
+}
