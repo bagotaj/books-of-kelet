@@ -12,8 +12,8 @@
 /build
 
 #database
-/assets/data
-/assets/temporarydb
+/public/assets/data
+/public/assets/temporarydb
 
 #passwords
 pass.txt
@@ -42,7 +42,7 @@ firebase-debug.*.log*
 .firebase/
 
 # Firebase config
-/src/firebaseapikey.js
+/public/src/firebaseapikey.js
 
 # Uncomment this if you'd like others to create their own Firebase project.
 # For a team working on the same Firebase project(s), it is recommended to leave
