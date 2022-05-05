@@ -31,7 +31,6 @@ function setCanvasHeightIndex() {
 }
 
 function setCanvasWrapperIndex(canvas, imageURL) {
-  console.log(imageURL);
   const canvasWrapperIndexClass = document.querySelectorAll(
     '.canvas-wrapper-index'
   );
@@ -52,6 +51,6 @@ function setBookShelvesClassIndex() {
   bookShelvesClass[0].style.height = canvasHeight * 0.8;
 }
 
-initializeSite();
-getBooksByABC('A', 'B');
-createABCLinkButtons();
+// initializeSite();
+// getBooksByABC('A', 'B');
+// createABCLinkButtons();
