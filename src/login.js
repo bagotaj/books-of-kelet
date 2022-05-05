@@ -7,17 +7,22 @@ const checkLogin = (() => {
     '.loggedinContentContainer'
   );
   loginContainer.classList.remove('fade');
+  let userStatus = false;
 
   const loggedinContainerContent = document.querySelector('.content');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       User = Object.assign({}, user);
+      let uid = user.uid;
       loginContainer.classList.add('fade');
       loggedinContainer.classList.remove('fade');
       loggedinContentContainer.classList.remove('fade');
       loggedinContainerContent.textContent = `Welcome ${user.displayName}!`;
-      getDBfromDatabase();
+
+      initializeSite();
+      getBooksByABC('A', 'B');
+      createABCLinkButtons();
     } else {
       loginContainer.classList.remove('fade');
       loggedinContainer.classList.add('fade');
