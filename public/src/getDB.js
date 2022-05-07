@@ -30,7 +30,7 @@ function getBooksByABC(letterStart, letterEnd) {
     })
     .then((books) => {
       createMainBookTitlesTable(books);
-      makePagination(books);
+      // makePagination(books);
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
