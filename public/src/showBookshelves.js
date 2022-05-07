@@ -4,7 +4,8 @@ let blinkShelvesPoint;
 
 function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
   const bookshelves = document.getElementById('book-shelves-id');
-  if (shelfCoordsX * shelvesCoordsRatio < window.innerWidth / 2) {
+
+  if (shelfCoordsX['x'] * shelvesCoordsRatio < window.innerWidth / 2) {
     if (document.getElementsByClassName('book-shelves-left').length > 0) {
       document
         .getElementsByClassName('book-shelves-left')[0]
