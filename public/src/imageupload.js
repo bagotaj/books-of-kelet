@@ -34,5 +34,5 @@ function setCanvasWrapperIndex(imageuploadcanvas) {
   shelvesCoordsRatio = canvasHeight / 500;
   canvasWrapperIndexClass[0].style.height = canvasHeight;
   canvasWrapperIndexClass[0].style.backgroundImage =
-    "url('../assets/img/kelet-header.jpeg')";
+    "url('./assets/img/kelet-header.jpeg')";
 }
