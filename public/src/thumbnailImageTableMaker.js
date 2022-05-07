@@ -8,7 +8,7 @@ function MakeThumbnailsTableBody() {
 
     for (let j = 0; j < listOfImages[i]['images'].length; j++) {
       let img = document.createElement('img');
-      img.src = `../assets/img/${listOfImages[i]['images'][j]}.jpeg`;
+      img.src = `./assets/img/${listOfImages[i]['images'][j]}.jpeg`;
       img.height = 100;
 
       img.addEventListener('click', () => {
@@ -28,5 +28,5 @@ function MakeThumbnailsTableBody() {
 function addImageBackgroundToCanvasEdit(imageName) {
   let canvasEdit = document.getElementsByClassName('canvas-wrapper-edit');
 
-  canvasEdit[0].style.backgroundImage = `url(../assets/img/${imageName}.jpeg)`;
+  canvasEdit[0].style.backgroundImage = `url(./assets/img/${imageName}.jpeg)`;
 }
