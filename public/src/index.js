@@ -50,7 +50,3 @@ function setBookShelvesClassIndex() {
 
   bookShelvesClass[0].style.height = canvasHeight * 0.8;
 }
-
-// initializeSite();
-// getBooksByABC('A', 'B');
-// createABCLinkButtons();
