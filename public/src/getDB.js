@@ -76,3 +76,32 @@ function checkUsersData(userId) {
 
   return admin;
 }
+
+function searchData(text) {
+  dbconnection
+    .collection('books')
+    .orderBy('paragraph')
+    .startAt(text)
+    .endAt(text + '~')
+    .get()
+    .then((querySnapshot) => {
+      let books = [];
+
+      querySnapshot.forEach((book) => {
+        if (book.data()['display'] === 'on') {
+          books.push(book.data());
+        }
+      });
+
+      return books;
+    })
+    .then((books) => {
+      createMainBookTitlesTable(books);
+      let searchInputField = document.querySelector('#searchinput');
+      searchInputField.value = '';
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
