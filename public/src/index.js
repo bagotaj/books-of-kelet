@@ -50,3 +50,13 @@ function setBookShelvesClassIndex() {
 
   bookShelvesClass[0].style.height = canvasHeight * 0.8;
 }
+
+function setSearchField() {
+  let searchButton = document.querySelector('#searchButton');
+  let searchInputField = document.querySelector('#searchinput');
+
+  searchButton.addEventListener('click', () => {
+    let text = searchInputField.value;
+    searchData(text);
+  });
+}
