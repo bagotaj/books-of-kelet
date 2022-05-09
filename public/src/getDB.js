@@ -78,6 +78,9 @@ function checkUsersData(userId) {
 }
 
 function searchData(text) {
+  // let uppercaseText = text.toUpperCase();
+  // let lowercaseText = text.toLowerCase();
+
   dbconnection
     .collection('books')
     .orderBy('paragraph')
