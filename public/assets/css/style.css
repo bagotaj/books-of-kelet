@@ -183,6 +183,33 @@ td p:hover {
   color: rgb(191, 46, 46);
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023.9px) {
+  .menu {
+    height: 100px;
+  }
+
+  li:first-child {
+    font-size: 4vw;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+
+  .loggedinContainer .form-check:last-child {
+    margin-left: 10px;
+}
+
+  .form-check {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+  .searchbtn {
+    margin: 10px auto auto auto;
+  }
+}
+
 @media screen and (max-width: 767.9px) {
   .menu {
     height: 250px;
