@@ -67,8 +67,8 @@ button:hover {
 }
 
 .loggedinContainer p {
-  margin-left: 1rem;
-  margin-bottom: auto;
+  display: inline-block;
+  margin: auto;
 }
 
 .book-shelves {
@@ -185,12 +185,13 @@ td p:hover {
 
 @media screen and (max-width: 767.9px) {
   .menu {
-    height: 150px;
+    height: 250px;
   }
 
   ul {
     flex-direction: column;
     justify-content: center;
+    padding: 0;
   }
 
   li:first-child {
@@ -199,14 +200,21 @@ td p:hover {
     margin: 10px 0;
   }
 
-  li:last-child {
+  li:last-child, .loggedinContainer {
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
 
+  .form-check {
+    padding: 0;
+    display: inherit;
+    justify-content: inherit;
+    flex-direction: inherit;
+}
+
   .searchbtn {
-    margin: 10px 0;
+    margin: 10px auto auto auto;
   }
 
   .book-shelves {
