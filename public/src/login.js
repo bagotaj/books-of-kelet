@@ -49,21 +49,10 @@ const setLoginForm = (() => {
     registrationForm.classList.remove('fade');
   });
 
-  let usernameInput = document.querySelector('#inputUsername');
-  let emailInput = document.querySelector('#inputEmail1');
-  let passwordInput = document.querySelector('#inputPassword1');
-
   const loggedinContainerButton = document.querySelector('#logoutButton');
   loggedinContainerButton.addEventListener('click', (event) => {
     event.preventDefault();
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        usernameInput.value = '';
-        emailInput.value = '';
-        passwordInput.value = '';
-      });
+    firebase.auth().signOut();
   });
 })();
 
@@ -87,7 +76,9 @@ loginSubmitButton.addEventListener('click', (event) => {
           displayName: usernameInput.value,
         })
         .then(() => {
-          // setUserSigned(userCredential.user);
+          usernameInput.value = '';
+          emailInput.value = '';
+          passwordInput.value = '';
 
           console.log('Update is successful');
         })
@@ -134,6 +125,12 @@ registrationFormButton.addEventListener('click', (event) => {
           .catch(function (error) {
             console.error(error.message);
           });
+      })
+      .then(() => {
+        regUsernameInput.value = '';
+        regEmailInput.value = '';
+        regPasswordInput.value = '';
+        repRegPasswordInput.value = '';
       })
       .catch((error) => {
         var errorCode = error.code;
