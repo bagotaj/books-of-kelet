@@ -22,7 +22,6 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
   }
   bookshelves.style.display = 'block';
   getImage('bookshelves', bookTitlesOnImage);
-  // bookshelves.style.backgroundImage = `url(../assets/img/${bookTitlesOnImage}.jpeg)`;
   bookshelves.style.backgroundRepeat = 'no-repeat';
   bookshelves.style.backgroundSize = 'cover';
 
