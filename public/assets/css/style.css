@@ -39,8 +39,7 @@ li:first-child {
   font-weight: 500;
 }
 
-.searchbtn,
-button {
+.searchbtn, .normalbtn {
   padding: 6px 12px;
   margin-left: 16px;
   border: none;
@@ -205,7 +204,7 @@ td p:hover {
     flex-direction: column;
 }
 
-  .searchbtn {
+  .searchbtn, .normalbtn {
     margin: 10px auto auto auto;
   }
 }
@@ -240,12 +239,13 @@ td p:hover {
     flex-direction: inherit;
 }
 
-  .searchbtn {
+  .searchbtn, .normalbtn {
+    display: block;
     margin: 10px auto auto auto;
   }
 
   .book-shelves {
-    top: 160px;
+    top: 260px;
   }
 
   table {
