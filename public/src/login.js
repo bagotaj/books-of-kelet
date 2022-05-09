@@ -23,6 +23,7 @@ const checkLogin = (() => {
       initializeSite();
       getBooksByABC('A', 'B');
       createABCLinkButtons();
+      setSearchField();
     } else {
       loginContainer.classList.remove('fade');
       loggedinContainer.classList.add('fade');
@@ -48,10 +49,21 @@ const setLoginForm = (() => {
     registrationForm.classList.remove('fade');
   });
 
+  let usernameInput = document.querySelector('#inputUsername');
+  let emailInput = document.querySelector('#inputEmail1');
+  let passwordInput = document.querySelector('#inputPassword1');
+
   const loggedinContainerButton = document.querySelector('#logoutButton');
   loggedinContainerButton.addEventListener('click', (event) => {
     event.preventDefault();
-    firebase.auth().signOut();
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        usernameInput.value = '';
+        emailInput.value = '';
+        passwordInput.value = '';
+      });
   });
 })();
 
