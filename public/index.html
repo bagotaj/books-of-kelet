@@ -33,7 +33,7 @@
                 <p class="content"></p>
                 <button
                   type="button"
-                  class="searchbtn"
+                  class="normalbtn"
                   value="logout"
                   id="logoutButton"
                 >
@@ -69,12 +69,14 @@
             <label for="inputPassword1" class="form-label">Jelszó</label>
             <input type="password" class="form-control" id="inputPassword1" />
           </div>
-          <button type="submit" class="btn btn-primary" id="submitButton">
-            Belépés
-          </button>
-          <button type="button" class="btn btn-primary" id="switch-register">
-            Regisztráció
-          </button>
+          <div class="mb-3">
+            <button type="submit" class="normalbtn" id="submitButton">
+              Belépés
+            </button>
+            <button type="button" class="normalbtn" id="switch-register">
+              Regisztráció
+            </button>
+          </div>
         </form>
       </div>
       <div class="container fade" id="registrationForm">
@@ -106,12 +108,14 @@
             >
             <input type="password" class="form-control" id="repeatPassword1" />
           </div>
-          <button type="submit" class="btn btn-primary" id="regSubmitButton">
-            Regisztráció
-          </button>
-          <button type="button" class="btn btn-primary" id="switch-login">
-            Van már felhasználói fiókod? Belépés
-          </button>
+          <div class="mb-3">
+            <button type="submit" class="normalbtn" id="regSubmitButton">
+              Regisztráció
+            </button>
+            <button type="button" class="normalbtn" id="switch-login">
+              Van már felhasználói fiókod? Belépés
+            </button>
+          </div>
         </form>
       </div>
     </div>
