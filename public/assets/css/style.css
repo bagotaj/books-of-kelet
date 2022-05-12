@@ -11,12 +11,12 @@ body {
   width: 100%;
 }
 
-.fade {
+.displaynone {
   display: none;
 }
 
 .menu {
-  height: 70px;
+  min-height: 70px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -60,14 +60,20 @@ button:hover {
   border: 1px solid;
 }
 
-.loggedinContainer {
+/* .loggedinContainer {
   display: flex;
   flex-direction: row;
-}
+} */
 
 .loggedinContainer p {
   display: inline-block;
   margin: auto;
+}
+
+#navbarLi2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .book-shelves {
@@ -184,7 +190,7 @@ td p:hover {
 
 @media screen and (min-width: 768px) and (max-width: 1023.9px) {
   .menu {
-    height: 100px;
+    min-height: 100px;
   }
 
   li:first-child {
@@ -195,7 +201,7 @@ td p:hover {
 
   .loggedinContainer .form-check:last-child {
     margin-left: 10px;
-}
+  }
 
   .form-check {
     padding: 0;
@@ -211,7 +217,8 @@ td p:hover {
 
 @media screen and (max-width: 767.9px) {
   .menu {
-    height: 250px;
+    min-height: 70px;
+    max-height: 250px;
   }
 
   ul {
@@ -226,7 +233,7 @@ td p:hover {
     margin: 10px 0;
   }
 
-  li:last-child, .loggedinContainer {
+  #navbarLi2 {
     display: flex;
     justify-content: center;
     flex-direction: column;
