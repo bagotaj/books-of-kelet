@@ -6,7 +6,7 @@ const checkLogin = (() => {
   const loggedinContentContainer = document.querySelector(
     '.loggedinContentContainer'
   );
-  loginContainer.classList.remove('fade');
+  loginContainer.classList.remove('displaynone');
   let userStatus = false;
 
   const loggedinContainerContent = document.querySelector('.content');
@@ -15,9 +15,9 @@ const checkLogin = (() => {
     if (user) {
       User = Object.assign({}, user);
       let uid = user.uid;
-      loginContainer.classList.add('fade');
-      loggedinContainer.classList.remove('fade');
-      loggedinContentContainer.classList.remove('fade');
+      loginContainer.classList.add('displaynone');
+      loggedinContainer.classList.remove('displaynone');
+      loggedinContentContainer.classList.remove('displaynone');
       loggedinContainerContent.textContent = `Welcome ${user.displayName}!`;
 
       initializeSite();
@@ -25,9 +25,9 @@ const checkLogin = (() => {
       createABCLinkButtons();
       setSearchField();
     } else {
-      loginContainer.classList.remove('fade');
-      loggedinContainer.classList.add('fade');
-      loggedinContentContainer.classList.add('fade');
+      loginContainer.classList.remove('displaynone');
+      loggedinContainer.classList.add('displaynone');
+      loggedinContentContainer.classList.add('displaynone');
     }
   });
 })();
@@ -40,13 +40,13 @@ const setLoginForm = (() => {
   const registrationForm = document.getElementById('registrationForm');
 
   switchLogin.addEventListener('click', () => {
-    loginForm.classList.remove('fade');
-    registrationForm.classList.add('fade');
+    loginForm.classList.remove('displaynone');
+    registrationForm.classList.add('displaynone');
   });
 
   switchRegister.addEventListener('click', () => {
-    loginForm.classList.add('fade');
-    registrationForm.classList.remove('fade');
+    loginForm.classList.add('displaynone');
+    registrationForm.classList.remove('displaynone');
   });
 
   const loggedinContainerButton = document.querySelector('#logoutButton');
