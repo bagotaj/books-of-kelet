@@ -37,7 +37,7 @@ function createMainBookTitlesTable(books) {
 
       const a = document.createElement('a');
 
-      a.innerText = 'moly.hu';
+      a.innerText = 'Keresés a moly.hu-n';
       a.href = `https://moly.hu/kereses?q=${text}`;
       a.target = '_blank';
 
