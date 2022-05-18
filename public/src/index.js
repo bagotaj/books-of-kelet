@@ -59,4 +59,11 @@ function setSearchField() {
     let text = searchInputField.value;
     searchData(text);
   });
+
+  searchInputField.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchButton.click();
+    }
+  });
 }
