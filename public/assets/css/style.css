@@ -60,11 +60,6 @@ button:hover {
   border: 1px solid;
 }
 
-/* .loggedinContainer {
-  display: flex;
-  flex-direction: row;
-} */
-
 .loggedinContainer p {
   display: inline-block;
   margin: auto;
@@ -131,9 +126,12 @@ table {
   margin: 0 auto 20px auto;
 }
 
+thead a {
+  margin-left: 16px;
+}
+
 thead tr:last-child td {
   padding-bottom: 15px;
-  padding-right: 5px;
 }
 
 thead tr:last-child td div {
@@ -146,12 +144,26 @@ tfoot tr td {
 }
 
 a {
-  margin-left: 16px;
   color: rgb(191, 46, 46);
 }
 
 .a-clicked {
   font-weight: 800;
+}
+
+#tableBody a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+#tableBody a svg {
+  margin-right: 5px;
+}
+
+#tableBody tr:last-child td p {
+  align-items: flex-end;
 }
 
 .thumbnailImageTable {
@@ -219,6 +231,7 @@ td p:hover {
   .menu {
     min-height: 70px;
     max-height: 250px;
+    padding-bottom: 30px;
   }
 
   ul {
