@@ -84,7 +84,6 @@ function createABCLinkButtons() {
       let letterEnd = checkNextLetter(letterStart);
       getBooksByABC(letterStart, letterEnd);
       createMainBookTitlesTable();
-      makePagination();
     });
 
     div.appendChild(a);
