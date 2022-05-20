@@ -23,6 +23,20 @@ function createMainBookTitlesTable(books) {
       let p2 = document.createElement('p');
       p.innerText = text;
       p.addEventListener('click', () => {
+        let canvasWrapperLabel = document.querySelector(
+          '#canvas-wrapper-label'
+        );
+
+        let canvasLabel = document.querySelector('#canvas-label');
+
+        let hasDisplaynoneClass =
+          canvasWrapperLabel.classList.contains('displaynone');
+
+        if (!hasDisplaynoneClass) {
+          canvasWrapperLabel.setAttribute('class', 'displaynone');
+          canvasLabel.classList.remove('displaynone');
+        }
+
         showBookshelves(
           books[i]['imageTitle'],
           books[i]['shelfName'],
