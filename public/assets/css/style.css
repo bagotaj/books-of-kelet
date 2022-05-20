@@ -15,11 +15,32 @@ body {
   display: none;
 }
 
-.menu {
-  min-height: 70px;
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-label {
+  margin: 30px 30px 0px 30px;
+  color: white;
+  animation: opac 0.8s;
+}
+
+.menu, .menu-books {
+  min-height: 100px;
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.menu-books {
+  max-width: 665px;
+  margin: 10px auto;
+}
+
+.menu-books ul {
+  margin: 0;
 }
 
 ul {
@@ -28,6 +49,7 @@ ul {
   display: inherit;
   align-items: inherit;
   justify-content: space-between;
+  padding-left: 0;
 }
 
 li {
@@ -74,7 +96,7 @@ button:hover {
 .book-shelves {
   display: none;
   position: absolute;
-  top: 120px;
+  top: 150px;
   z-index: 999;
   border: 6px solid white;
   border-radius: 6px;
@@ -95,6 +117,27 @@ button:hover {
   width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-wrapper-index div {
+  z-index: 999;
+  width: 100%;
+  position: absolute;
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  color: white;
+  animation: opac 0.8s;
+}
+
+@keyframes opac{from{opacity:0} to{opacity:1}}
+
+.canvas-wrapper-index div p, .canvas-label {
+  background-color: rgb(191, 46, 46);
+  padding: 5px 10px;
 }
 
 .canvas-wrapper-edit {
@@ -131,7 +174,7 @@ thead a {
 }
 
 thead tr:last-child td {
-  padding-bottom: 15px;
+  padding-bottom: 30px;
 }
 
 thead tr:last-child td div {
@@ -205,22 +248,19 @@ td p:hover {
     min-height: 100px;
   }
 
+  .book-shelves {
+    top: 120px;
+  }
+
   li:first-child {
     font-size: 4vw;
     font-weight: 500;
     margin: 10px 0;
   }
 
-  .loggedinContainer .form-check:last-child {
+  .form-check button {
     margin-left: 10px;
   }
-
-  .form-check {
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
 
   .searchbtn, .normalbtn {
     margin: 10px auto auto auto;
@@ -229,15 +269,20 @@ td p:hover {
 
 @media screen and (max-width: 767.9px) {
   .menu {
-    min-height: 70px;
+    min-height: 100px;
     max-height: 250px;
-    padding-bottom: 30px;
+    padding: 20px 0px 10px;
+  }
+
+  .menu-books ul {
+    margin: 0 30px 20px;
   }
 
   ul {
     flex-direction: column;
     justify-content: center;
     padding: 0;
+    margin: 0 30px 20px;
   }
 
   li:first-child {
@@ -265,7 +310,7 @@ td p:hover {
   }
 
   .book-shelves {
-    top: 260px;
+    top: 190px;
   }
 
   table {
