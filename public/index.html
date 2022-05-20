@@ -21,26 +21,6 @@
           <li class="loggedinContainer displaynone">
             <div id="navbarLi2">
               <div class="form-check">
-                <input
-                  type="text"
-                  class="searchinput"
-                  id="searchinput"
-                /><button type="button" class="searchbtn" id="searchButton">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-search"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <div class="form-check">
                 <p class="content"></p>
                 <button
                   type="button"
@@ -133,16 +113,50 @@
     <div class="loggedinContentContainer displaynone">
       <div class="canvas-wrapper-index">
         <canvas id="canvas"></canvas>
+        <div>
+          <p id="canvas-wrapper-label">
+            Kattints egy könyv címére, és megmutatjuk, melyik polcon találod.
+          </p>
+        </div>
+      </div>
+      <div id="canvas-label" class="displaynone">
+        <p class="canvas-label center">
+          Kérlek, pontosan ugyanoda tedd vissza a könyvet, ahonnan elvetted,
+          hogy mások is megtalálják. <br />
+          Az app segít neked ebben. :-).
+        </p>
       </div>
       <div id="book-shelves-id" class="book-shelves">
         <canvas id="canvasBookTitles"></canvas>
       </div>
       <div class="container">
+        <nav class="menu-books">
+          <ul>
+            <li><h1>Könyvek</h1></li>
+            <li class="form-check">
+              <input type="text" class="searchinput" id="searchinput" /><button
+                type="button"
+                class="searchbtn"
+                id="searchButton"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-search"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                  />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
         <table>
           <thead>
-            <tr>
-              <td colspan="2"><h1>Könyvek</h1></td>
-            </tr>
             <tr id="theadABC"></tr>
           </thead>
           <tbody id="tableBody"></tbody>
