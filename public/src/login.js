@@ -18,7 +18,7 @@ const checkLogin = (() => {
       loginContainer.classList.add('displaynone');
       loggedinContainer.classList.remove('displaynone');
       loggedinContentContainer.classList.remove('displaynone');
-      loggedinContainerContent.textContent = `Welcome ${user.displayName}!`;
+      loggedinContainerContent.textContent = `Belépve: ${user.displayName}!`;
 
       initializeSite();
       getBooksByABC('A', 'B');
