@@ -1,5 +1,3 @@
-let User = null;
-
 const checkLogin = (() => {
   const loginContainer = document.querySelector('.loginContainer');
   const loggedinContainer = document.querySelector('.loggedinContainer');
@@ -7,18 +5,18 @@ const checkLogin = (() => {
     '.loggedinContentContainer'
   );
   loginContainer.classList.remove('displaynone');
-  let userStatus = false;
 
   const loggedinContainerContent = document.querySelector('.content');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      User = Object.assign({}, user);
       let uid = user.uid;
       loginContainer.classList.add('displaynone');
       loggedinContainer.classList.remove('displaynone');
       loggedinContentContainer.classList.remove('displaynone');
-      loggedinContainerContent.textContent = `Belépve: ${user.displayName}!`;
+      if (user.displayName !== null) {
+        loggedinContainerContent.textContent = `Belépve: ${user.displayName}!`;
+      }
 
       initializeSite();
       getBooksByABC('A', 'B');
@@ -118,8 +116,8 @@ registrationFormButton.addEventListener('click', (event) => {
             displayName: regUsernameInput.value,
           })
           .then(() => {
-            // setUserSigned(userCredential.user);
-
+            const loggedinContainerContent = document.querySelector('.content');
+            loggedinContainerContent.textContent = `Belépve: ${user.displayName}!`;
             console.log('Update is successful');
           })
           .catch(function (error) {
