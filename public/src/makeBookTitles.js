@@ -1,20 +1,44 @@
 const buttonMakeBookTitles = document.getElementById('makeBookTitlesButton');
 buttonMakeBookTitles.addEventListener('click', makeBookTitles);
 
+let blocks = db[0]['fullTextAnnotation']['pages'][0]['blocks'];
+
 function makeBookTitles() {
   const bookTitlesWithCoordinates = [];
 
   for (let i = 0; i < blocks.length; i++) {
-    const boundingBox = blocks[i]['boundingBox'];
-    const wordsOfParagraphs = blocks[i]['paragraphs'][0]['words'];
-    const paragraphText = makeParagraphs(wordsOfParagraphs);
+    let boundingBox;
+    let paragraphs = blocks[i]['paragraphs'];
+    let wordsOfParagraphs;
+    let paragraphText;
 
-    bookTitlesWithCoordinates.push({
-      display: 'on',
-      boundingBox: boundingBox,
-      oldparagraph: paragraphText,
-      paragraph: paragraphText,
-    });
+    if (paragraphs.length > 1) {
+      paragraphs.forEach((element) => {
+        boundingBox = element['boundingBox'];
+
+        wordsOfParagraphs = element['words'];
+        paragraphText = makeParagraphs(wordsOfParagraphs);
+
+        bookTitlesWithCoordinates.push({
+          display: 'on',
+          boundingBox: boundingBox,
+          oldparagraph: paragraphText,
+          paragraph: paragraphText,
+        });
+      });
+    } else {
+      boundingBox = blocks[i]['boundingBox'];
+
+      wordsOfParagraphs = blocks[i]['paragraphs'][0]['words'];
+      paragraphText = makeParagraphs(wordsOfParagraphs);
+
+      bookTitlesWithCoordinates.push({
+        display: 'on',
+        boundingBox: boundingBox,
+        oldparagraph: paragraphText,
+        paragraph: paragraphText,
+      });
+    }
   }
 
   localStorage.setItem('bookTitles', JSON.stringify(bookTitlesWithCoordinates));
