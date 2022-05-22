@@ -18,8 +18,8 @@
       <nav class="menu">
         <ul>
           <li>A KELET KÖNYVEI</li>
-          <li>
-            <div class="loggedinContainer displaynone">
+          <li class="loggedinContainer displaynone">
+            <div class="editbooks">
               <div class="form-check">
                 <input
                   class="form-check-input"
@@ -72,11 +72,11 @@
         <h1>Belépés</h1>
         <form>
           <div class="mb-3">
-            <label for="inputUsername" class="form-label"> Username </label>
+            <label for="inputUsername" class="form-label">Felhasználónév</label>
             <input type="text" class="form-control" id="inputUsername" />
           </div>
           <div class="mb-3">
-            <label for="inputEmail1" class="form-label">Email address</label>
+            <label for="inputEmail1" class="form-label">Email cím</label>
             <input
               type="email"
               class="form-control"
@@ -84,18 +84,18 @@
               aria-describedby="emailHelp"
             />
             <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
+              Nem osztjuk meg az email címed harmadik féllel.
             </div>
           </div>
           <div class="mb-3">
-            <label for="inputPassword1" class="form-label">Password</label>
+            <label for="inputPassword1" class="form-label">Jelszó</label>
             <input type="password" class="form-control" id="inputPassword1" />
           </div>
-          <button type="submit" class="btn btn-primary" id="submitButton">
-            Submit
+          <button type="submit" class="normalbtn" id="submitButton">
+            Belépés
           </button>
-          <button type="button" class="btn btn-primary" id="switch-register">
-            Registration
+          <button type="button" class="normalbtn" id="switch-register">
+            Regisztráció
           </button>
         </form>
       </div>
@@ -103,11 +103,11 @@
         <h1>Regisztráció</h1>
         <form>
           <div class="mb-3">
-            <label for="regUsername" class="form-label"> Username </label>
+            <label for="regUsername" class="form-label">Felhasználónév</label>
             <input type="text" class="form-control" id="regUsername" />
           </div>
           <div class="mb-3">
-            <label for="regEmail1" class="form-label">Email address</label>
+            <label for="regEmail1" class="form-label">Email cím</label>
             <input
               type="regemail"
               class="form-control"
@@ -115,23 +115,23 @@
               aria-describedby="emailHelp"
             />
             <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
+              Nem osztjuk meg az email címed harmadik féllel.
             </div>
           </div>
           <div class="mb-3">
-            <label for="regPassword1" class="form-label">Password</label>
+            <label for="regPassword1" class="form-label">Jelszó</label>
             <input type="password" class="form-control" id="regPassword1" />
           </div>
           <div class="mb-3">
             <label for="repeatPassword1" class="form-label"
-              >Repeat Password</label
+              >Jelszó mégegyszer</label
             >
             <input type="password" class="form-control" id="repeatPassword1" />
           </div>
-          <button type="submit" class="btn btn-primary" id="regSubmitButton">
+          <button type="submit" class="normalbtn" id="regSubmitButton">
             Submit
           </button>
-          <button type="button" class="btn btn-primary" id="switch-login">
+          <button type="button" class="normalbtn" id="switch-login">
             Already have an account? Login
           </button>
         </form>
@@ -155,7 +155,9 @@
         >
           Képfeltöltés
         </button>
-        <button id="makeBookTitlesButton">Könyvcímek generálása</button>
+        <button type="button" class="normalbtn" id="makeBookTitlesButton">
+          Könyvcímek generálása
+        </button>
       </div>
       <div>
         <table>
@@ -166,7 +168,11 @@
             <tr>
               <td><input type="text" id="newBookTitleInput" /></td>
               <td colspan="2"><input type="text" id="coordinatesInput" /></td>
-              <td><button id="addNewItemButton">Új tétel</button></td>
+              <td>
+                <button type="button" class="normalbtn" id="addNewItemButton">
+                  Új tétel
+                </button>
+              </td>
             </tr>
           </thead>
           <tbody id="tableBody"></tbody>
