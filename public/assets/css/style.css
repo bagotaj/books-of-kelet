@@ -209,6 +209,17 @@ a {
   align-items: flex-end;
 }
 
+#tableBody .normalbtn {
+  margin-bottom: 5px;
+}
+
+.editbooks {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
 .thumbnailImageTable {
   width: 100%;
   margin-top: 15px;
