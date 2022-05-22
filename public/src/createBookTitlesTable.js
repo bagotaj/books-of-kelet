@@ -14,9 +14,13 @@ function createBookTitlesTable() {
 
       let buttonSave = document.createElement('button');
       buttonSave.innerText = 'Mentés';
+      buttonSave.setAttribute('type', 'button');
+      buttonSave.setAttribute('class', 'normalbtn');
       buttonSave.addEventListener('click', () => dataManipulation('save', i));
       let buttonDelete = document.createElement('button');
       buttonDelete.innerText = 'Törlés';
+      buttonDelete.setAttribute('type', 'button');
+      buttonDelete.setAttribute('class', 'normalbtn');
       buttonDelete.addEventListener('click', () =>
         dataManipulation('delete', i)
       );
