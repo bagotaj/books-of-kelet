@@ -15,8 +15,11 @@ function dataManipulation(type, index, newcoords) {
         },
         paragraph: data.value,
       });
+
+      data.value = '';
     } else {
       bookTitles[index]['paragraph'] = data.value;
+      data.value = '';
     }
 
     saveItemToLocalStorage('bookTitles', bookTitles);
