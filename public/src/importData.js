@@ -25,17 +25,20 @@ function submitImportData() {
   }
 
   let docRef = dbconnection.collection(selectedCollection);
-  selectedData['3'].forEach((book) => {
-    docRef
-      .add(book)
-      .then(() => {
-        console.log('Document written');
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-        alert('Error adding document: ', error.message);
-      });
-  });
+
+  for (let batch in selectedData) {
+    selectedData[batch].forEach((book) => {
+      docRef
+        .add(book)
+        .then(() => {
+          console.log('Document written');
+        })
+        .catch((error) => {
+          console.error('Error adding document: ', error);
+          alert('Error adding document: ', error.message);
+        });
+    });
+  }
   // console.log(selectedData);
   // let firebaseBatch = dbconnection.batch();
 
