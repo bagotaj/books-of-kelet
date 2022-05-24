@@ -1,5 +1,5 @@
 function createFirebaseDBBooks() {
-  let newDB = { 1: [], 2: [], 3: [] };
+  let newDB = {};
   let newDB2 = [];
 
   for (let key in dbbooks) {
@@ -12,8 +12,8 @@ function createFirebaseDBBooks() {
         x: dbbooks[key]['shelfcoords']['x'],
         y: dbbooks[key]['shelfcoords']['y'],
       };
-
-      newDB2.push(book);
+      (book['searchparagraph'] = book['paragraph'].toLowerCase()),
+        newDB2.push(book);
     });
   }
 
@@ -30,19 +30,23 @@ function createFirebaseDBBooks() {
     return 0;
   });
 
-  newDB2.forEach((element) => {
-    if (newDB['1'].length === 450) {
-      if (newDB['2'].length === 450) {
-        newDB['3'].push(element);
-      } else {
-        newDB['2'].push(element);
-      }
-    } else {
-      newDB['1'].push(element);
-    }
-  });
+  let amountOfBatch = 450;
+  let numberOfnewDBKeys = Math.ceil(newDB2.length / amountOfBatch);
 
-  // console.log('Ordered Books', newDB);
+  for (let a = 1; a <= numberOfnewDBKeys; a++) {
+    newDB[a] = [];
+  }
+
+  for (let i = 0; i < newDB2.length; i++) {
+    if (newDB[numberOfnewDBKeys].length === 450) {
+      --numberOfnewDBKeys;
+
+      newDB[numberOfnewDBKeys].push(newDB2[i]);
+    } else {
+      newDB[numberOfnewDBKeys].push(newDB2[i]);
+    }
+  }
+
   return newDB;
 }
 
