@@ -1,18 +1,20 @@
 function getBooksByABC(letterStart, letterEnd) {
   let booksRef;
+  let firstLetterLowerCase = letterStart.toLowerCase();
+  let secondLetterLowerCase = letterEnd?.toLowerCase();
 
   if (letterEnd === undefined) {
     booksRef = dbconnection
       .collection('books')
-      .orderBy('paragraph')
-      .startAt(letterStart)
-      .endAt(letterStart);
+      .orderBy('searchparagraph')
+      .startAt(firstLetterLowerCase)
+      .endAt(firstLetterLowerCase);
   } else {
     booksRef = dbconnection
       .collection('books')
-      .orderBy('paragraph')
-      .startAt(letterStart)
-      .endAt(letterEnd);
+      .orderBy('searchparagraph')
+      .startAt(firstLetterLowerCase)
+      .endAt(secondLetterLowerCase);
   }
 
   booksRef
@@ -79,13 +81,13 @@ function checkUsersData(userId) {
 
 function searchData(text) {
   // let uppercaseText = text.toUpperCase();
-  // let lowercaseText = text.toLowerCase();
+  let lowercaseText = text.toLowerCase();
 
   dbconnection
     .collection('books')
-    .orderBy('paragraph')
-    .startAt(text)
-    .endAt(text + '~')
+    .orderBy('searchparagraph')
+    .startAt(lowercaseText)
+    .endAt(lowercaseText + '~')
     .get()
     .then((querySnapshot) => {
       let books = [];
