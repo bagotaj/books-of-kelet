@@ -14,6 +14,7 @@
 # database
 /public/assets/data
 /public/assets/temporarydb
+/public/src/db.js
 
 # passwords
 pass.txt
