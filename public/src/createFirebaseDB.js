@@ -2,20 +2,39 @@ function createFirebaseDBBooks() {
   let newDB = {};
   let newDB2 = [];
 
-  for (let key in dbbooks) {
-    let bookdataArr = dbbooks[key].bookdata;
+  let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
+  let imageTitle = 'IMG_3787';
+  let shelfName = '7B';
+  let shelfCoords = {
+    x: 955,
+    y: 212,
+  };
+  // Books data from local storage
 
-    bookdataArr.forEach((book) => {
-      book['imageTitle'] = dbbooks[key]['imageName'];
-      book['shelfName'] = key;
-      book['shelfCoords'] = {
-        x: dbbooks[key]['shelfcoords']['x'],
-        y: dbbooks[key]['shelfcoords']['y'],
-      };
-      (book['searchparagraph'] = book['paragraph'].toLowerCase()),
-        newDB2.push(book);
-    });
-  }
+  booksFromLocalStorage.forEach((book) => {
+    book['imageTitle'] = imageTitle;
+    book['shelfName'] = shelfName;
+    book['shelfCoords'] = shelfCoords;
+    (book['searchparagraph'] = book['paragraph'].toLowerCase()),
+      newDB2.push(book);
+  });
+
+  // Books data from dbbooks.js file
+
+  // for (let key in dbbooks) {
+  //   let bookdataArr = dbbooks[key].bookdata;
+
+  //   bookdataArr.forEach((book) => {
+  //     book['imageTitle'] = dbbooks[key]['imageName'];
+  //     book['shelfName'] = key;
+  //     book['shelfCoords'] = {
+  //       x: dbbooks[key]['shelfcoords']['x'],
+  //       y: dbbooks[key]['shelfcoords']['y'],
+  //     };
+  //     (book['searchparagraph'] = book['paragraph'].toLowerCase()),
+  //       newDB2.push(book);
+  //   });
+  // }
 
   newDB2.sort(function (a, b) {
     var titleA = a.paragraph.toUpperCase();
