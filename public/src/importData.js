@@ -27,6 +27,7 @@ function submitImportData() {
   let docRef = dbconnection.collection(selectedCollection);
 
   for (let batch in selectedData) {
+    // console.log(selectedData[batch]);
     selectedData[batch].forEach((book) => {
       docRef
         .add(book)
