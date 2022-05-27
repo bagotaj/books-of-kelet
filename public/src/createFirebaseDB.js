@@ -3,10 +3,10 @@ function createFirebaseDBBooks() {
   let newDB2 = [];
 
   let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
-  let imageTitle = 'IMG_3787';
-  let shelfName = '7B';
+  let imageTitle = 'IMG_3789';
+  let shelfName = '8B';
   let shelfCoords = {
-    x: 955,
+    x: 1065,
     y: 212,
   };
   // Books data from local storage
