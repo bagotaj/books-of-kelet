@@ -19,7 +19,7 @@ const checkLogin = (() => {
       }
 
       initializeSite();
-      getBooksByABC('A', 'B');
+      searchData('A');
       createABCLinkButtons();
       setSearchField();
     } else {
