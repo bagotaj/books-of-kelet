@@ -61,12 +61,6 @@ function createABCLinkButtons() {
     '9',
   ];
 
-  const checkNextLetter = (letter) => {
-    let indexOfLetter = abc.indexOf(letter);
-
-    return abc[indexOfLetter + 1];
-  };
-
   for (let i = 0; i < abc.length; i++) {
     const a = document.createElement('a');
     a.value = abc[i];
@@ -81,8 +75,7 @@ function createABCLinkButtons() {
       td.getElementsByClassName('a-clicked')[0].classList.remove('a-clicked');
       a.classList.add('a-clicked');
       let letterStart = e.target.value;
-      let letterEnd = checkNextLetter(letterStart);
-      getBooksByABC(letterStart, letterEnd);
+      searchData(letterStart);
       createMainBookTitlesTable();
     });
 
