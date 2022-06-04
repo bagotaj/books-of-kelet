@@ -7,7 +7,7 @@ function initializeSite() {
   function createCanvas() {
     const result = document.getElementById('canvas');
     result.width = window.innerWidth;
-    getImage(result, 'kelet-header');
+    getImage(result, backgroundShelvesTitle);
     setBookShelvesClassIndex();
 
     return result;
@@ -17,7 +17,7 @@ function initializeSite() {
     canvas.width = window.innerWidth;
 
     if (window.innerWidth < backgroundShelvesWidth) {
-      getImage(canvas, 'kelet-header');
+      getImage(canvas, backgroundShelvesTitle);
       setBookShelvesClassIndex();
       createBookTitleCanvas();
     }
@@ -25,7 +25,8 @@ function initializeSite() {
 }
 
 function setCanvasHeightIndex() {
-  let canvasHeight = (window.innerWidth * 500) / backgroundShelvesWidth;
+  let canvasHeight =
+    (window.innerWidth * backgroundShelvesHeight) / backgroundShelvesWidth;
 
   return canvasHeight;
 }
@@ -37,8 +38,9 @@ function setCanvasWrapperIndex(canvas, imageURL) {
   let canvasHeight = setCanvasHeightIndex();
 
   canvas.height = canvasHeight;
-  imgSizeRatioBookTitle = 7.56 / ((canvasHeight * 0.8) / 400);
-  shelvesCoordsRatio = canvasHeight / 500;
+  imgSizeRatioBookTitle =
+    7.56 / ((canvasHeight * 0.8) / (backgroundShelvesHeight * 0.8));
+  shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
   canvasWrapperIndexClass[0].style.height = canvasHeight;
   canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
 }
