@@ -9,7 +9,7 @@ function createCanvasEdit() {
 
   const result = document.getElementById('canvasEdit');
   result.width = window.innerWidth;
-  result.height = 500;
+  result.height = backgroundShelvesHeight;
   return result;
 }
 
@@ -53,14 +53,6 @@ canvasEdit.addEventListener(
   },
   false
 );
-
-function getMousePosition(canvasEdit, event) {
-  let rect = canvasEdit.getBoundingClientRect();
-  return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top,
-  };
-}
 
 function checkBoundingBoxClicking(m, r) {
   let ABP = vector(r[0], r[1], m);
