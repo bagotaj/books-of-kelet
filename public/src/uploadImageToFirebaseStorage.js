@@ -45,28 +45,6 @@ uploadButton.addEventListener('click', () => {
 
     // submit image link to database / image added to database
     () => {
-      // uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-      //   ImgUrl = url;
-
-      //   dbconnection
-      //     .collection('images')
-      //     .add({
-      //       Name: ImgName,
-      //       Link: ImgUrl,
-      //     })
-      //     .then(() => {
-      //       console.log('Document written');
-      //     })
-      //     .catch((error) => {
-      //       console.error('Error adding document: ', error);
-      //     });
-
-      //   // firebase.auth().database().ref(`images/${ImgName}`).set({
-      //   //       Name: ImgName,
-      //   //       Link: ImgUrl,
-      //   //     });
-      // });
-
       alert('image added successfully');
     }
   );
