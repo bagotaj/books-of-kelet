@@ -21,6 +21,10 @@ body {
   align-items: center;
 }
 
+.margin-lr-30 {
+  margin: 0 30px
+}
+
 .canvas-label {
   margin: 30px 30px 0px 30px;
   color: white;
