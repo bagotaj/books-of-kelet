@@ -24,13 +24,15 @@
       <canvas id="imageuploadcanvas"></canvas>
     </div>
     <div class="container">
-      <div>
+      <div class="margin-lr-30">
         <p>Kép neve:</p>
         <input type="text" id="namebox" />
       </div>
-      <img id="myimg" />
-      <p id="UpProgress"></p>
-      <div>
+      <div class="margin-lr-30">
+        <img id="myimg" />
+        <p id="UpProgress"></p>
+      </div>
+      <div class="margin-lr-30">
         <button
           type="button"
           class="searchbtn"
@@ -55,6 +57,14 @@
         >
           Kép megjelenítése
         </button>
+        <button
+          type="button"
+          class="searchbtn"
+          value="selectimage"
+          id="saveShelves"
+        >
+          Polcok rögzítése
+        </button>
       </div>
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -70,6 +80,8 @@
     <script src="./src/basicvariables.js"></script>
     <script src="./src/uploadImageToFirebaseStorage.js"></script>
     <script src="./src/getmouseposition.js"></script>
+    <script src="./src/checkboxClicking.js"></script>
+    <script src="./src/makeShelvesGrid.js"></script>
     <script src="./src/imageupload.js"></script>
   </body>
 </html>
