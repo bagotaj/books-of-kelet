@@ -6,7 +6,7 @@ function getImage(mainCanvas, ImgName) {
       if (mainCanvas === 'bookshelves') {
         setBookshelvesBackgroundImage(url);
       } else {
-        setCanvasWrapperIndex(canvas, url);
+        setCanvasWrapperIndex(mainCanvas, url);
       }
     })
     .catch((error) => {
@@ -38,7 +38,6 @@ function checkUsersData(userId) {
 }
 
 function searchData(text) {
-  // let uppercaseText = text.toUpperCase();
   let lowercaseText = text.toLowerCase();
 
   dbconnection
