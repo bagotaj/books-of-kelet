@@ -1,6 +1,7 @@
 let gridXCoords = [];
 let gridYCoords = [];
 let gridCoordsArr = [];
+let shelfGridCoordsArr = [];
 let shelfBoxCoordsArr = [];
 
 const saveShelvesButton = document.querySelector('#saveShelves');
@@ -32,6 +33,11 @@ function drawGrid(newCoords) {
   if (!yExist) {
     gridYCoords.push(y);
   }
+
+  shelfGridCoordsArr.push(
+    { moveTo: { x: x, y: 0 }, lineTo: { x: x, y: imageuploadcanvas.height } },
+    { moveTo: { x: 0, y: y }, lineTo: { x: imageuploadcanvas.width, y: y } }
+  );
 
   ctxImageUpload.beginPath();
   ctxImageUpload.setLineDash([5, 15]);
@@ -109,4 +115,16 @@ function saveShelves() {
 
   console.log('Shelves Coords', gridCoordsArr);
   console.log('Shelf Boxes', shelfBoxCoordsArr);
+  console.log('Shelf Grids', shelfGridCoordsArr);
+
+  let shelfBoxCoordsObj = createShelfBoxCoords(shelfBoxCoordsArr);
+  let shelfGridCoordsObj = createShelfBoxCoords(shelfGridCoordsArr);
+
+  let shelfBoxSendingDataObj = {
+    shelfTitle: backgroundShelvesTitle,
+    shelfBoxCoords: shelfBoxCoordsObj,
+    shelfGridCoords: shelfGridCoordsObj,
+  };
+
+  addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj);
 }
