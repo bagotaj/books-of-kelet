@@ -1,6 +1,6 @@
-const backgroundShelvesWidth = 1359;
-const backgroundShelvesHeight = 500;
-const backgroundShelvesTitle = 'kelet-header';
+let backgroundShelvesWidth = 1359;
+let backgroundShelvesHeight = 500;
+let backgroundShelvesTitle = 'kelet-header';
 const canvasTop = document.getElementById('canvas');
 let imgNewSizeRatio = 6.048;
 let imgSizeRatioBookTitle = 0;
@@ -14,3 +14,9 @@ const listOfImages = [
   { column: 8, images: ['IMG_3788', 'IMG_3789'] },
 ];
 const numberPerPage = 50;
+
+function setBackgroundShelvesVariables(dataObj) {
+  backgroundShelvesWidth = dataObj.width;
+  backgroundShelvesHeight = dataObj.height;
+  backgroundShelvesTitle = dataObj.title;
+}
