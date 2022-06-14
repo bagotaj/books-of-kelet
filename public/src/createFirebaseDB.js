@@ -2,6 +2,7 @@ function createFirebaseDBBooks() {
   let newDB = {};
   let newDB2 = [];
 
+  // Changing !!!!!
   let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
   let imageTitle = 'IMG_3789';
   let shelfName = '8B';
@@ -82,4 +83,14 @@ function createFirebaseDBShelves() {
   }
 
   return newDBShelves;
+}
+
+function createShelfBoxCoords(shelfBoxCoordsArr) {
+  let shelfBoxCoordsObj = {};
+
+  for (let i = 0; i < shelfBoxCoordsArr.length; i++) {
+    shelfBoxCoordsObj[i] = shelfBoxCoordsArr[i];
+  }
+
+  return shelfBoxCoordsObj;
 }
