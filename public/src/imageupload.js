@@ -3,7 +3,7 @@ let setClick = 'grid';
 function createCanvas() {
   const result = document.getElementById('imageuploadcanvas');
   result.width = window.innerWidth;
-  getImage(result, backgroundShelvesTitle);
+  getBasicsShelvesData();
 
   return result;
 }
@@ -12,7 +12,7 @@ window.addEventListener('resize', function () {
   imageuploadcanvas.width = window.innerWidth;
 
   if (window.innerWidth < backgroundShelvesWidth) {
-    getImage(imageuploadcanvas, backgroundShelvesTitle);
+    getBasicsShelvesData();
   }
 });
 
@@ -25,7 +25,7 @@ imageuploadcanvas.addEventListener(
     let newCoords = getMousePosition(imageuploadcanvas, event);
 
     if (setClick === 'grid') {
-      drawGrid(newCoords);
+      drawAndCalculateGrid(newCoords);
     }
 
     if (setClick === 'uploadimage') {
