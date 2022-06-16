@@ -67,3 +67,19 @@ function searchData(text) {
       // alert('Error adding document: ', error.message);
     });
 }
+
+function getBasicsShelvesData() {
+  dbconnection
+    .collection('basics')
+    .get()
+    .then((doc) => {
+      doc.forEach((basicShelf) => {
+        makeStartPageButtonsImageUpload(basicShelf.data());
+        savedBasicsShelvesData.push(basicShelf.data());
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
