@@ -1,6 +1,7 @@
-let backgroundShelvesWidth = 1359;
-let backgroundShelvesHeight = 500;
-let backgroundShelvesTitle = 'kelet-header';
+let savedBasicsShelvesData = [];
+let backgroundShelvesWidth;
+let backgroundShelvesHeight;
+let backgroundShelvesTitle;
 const canvasTop = document.getElementById('canvas');
 let imgNewSizeRatio = 6.048;
 let imgSizeRatioBookTitle = 0;
@@ -16,7 +17,7 @@ const listOfImages = [
 const numberPerPage = 50;
 
 function setBackgroundShelvesVariables(dataObj) {
-  backgroundShelvesWidth = dataObj.width;
-  backgroundShelvesHeight = dataObj.height;
-  backgroundShelvesTitle = dataObj.title;
+  backgroundShelvesWidth = dataObj.basicShelfParams.width;
+  backgroundShelvesHeight = dataObj.basicShelfParams.height;
+  backgroundShelvesTitle = dataObj.basicShelfTitle;
 }
