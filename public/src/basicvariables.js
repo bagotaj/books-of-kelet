@@ -1,4 +1,5 @@
 let savedBasicsShelvesData = [];
+let setClickImageuploadCanvas = 'grid';
 let backgroundShelvesWidth;
 let backgroundShelvesHeight;
 let backgroundShelvesTitle;
