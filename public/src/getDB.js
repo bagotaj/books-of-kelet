@@ -7,6 +7,10 @@ function getImage(mainCanvas, ImgName) {
         setBookshelvesBackgroundImage(url);
       } else {
         setCanvasWrapperIndex(mainCanvas, url);
+
+        if (mainCanvas.id === 'imageuploadcanvas') {
+          makeShelfGridFromCoords();
+        }
       }
     })
     .catch((error) => {
