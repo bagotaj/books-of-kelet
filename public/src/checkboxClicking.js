@@ -1,6 +1,6 @@
 function checkBoxClicking(mouseVector, rectangleVectors, basicSet) {
   if (basicSet) {
-    imgNewSizeRatio = 0;
+    imgNewSizeRatio = 1;
   }
 
   let ABP = vector(rectangleVectors[0], rectangleVectors[1], mouseVector);
