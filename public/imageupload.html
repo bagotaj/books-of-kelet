@@ -111,51 +111,66 @@
       </div>
     </div>
     <div class="loggedinContentContainer displaynone">
-      <div class="canvas-wrapper-index">
-        <canvas id="imageuploadcanvas"></canvas>
+      <div id="canvasImageUpload" class="displaynone">
+        <div class="canvas-wrapper-index">
+          <canvas id="imageuploadcanvas"></canvas>
+        </div>
       </div>
-      <div class="container">
-        <div class="margin-lr-30">
-          <p>Kép neve:</p>
-          <input type="text" id="namebox" />
+      <div id="showingImageImageUpload" class="margin-lr-30">
+        <img id="myimg" />
+        <p id="UpProgress"></p>
+      </div>
+      <div id="startPageButtons">
+        <div class="container imageupload-buttons">
+          <div id="shelvesButtons"></div>
+          <button
+            type="button"
+            class="searchbtn"
+            value="selectimage"
+            id="selectButtonNewBasicShelf"
+          >
+            Új polc hozzáadása
+          </button>
         </div>
-        <div class="margin-lr-30">
-          <img id="myimg" />
-          <p id="UpProgress"></p>
+      </div>
+      <div id="addNewShelfImageButtons" class="displaynone">
+        <div class="container">
+          <div class="margin-lr-30">
+            <p>Kép neve:</p>
+            <input type="text" id="namebox" />
+          </div>
+          <div class="margin-lr-30">
+            <button
+              type="button"
+              class="searchbtn"
+              value="selectimage"
+              id="uploadButton"
+            >
+              Kép feltöltése
+            </button>
+            <button
+              type="button"
+              class="searchbtn"
+              value="selectimage"
+              id="retrievalButton"
+            >
+              Kép megjelenítése
+            </button>
+          </div>
         </div>
-        <div class="margin-lr-30">
-          <button
-            type="button"
-            class="searchbtn"
-            value="selectimage"
-            id="selectButton"
-          >
-            Kép kiválasztása
-          </button>
-          <button
-            type="button"
-            class="searchbtn"
-            value="selectimage"
-            id="uploadButton"
-          >
-            Kép feltöltése
-          </button>
-          <button
-            type="button"
-            class="searchbtn"
-            value="selectimage"
-            id="retrievalButton"
-          >
-            Kép megjelenítése
-          </button>
-          <button
-            type="button"
-            class="searchbtn"
-            value="selectimage"
-            id="saveShelves"
-          >
-            Polcok rögzítése
-          </button>
+      </div>
+      <div id="saveNewShelfButtons" class="displaynone">
+        <div class="container">
+          <div class="margin-lr-30">
+            <button
+              type="button"
+              class="searchbtn"
+              value="selectimage"
+              id="saveShelves"
+            >
+              Polcok rögzítése
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -169,9 +184,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
     <script src="./src/firebaseapikey.js"></script>
-    <script src="./src/basicvariables.js"></script>
-    <script src="./src/uploadImageToFirebaseStorage.js"></script>
     <script src="./src/getDB.js"></script>
+    <script src="./src/basicvariables.js"></script>
+    <script src="./src/selectedDOMElements.js"></script>
+    <script src="./src/makeStartImageUploadPageButtons.js"></script>
+    <script src="./src/uploadImageToFirebaseStorage.js"></script>
     <script src="./src/login.js"></script>
     <script src="./src/getmouseposition.js"></script>
     <script src="./src/checkBoxClicking.js"></script>
