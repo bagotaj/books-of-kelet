@@ -32,6 +32,7 @@ function drawAndCalculateGrid(newCoords) {
   if (!yExist) {
     gridYCoords.push(y);
   }
+
   drawGrid({ x: x, y: y });
 }
 
@@ -58,7 +59,10 @@ function drawGrid(coords) {
 function makeGridCoords() {
   for (let i = 0; i < gridXCoords.length; i++) {
     for (let j = 0; j < gridYCoords.length; j++) {
-      gridCoordsArr.push({ x: gridXCoords[i], y: gridYCoords[j] });
+      let newX = gridXCoords[i] / shelvesCoordsRatio;
+      let newY = gridYCoords[j] / shelvesCoordsRatio;
+
+      gridCoordsArr.push({ x: newX, y: newY });
     }
   }
 }
@@ -120,4 +124,15 @@ function saveShelves() {
   };
 
   addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj);
+}
+
+function makeShelfGridFromCoords() {
+  let shelfGridCoordsObj = savedBasicsShelvesData[0].shelfGridCoords;
+
+  for (const key in shelfGridCoordsObj) {
+    let x = shelfGridCoordsObj[key].moveTo.x;
+    let y = shelfGridCoordsObj[key].lineTo.y;
+
+    drawGrid({ x: x, y: y });
+  }
 }
