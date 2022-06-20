@@ -1,5 +1,3 @@
-let setClick = 'grid';
-
 function createCanvas() {
   const result = document.getElementById('imageuploadcanvas');
   result.width = window.innerWidth;
@@ -24,13 +22,27 @@ imageuploadcanvas.addEventListener(
   function (event) {
     let newCoords = getMousePosition(imageuploadcanvas, event);
 
-    if (setClick === 'grid') {
-      drawAndCalculateGrid(newCoords);
+    if (setClickImageuploadCanvas === 'grid') {
+      let shelfBoxCoordsObj = savedBasicsShelvesData[0].shelfBoxCoords;
+
+      for (const key in shelfBoxCoordsObj) {
+        let rectangleVectors = [
+          shelfBoxCoordsObj[key]['0'],
+          shelfBoxCoordsObj[key]['2'],
+          shelfBoxCoordsObj[key]['3'],
+          shelfBoxCoordsObj[key]['1'],
+        ];
+
+        let clicked = checkBoxClicking(newCoords, rectangleVectors, true);
+
+        if (clicked) {
+          selectImage(event);
+        }
+      }
     }
 
-    if (setClick === 'uploadimage') {
-      // uploadImageToFirebaseStorage - call a function there
-      // drawGrid(newCoords);
+    if (setClickImageuploadCanvas === 'uploadimage') {
+      drawAndCalculateGrid(newCoords);
     }
   },
   false
