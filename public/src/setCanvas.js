@@ -17,11 +17,6 @@ function setCanvasWrapperIndex(canvas, imageURL) {
   shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
   canvasWrapperIndexClass[0].style.height = canvasHeight;
   canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
-
-  if (canvas.id === 'imageuploadcanvas') {
-    gridXCoords.push(0, canvas.width);
-    gridYCoords.push(0, canvas.height);
-  }
 }
 
 function setImageuploadCanvasBackground(canvas, imageData) {
@@ -52,5 +47,8 @@ function setImageuploadCanvasBackground(canvas, imageData) {
       img.width * shelvesCoordsRatio,
       img.height * shelvesCoordsRatio
     );
+
+    gridXCoords.push(0, canvas.width);
+    gridYCoords.push(0, canvas.height);
   };
 }
