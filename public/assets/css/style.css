@@ -31,14 +31,14 @@ body {
   animation: opac 0.8s;
 }
 
-.menu, .menu-books {
+.menu, .menu-books, .imageupload-buttons {
   min-height: 100px;
   width: 100%;
   display: flex;
   align-items: center;
 }
 
-.menu-books {
+.menu-books, .imageupload-buttons {
   max-width: 665px;
   margin: 10px auto;
 }
