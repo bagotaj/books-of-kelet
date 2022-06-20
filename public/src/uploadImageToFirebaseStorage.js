@@ -1,26 +1,56 @@
 // Source https://youtu.be/ZH-PnY-JGBU
 
-let ImgName, ImgUrl;
+let ImgName;
 let files = [];
 let reader;
 
 // Select button
-let selectButton = document.querySelector('#selectButton');
-selectButton.addEventListener('click', (e) => {
+let selectButtonNewBasicShelf = document.querySelector(
+  '#selectButtonNewBasicShelf'
+);
+selectButtonNewBasicShelf.addEventListener('click', (e) => {
+  selectImage(e);
+
+  startPageButtons.classList.add('displaynone');
+  addNewShelfImageButtons.classList.remove('displaynone');
+});
+
+// Select image function
+
+function selectImage(e) {
   let input = document.createElement('input');
   input.type = 'file';
+  input.accept = '.jpg, .jpeg, .png';
 
   input.onchange = (e) => {
     files = e.target.files;
+    let fileName = files[0].name;
+
     reader = new FileReader();
     reader.onload = function () {
+      // hide canvas if visible
+      let existCanvasImageUploadDisplaynone =
+        canvasImageUpload.classList.contains('displaynone');
+
+      if (!existCanvasImageUploadDisplaynone) {
+        canvasImageUpload.classList.add('displaynone');
+        showingImageImageUpload.classList.remove('displaynone');
+      }
+
       // show chosen image on the site
-      document.getElementById('myimg').src = reader.result;
+      let showImage = document.querySelector('#myimg');
+      let imageNameBox = document.querySelector('#namebox');
+
+      showImage.src = reader.result;
+
+      let indexOfDot = fileName.indexOf('.');
+
+      imageNameBox.value = fileName.slice(0, indexOfDot);
     };
     reader.readAsDataURL(files[0]);
   };
   input.click();
-});
+}
 
 // Upload button
 let uploadButton = document.querySelector('#uploadButton');
@@ -46,6 +76,15 @@ uploadButton.addEventListener('click', () => {
     // submit image link to database / image added to database
     () => {
       alert('image added successfully');
+
+      canvasImageUpload.classList.remove('displaynone');
+      showingImageImageUpload.classList.add('displaynone');
+
+      addNewShelfImageButtons.classList.add('displaynone');
+      saveNewShelfButtons.classList.remove('displaynone');
+
+      const blobURL = URL.createObjectURL(files[0]);
+      setImageuploadCanvasBackground(imageuploadcanvas, blobURL);
     }
   );
 });
