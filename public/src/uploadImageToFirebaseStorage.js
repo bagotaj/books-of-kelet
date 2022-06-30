@@ -11,6 +11,8 @@ let selectButtonNewBasicShelf = document.querySelector(
 selectButtonNewBasicShelf.addEventListener('click', (e) => {
   selectImage(e);
 
+  setUploadImageupload = 'basicshelf';
+
   startPageButtons.classList.add('displaynone');
   addNewShelfImageButtons.classList.remove('displaynone');
 });
@@ -18,6 +20,15 @@ selectButtonNewBasicShelf.addEventListener('click', (e) => {
 // Select image function
 
 function selectImage(e) {
+  let buttonId = e.target.id;
+
+  if (buttonId === 'imageuploadcanvas') {
+    setUploadImageupload = 'smallshelf';
+
+    startPageButtons.classList.add('displaynone');
+    addNewShelfImageButtons.classList.remove('displaynone');
+  }
+
   let input = document.createElement('input');
   input.type = 'file';
   input.accept = '.jpg, .jpeg, .png';
@@ -28,33 +39,44 @@ function selectImage(e) {
 
     reader = new FileReader();
     reader.onload = function () {
-      // hide canvas if visible
-      let existCanvasImageUploadDisplaynone =
-        canvasImageUpload.classList.contains('displaynone');
-
-      if (!existCanvasImageUploadDisplaynone) {
-        canvasImageUpload.classList.add('displaynone');
-        showingImageImageUpload.classList.remove('displaynone');
-      }
-
-      // show chosen image on the site
-      let showImage = document.querySelector('#myimg');
       let imageNameBox = document.querySelector('#namebox');
-
-      showImage.src = reader.result;
 
       let indexOfDot = fileName.indexOf('.');
 
       imageNameBox.value = fileName.slice(0, indexOfDot);
+      ImgName = imageNameBox.value;
     };
     reader.readAsDataURL(files[0]);
+
+    const blobURL = URL.createObjectURL(files[0]);
+    let sendingData = {
+      canvasTitle: imageuploadcanvas,
+      blobURL: blobURL,
+      buttonId: buttonId,
+      ImgName: ImgName,
+    };
+    setImageuploadCanvasBackground(sendingData);
   };
+
   input.click();
 }
 
 // Upload button
 let uploadButton = document.querySelector('#uploadButton');
-uploadButton.addEventListener('click', () => {
+uploadButton.addEventListener('click', (e) => {
+  let buttonId = e.target.id;
+
+  // setting what you can do on canvas - draw grid
+  setClickImageuploadCanvas = 'uploadimage';
+
+  // if smallshelf saving canvas image
+  if (setUploadImageupload === 'smallshelf') {
+    console.log('save canvas image');
+    // Ai-nak küldés
+    // canvasról lementeni a képet - max 500 pixel magas - és beküldeni az adatbázisba
+    // https://stackoverflow.com/questions/13938686/can-i-load-a-local-file-into-an-html-canvas-element
+  }
+
   // Namebox - give the name to the image file
   ImgName = document.getElementById('namebox').value;
   let uploadTask = storageconnection
@@ -77,14 +99,22 @@ uploadButton.addEventListener('click', () => {
     () => {
       alert('image added successfully');
 
-      canvasImageUpload.classList.remove('displaynone');
-      showingImageImageUpload.classList.add('displaynone');
+      if (setUploadImageupload === 'basicshelf') {
+        canvasImageUpload.classList.remove('displaynone');
+        showingImageImageUpload.classList.add('displaynone');
 
-      addNewShelfImageButtons.classList.add('displaynone');
-      saveNewShelfButtons.classList.remove('displaynone');
+        addNewShelfImageButtons.classList.add('displaynone');
+        saveNewShelfButtons.classList.remove('displaynone');
+      }
 
       const blobURL = URL.createObjectURL(files[0]);
-      setImageuploadCanvasBackground(imageuploadcanvas, blobURL);
+      let sendingData = {
+        canvasTitle: imageuploadcanvas,
+        blobURL: blobURL,
+        buttonId: buttonId,
+        ImgName: ImgName,
+      };
+      setImageuploadCanvasBackground(sendingData);
     }
   );
 });
