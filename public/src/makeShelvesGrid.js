@@ -4,7 +4,12 @@ let gridCoordsArr = [];
 let shelfBoxCoordsArr = [];
 
 const saveShelvesButton = document.querySelector('#saveShelves');
-saveShelvesButton.addEventListener('click', saveShelves);
+saveShelvesButton.addEventListener('click', () => {
+  setClickImageuploadCanvas = 'grid';
+  saveShelves();
+
+  saveNewShelfButtons.classList.add('displaynone');
+});
 
 function drawAndCalculateGrid(newCoords) {
   let x = newCoords.x;
@@ -123,6 +128,7 @@ function saveShelves() {
     shelfGridCoords: shelfGridCoordsObj,
   };
 
+  savedBasicsShelvesData.push(shelfBoxSendingDataObj);
   addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj);
 }
 
@@ -130,8 +136,8 @@ function makeShelfGridFromCoords() {
   let shelfGridCoordsObj = savedBasicsShelvesData[0].shelfGridCoords;
 
   for (const key in shelfGridCoordsObj) {
-    let x = shelfGridCoordsObj[key].moveTo.x;
-    let y = shelfGridCoordsObj[key].lineTo.y;
+    let x = shelfGridCoordsObj[key].x * shelvesCoordsRatio;
+    let y = shelfGridCoordsObj[key].y * shelvesCoordsRatio;
 
     drawGrid({ x: x, y: y });
   }
