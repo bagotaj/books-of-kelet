@@ -10,8 +10,12 @@ function makeStartPageButtonsImageUpload(shelfData) {
   shelfButton.setAttribute('type', 'button');
   shelfButton.setAttribute('class', 'normalbtn');
   shelfButton.addEventListener('click', () => {
+    setClickImageuploadCanvas = 'grid';
+
     canvasImageUpload.classList.remove('displaynone');
     showingImageImageUpload.classList.add('displaynone');
+    startPageButtons.classList.add('displaynone');
+    addNewShelfImageButtons.classList.remove('displaynone');
 
     setBackgroundShelvesVariables(shelfData);
 
