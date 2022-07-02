@@ -65,6 +65,18 @@ function setImageuploadCanvasBackground(sendingData) {
 
       canvasctx.clearRect(0, 0, canvas.width, canvas.height);
       canvasctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const mime_type = 'image/jpeg';
+
+      canvas.toBlob((blob) => {
+        resizedLocalImageFile = new File(
+          [blob],
+          `${sendingData.ImgName}.jpg`,
+          { type: 'image/jpeg', lastModified: new Date().getTime() },
+          'utf-8'
+        );
+        console.log(resizedLocalImageFile);
+      }, mime_type);
     } else {
       let canvasHeight = setCanvasHeightIndex();
 
@@ -90,37 +102,3 @@ function setImageuploadCanvasBackground(sendingData) {
     }
   };
 }
-
-// function setImageuploadCanvasBackground(canvas, imageData) {
-//   img = new Image();
-//   img.src = imageData;
-
-//   img.onload = function () {
-//     URL.revokeObjectURL(this.src);
-
-//     let dataOfImage = {
-//       basicShelfParams: { width: img.width, height: img.height },
-//       basicShelfTitle: '',
-//     };
-
-//     setBackgroundShelvesVariables(dataOfImage);
-
-//     let canvasHeight = setCanvasHeightIndex();
-
-//     canvas.height = canvasHeight;
-//     imgSizeRatioBookTitle =
-//       7.56 / ((canvasHeight * 0.8) / (backgroundShelvesHeight * 0.8));
-//     shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
-
-//     ctxImageUpload.drawImage(
-//       img,
-//       0,
-//       0,
-//       img.width * shelvesCoordsRatio,
-//       img.height * shelvesCoordsRatio
-//     );
-
-//     gridXCoords.push(0, canvas.width);
-//     gridYCoords.push(0, canvas.height);
-//   };
-// }
