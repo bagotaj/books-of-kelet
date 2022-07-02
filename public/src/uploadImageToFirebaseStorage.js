@@ -1,7 +1,7 @@
 // Source https://youtu.be/ZH-PnY-JGBU
 
 let ImgName;
-let files = [];
+let localImageFiles;
 let reader;
 
 // Select button
@@ -34,8 +34,9 @@ function selectImage(e) {
   input.accept = '.jpg, .jpeg, .png';
 
   input.onchange = (e) => {
-    files = e.target.files;
-    let fileName = files[0].name;
+    localImageFiles = e.target.files;
+    console.log('select', localImageFiles);
+    let fileName = localImageFiles[0].name;
 
     reader = new FileReader();
     reader.onload = function () {
@@ -45,17 +46,17 @@ function selectImage(e) {
 
       imageNameBox.value = fileName.slice(0, indexOfDot);
       ImgName = imageNameBox.value;
-    };
-    reader.readAsDataURL(files[0]);
 
-    const blobURL = URL.createObjectURL(files[0]);
-    let sendingData = {
-      canvasTitle: imageuploadcanvas,
-      blobURL: blobURL,
-      buttonId: buttonId,
-      ImgName: ImgName,
+      const blobURL = URL.createObjectURL(localImageFiles[0]);
+      let sendingData = {
+        canvasTitle: imageuploadcanvas,
+        blobURL: blobURL,
+        buttonId: buttonId,
+        ImgName: ImgName,
+      };
+      setImageuploadCanvasBackground(sendingData);
     };
-    setImageuploadCanvasBackground(sendingData);
+    reader.readAsDataURL(localImageFiles[0]);
   };
 
   input.click();
@@ -65,23 +66,28 @@ function selectImage(e) {
 let uploadButton = document.querySelector('#uploadButton');
 uploadButton.addEventListener('click', (e) => {
   let buttonId = e.target.id;
+  let uploadFile = localImageFiles[0];
 
   // setting what you can do on canvas - draw grid
   setClickImageuploadCanvas = 'uploadimage';
 
   // if smallshelf saving canvas image
   if (setUploadImageupload === 'smallshelf') {
-    console.log('save canvas image');
     // Ai-nak küldés
+    // localImageFiles[0]
+
     // canvasról lementeni a képet - max 500 pixel magas - és beküldeni az adatbázisba
+    // kép lementve és tárolva: resizedLocalImageFile változóban
     // https://stackoverflow.com/questions/13938686/can-i-load-a-local-file-into-an-html-canvas-element
+    uploadFile = resizedLocalImageFile;
+    console.log('save canvas image', uploadFile);
   }
 
   // Namebox - give the name to the image file
   ImgName = document.getElementById('namebox').value;
   let uploadTask = storageconnection
     .ref(`assets/img/${ImgName}.jpeg`)
-    .put(files[0]);
+    .put(uploadFile);
 
   uploadTask.on(
     'state_changed',
@@ -107,7 +113,7 @@ uploadButton.addEventListener('click', (e) => {
         saveNewShelfButtons.classList.remove('displaynone');
       }
 
-      const blobURL = URL.createObjectURL(files[0]);
+      const blobURL = URL.createObjectURL(localImageFiles[0]);
       let sendingData = {
         canvasTitle: imageuploadcanvas,
         blobURL: blobURL,
