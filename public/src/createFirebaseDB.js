@@ -4,15 +4,17 @@ function createFirebaseDBBooks() {
 
   // Changing !!!!!
   let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
-  let imageTitle = 'IMG_3875';
-  let shelfName = '3D';
+  let basicShelf = 'kelet-header';
+  let imageTitle = 'IMG_3893';
+  let shelfName = '7C';
   let shelfCoords = {
-    x: 505,
-    y: 436,
+    x: 955,
+    y: 324,
   };
   // Books data from local storage
 
   booksFromLocalStorage.forEach((book) => {
+    book['basicShelf'] = basicShelf;
     book['imageTitle'] = imageTitle;
     book['shelfName'] = shelfName;
     book['shelfCoords'] = shelfCoords;
