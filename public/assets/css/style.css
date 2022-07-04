@@ -168,6 +168,14 @@ h1 {
   padding-bottom: 20px;
 }
 
+.form-width {
+  max-width: 400px;
+}
+
+.form-width .searchbtn, .form-width .normalbtn {
+  margin: 10px auto auto auto;
+}
+
 table {
   max-width: 665px;
   margin: 0 auto 20px auto;
