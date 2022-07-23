@@ -5,11 +5,11 @@ function createFirebaseDBBooks() {
   // Changing !!!!!
   let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
   let basicShelf = 'kelet-header';
-  let imageTitle = 'IMG_3893';
-  let shelfName = '7C';
+  let imageTitle = 'IMG_3898';
+  let shelfName = '8D';
   let shelfCoords = {
-    x: 955,
-    y: 324,
+    x: 1065,
+    y: 436,
   };
   // Books data from local storage
 
