@@ -10,7 +10,15 @@ window.addEventListener('resize', function () {
   imageuploadcanvas.width = window.innerWidth;
 
   if (window.innerWidth < backgroundShelvesWidth) {
+    while (buttonsPlace.firstChild) {
+      buttonsPlace.removeChild(buttonsPlace.firstChild);
+    }
+
     getBasicsShelvesData();
+
+    if (!addNewShelfImageButtons.classList.contains('displaynone')) {
+      getImage(imageuploadcanvas, backgroundShelvesTitle);
+    }
   }
 });
 
