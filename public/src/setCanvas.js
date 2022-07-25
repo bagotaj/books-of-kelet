@@ -17,7 +17,6 @@ function setCanvasWrapperIndex(canvas, imageURL) {
   shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
   canvasWrapperIndexClass[0].style.height = canvasHeight;
   canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
-  console.log(shelvesCoordsRatio);
 }
 
 function setImageuploadCanvasBackground(sendingData) {
