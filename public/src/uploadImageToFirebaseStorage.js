@@ -80,7 +80,7 @@ uploadButton.addEventListener('click', (e) => {
     // kép lementve és tárolva: resizedLocalImageFile változóban
     // https://stackoverflow.com/questions/13938686/can-i-load-a-local-file-into-an-html-canvas-element
     uploadFile = resizedLocalImageFile;
-    console.log('save canvas image', uploadFile);
+    console.log('save canvas image / resized', resizedLocalImageFile);
   }
 
   // Namebox - give the name to the image file
@@ -113,7 +113,15 @@ uploadButton.addEventListener('click', (e) => {
         saveNewShelfButtons.classList.remove('displaynone');
       }
 
-      const blobURL = URL.createObjectURL(localImageFiles[0]);
+      let sendingImage;
+
+      if (setUploadImageupload === 'smallshelf') {
+        sendingImage = resizedLocalImageFile;
+      } else {
+        sendingImage = localImageFiles[0];
+      }
+
+      const blobURL = URL.createObjectURL(sendingImage);
       let sendingData = {
         canvasTitle: imageuploadcanvas,
         blobURL: blobURL,
