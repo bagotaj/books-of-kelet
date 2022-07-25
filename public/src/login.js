@@ -13,8 +13,8 @@ const checkLogin = (() => {
   const loggedinContainerContent = document.querySelector('.content');
 
   firebase.auth().onAuthStateChanged((user) => {
-    if (user !== null && user.emailVerified === true) {
-      // if (user !== null) {
+    // if (user !== null && user.emailVerified === true) {
+    if (user !== null) {
       let uid = user.uid;
       loginContainer.classList.add('displaynone');
       loggedinContainer.classList.remove('displaynone');
