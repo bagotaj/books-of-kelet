@@ -7,15 +7,17 @@ function getImage(mainCanvas, ImgName) {
         setBookshelvesBackgroundImage(url);
       } else {
         setCanvasWrapperIndex(mainCanvas, url);
-
-        if (mainCanvas.id === 'imageuploadcanvas') {
-          makeShelfGridFromCoords();
-        }
+      }
+    })
+    .then(() => {
+      if (mainCanvas.id === 'imageuploadcanvas') {
+        makeShelfGridFromCoords(ImgName);
       }
     })
     .catch((error) => {
       // Handle any errors
-      alert('error in saving the image', error);
+      alert('error in downloading the image');
+      console.log(error.message);
     });
 }
 
