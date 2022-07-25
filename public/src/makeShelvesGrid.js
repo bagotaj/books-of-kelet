@@ -132,8 +132,12 @@ function saveShelves() {
   addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj);
 }
 
-function makeShelfGridFromCoords() {
-  let shelfGridCoordsObj = savedBasicsShelvesData[0].shelfGridCoords;
+function makeShelfGridFromCoords(ImgName) {
+  let filteredShelfGridCoords = savedBasicsShelvesData.filter((obj) => {
+    return obj.basicShelfTitle === ImgName;
+  });
+
+  let shelfGridCoordsObj = filteredShelfGridCoords[0].shelfGridCoords;
 
   for (const key in shelfGridCoordsObj) {
     let x = shelfGridCoordsObj[key].x * shelvesCoordsRatio;
