@@ -74,7 +74,6 @@ function setImageuploadCanvasBackground(sendingData) {
           { type: 'image/jpeg', lastModified: new Date().getTime() },
           'utf-8'
         );
-        console.log(resizedLocalImageFile);
       }, mime_type);
     } else {
       let canvasHeight = setCanvasHeightIndex();
