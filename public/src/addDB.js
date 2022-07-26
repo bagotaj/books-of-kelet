@@ -39,3 +39,14 @@ function addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj) {
       // alert('Error adding document: ', error.message);
     });
 }
+
+function addShelvesToFirestore(dataOfImageToFirebase) {
+  dbconnection
+    .collection('shelves')
+    .doc()
+    .set(dataOfImageToFirebase)
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
