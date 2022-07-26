@@ -10,6 +10,8 @@ function createCanvasEdit() {
   const result = document.getElementById('canvasEdit');
   result.width = window.innerWidth;
   result.height = backgroundShelvesHeight;
+  getBasicsShelvesData();
+
   return result;
 }
 
@@ -18,7 +20,7 @@ function followWindowSize(canvasEdit, window) {
   canvasEdit.height = result.height;
 }
 
-const canvasEdit = createCanvasEdit();
+canvasEdit = createCanvasEdit();
 const ctxEdit = canvasEdit.getContext('2d');
 
 let newCoords = { x: '', y: '' };
