@@ -20,7 +20,7 @@ function followWindowSize(canvasEdit, window) {
   canvasEdit.height = result.height;
 }
 
-canvasEdit = createCanvasEdit();
+const canvasEdit = createCanvasEdit();
 const ctxEdit = canvasEdit.getContext('2d');
 
 let newCoords = { x: '', y: '' };
