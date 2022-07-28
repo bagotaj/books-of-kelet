@@ -1,3 +1,31 @@
+function isBoxClicked(clickingDataObj) {
+  let shelfBoxCoordsObj = searchBasicsShelvesData(backgroundShelvesTitle)[0]
+    .shelfBoxCoords;
+  let boxKeyValue;
+
+  for (const key in shelfBoxCoordsObj) {
+    let rectangleVectors = [
+      shelfBoxCoordsObj[key]['0'],
+      shelfBoxCoordsObj[key]['2'],
+      shelfBoxCoordsObj[key]['3'],
+      shelfBoxCoordsObj[key]['1'],
+    ];
+
+    let clicked = checkBoxClicking(
+      clickingDataObj.newCoords,
+      rectangleVectors,
+      true
+    );
+
+    if (clicked) {
+      clickingDataObj.function();
+      boxKeyValue = key;
+    }
+  }
+
+  return boxKeyValue;
+}
+
 function checkBoxClicking(mouseVector, rectangleVectors, basicSet) {
   if (basicSet) {
     imgNewSizeRatio = 1;
