@@ -30,23 +30,31 @@ canvasEdit.addEventListener(
   function (event) {
     newCoords = getMousePosition(canvasEdit, event);
 
-    addNewBookCoords(newCoords);
+    if (setClickImageuploadCanvas === 'grid') {
+      isBoxClicked({
+        newCoords: newCoords,
+        // Tudni kéne a polchoz tartozó képet
+        function: getShelvesData(),
+      });
+    } else {
+      addNewBookCoords(newCoords);
 
-    for (let i = 0; i < bookTitles.length; i++) {
-      let bookTitlesCoords = bookTitles[i]['boundingBox']['vertices'];
+      for (let i = 0; i < bookTitles.length; i++) {
+        let bookTitlesCoords = bookTitles[i]['boundingBox']['vertices'];
 
-      let inputField = document.getElementById(i);
+        let inputField = document.getElementById(i);
 
-      let elementWasClicked = false;
+        let elementWasClicked = false;
 
-      if (bookTitlesCoords.length === 1) {
-        return;
-      } else {
-        elementWasClicked = checkBoxClicking(newCoords, bookTitlesCoords);
-      }
+        if (bookTitlesCoords.length === 1) {
+          return;
+        } else {
+          elementWasClicked = checkBoxClicking(newCoords, bookTitlesCoords);
+        }
 
-      if (elementWasClicked) {
-        inputField.scrollIntoView();
+        if (elementWasClicked) {
+          inputField.scrollIntoView();
+        }
       }
     }
   },
