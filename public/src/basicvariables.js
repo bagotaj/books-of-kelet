@@ -2,6 +2,7 @@ let savedBasicsShelvesData = [];
 let resizedLocalImageFile;
 let setClickImageuploadCanvas;
 let setUploadImageupload;
+let clickedShelfBoxKeyNumber;
 // let backgroundShelvesWidth;
 // let backgroundShelvesHeight;
 // let backgroundShelvesTitle;
