@@ -38,27 +38,39 @@ function drawAndCalculateGrid(newCoords) {
     gridYCoords.push(y);
   }
 
-  drawGrid({ x: x, y: y });
+  let drawGridDataObj = {
+    coords: { x: x, y: y },
+    ctx: ctxImageUpload,
+    canvas: imageuploadcanvas,
+  };
+
+  drawGrid(drawGridDataObj);
 }
 
-function drawGrid(coords) {
-  ctxImageUpload.beginPath();
-  ctxImageUpload.setLineDash([5, 15]);
-  ctxImageUpload.lineWidth = 2;
-  ctxImageUpload.strokeStyle = 'white';
-  ctxImageUpload.moveTo(coords.x, 0);
-  ctxImageUpload.lineTo(coords.x, imageuploadcanvas.height);
-  ctxImageUpload.closePath();
-  ctxImageUpload.stroke();
+function drawGrid(drawGridDataObj) {
+  drawGridDataObj.ctx.beginPath();
+  drawGridDataObj.ctx.setLineDash([5, 15]);
+  drawGridDataObj.ctx.lineWidth = 2;
+  drawGridDataObj.ctx.strokeStyle = 'white';
+  drawGridDataObj.ctx.moveTo(drawGridDataObj.coords.x, 0);
+  drawGridDataObj.ctx.lineTo(
+    drawGridDataObj.coords.x,
+    drawGridDataObj.canvas.height
+  );
+  drawGridDataObj.ctx.closePath();
+  drawGridDataObj.ctx.stroke();
 
-  ctxImageUpload.beginPath();
-  ctxImageUpload.setLineDash([5, 15]);
-  ctxImageUpload.lineWidth = 2;
-  ctxImageUpload.strokeStyle = 'white';
-  ctxImageUpload.moveTo(0, coords.y);
-  ctxImageUpload.lineTo(imageuploadcanvas.width, coords.y);
-  ctxImageUpload.closePath();
-  ctxImageUpload.stroke();
+  drawGridDataObj.ctx.beginPath();
+  drawGridDataObj.ctx.setLineDash([5, 15]);
+  drawGridDataObj.ctx.lineWidth = 2;
+  drawGridDataObj.ctx.strokeStyle = 'white';
+  drawGridDataObj.ctx.moveTo(0, drawGridDataObj.coords.y);
+  drawGridDataObj.ctx.lineTo(
+    drawGridDataObj.canvas.width,
+    drawGridDataObj.coords.y
+  );
+  drawGridDataObj.ctx.closePath();
+  drawGridDataObj.ctx.stroke();
 }
 
 function makeGridCoords() {
@@ -106,6 +118,8 @@ function makeShelfBox() {
   }
 }
 
+function makeShelfBoxCenterPoint() {}
+
 function saveShelves() {
   gridCoordsArr = [];
 
@@ -132,10 +146,8 @@ function saveShelves() {
   addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj);
 }
 
-function makeShelfGridFromCoords(ImgName) {
-  let filteredShelfGridCoords = savedBasicsShelvesData.filter((obj) => {
-    return obj.basicShelfTitle === ImgName;
-  });
+function makeShelfGridFromCoords(imgDataObj) {
+  let filteredShelfGridCoords = searchBasicsShelvesData(imgDataObj.ImgName);
 
   let shelfGridCoordsObj = filteredShelfGridCoords[0].shelfGridCoords;
 
@@ -143,6 +155,12 @@ function makeShelfGridFromCoords(ImgName) {
     let x = shelfGridCoordsObj[key].x * shelvesCoordsRatio;
     let y = shelfGridCoordsObj[key].y * shelvesCoordsRatio;
 
-    drawGrid({ x: x, y: y });
+    let drawGridDataObj = {
+      coords: { x: x, y: y },
+      ctx: imgDataObj.passedctx,
+      canvas: imgDataObj.passedcanvas,
+    };
+
+    drawGrid(drawGridDataObj);
   }
 }
