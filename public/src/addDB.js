@@ -50,3 +50,39 @@ function addShelvesToFirestore(dataOfImageToFirebase) {
       // alert('Error adding document: ', error.message);
     });
 }
+
+function addImageNameToBasicsShelfBoxCoords(shelfBoxsendingImageDataObj) {
+  let basicShelf = dbconnection
+    .collection('basics')
+    .where(
+      'basicShelfTitle',
+      '==',
+      shelfBoxsendingImageDataObj.basicShelfTitle
+    );
+
+  basicShelf
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((shelf) => {
+        if (!shelf.exists) {
+          throw 'Document does not exist!';
+        }
+
+        dbconnection
+          .collection('basics')
+          .doc(shelf.id)
+          .update({
+            shelfBoxCoords: {
+              [shelfBoxsendingImageDataObj.keyValue]:
+                firebase.firestore.FieldValue.arrayUnion(
+                  shelfBoxsendingImageDataObj.ImgName
+                ),
+            },
+          });
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
