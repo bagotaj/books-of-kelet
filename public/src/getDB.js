@@ -11,7 +11,19 @@ function getImage(mainCanvas, ImgName) {
     })
     .then(() => {
       if (mainCanvas.id === 'imageuploadcanvas') {
-        makeShelfGridFromCoords(ImgName);
+        makeShelfGridFromCoords({
+          ImgName: ImgName,
+          passedctx: ctxImageUpload,
+          passedcanvas: imageuploadcanvas,
+        });
+      }
+
+      if (mainCanvas.id === 'canvasEdit') {
+        makeShelfGridFromCoords({
+          ImgName: ImgName,
+          passedctx: ctxEdit,
+          passedcanvas: canvasEdit,
+        });
       }
     })
     .catch((error) => {
@@ -77,6 +89,22 @@ function searchData(text) {
 function getBasicsShelvesData() {
   dbconnection
     .collection('basics')
+    .get()
+    .then((doc) => {
+      doc.forEach((basicShelf) => {
+        makeStartPageButtonsImageUpload(basicShelf.data());
+        savedBasicsShelvesData.push(basicShelf.data());
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
+
+function getShelvesData() {
+  dbconnection
+    .collection('shelves')
     .get()
     .then((doc) => {
       doc.forEach((basicShelf) => {

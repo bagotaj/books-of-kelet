@@ -31,22 +31,14 @@ imageuploadcanvas.addEventListener(
     let newCoords = getMousePosition(imageuploadcanvas, event);
 
     if (setClickImageuploadCanvas === 'grid') {
-      let shelfBoxCoordsObj = savedBasicsShelvesData[0].shelfBoxCoords;
-
-      for (const key in shelfBoxCoordsObj) {
-        let rectangleVectors = [
-          shelfBoxCoordsObj[key]['0'],
-          shelfBoxCoordsObj[key]['2'],
-          shelfBoxCoordsObj[key]['3'],
-          shelfBoxCoordsObj[key]['1'],
-        ];
-
-        let clicked = checkBoxClicking(newCoords, rectangleVectors, true);
-
-        if (clicked) {
+      clickedShelfBoxKeyNumber = isBoxClicked({
+        newCoords: newCoords,
+        function() {
           selectImage(event);
-        }
-      }
+        },
+      });
+
+      console.log('return value isBoxClicked', clickedShelfBoxKeyNumber);
     }
 
     if (setClickImageuploadCanvas === 'uploadimage') {
