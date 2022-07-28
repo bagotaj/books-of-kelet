@@ -31,3 +31,9 @@ function dataManipulation(type, index, newcoords) {
 
   createBookTitlesTable();
 }
+
+function searchBasicsShelvesData(ImgName) {
+  return savedBasicsShelvesData.filter((obj) => {
+    return obj.basicShelfTitle === ImgName;
+  });
+}
