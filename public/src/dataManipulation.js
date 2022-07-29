@@ -37,3 +37,11 @@ function searchBasicsShelvesData(ImgName) {
     return obj.basicShelfTitle === ImgName;
   });
 }
+
+function makeImgNewSizeRatioNumber(imageHeightData) {
+  let originalImageHeight = imageHeightData.original;
+  let resizedImageHeight = imageHeightData.resized;
+  let ratioNumber = (100 * resizedImageHeight) / originalImageHeight;
+
+  return ratioNumber;
+}
