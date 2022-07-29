@@ -3,9 +3,7 @@ let resizedLocalImageFile;
 let setClickImageuploadCanvas;
 let setUploadImageupload;
 let clickedShelfBoxKeyNumber;
-// let backgroundShelvesWidth;
-// let backgroundShelvesHeight;
-// let backgroundShelvesTitle;
+let booksFromLocalStorageBoolean = false;
 // Index uses it
 let backgroundShelvesWidth = 1359;
 // Edit and Index use it
