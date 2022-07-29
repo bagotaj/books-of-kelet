@@ -27,15 +27,17 @@ let newCoords = { x: '', y: '' };
 
 canvasEdit.addEventListener(
   'click',
-  function (event) {
+  (event) => {
     newCoords = getMousePosition(canvasEdit, event);
 
     if (setClickImageuploadCanvas === 'grid') {
-      isBoxClicked({
+      clickedShelfBoxKeyNumber = isBoxClicked({
         newCoords: newCoords,
-        // Tudni kéne a polchoz tartozó képet
-        function: getShelvesData(),
       });
+
+      if (clickedShelfBoxKeyNumber) {
+        getImageNameFromBasicsShelfBoxCoords(clickedShelfBoxKeyNumber);
+      }
     } else {
       addNewBookCoords(newCoords);
 
@@ -62,5 +64,3 @@ canvasEdit.addEventListener(
 );
 
 const edit = true;
-
-MakeThumbnailsTableBody();
