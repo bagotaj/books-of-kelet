@@ -4,12 +4,15 @@ let gridCoordsArr = [];
 let shelfBoxCoordsArr = [];
 
 const saveShelvesButton = document.querySelector('#saveShelves');
-saveShelvesButton.addEventListener('click', () => {
-  setClickImageuploadCanvas = 'grid';
-  saveShelves();
 
-  saveNewShelfButtons.classList.add('displaynone');
-});
+if (saveShelvesButton) {
+  saveShelvesButton.addEventListener('click', () => {
+    setClickImageuploadCanvas = 'grid';
+    saveShelves();
+
+    saveNewShelfButtons.classList.add('displaynone');
+  });
+}
 
 function drawAndCalculateGrid(newCoords) {
   let x = newCoords.x;
