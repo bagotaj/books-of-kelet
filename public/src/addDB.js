@@ -68,16 +68,16 @@ function addImageNameToBasicsShelfBoxCoords(shelfBoxsendingImageDataObj) {
           throw 'Document does not exist!';
         }
 
+        let fieldName =
+          'shelfBoxCoords.' + shelfBoxsendingImageDataObj.keyValue;
+
         dbconnection
           .collection('basics')
           .doc(shelf.id)
           .update({
-            shelfBoxCoords: {
-              [shelfBoxsendingImageDataObj.keyValue]:
-                firebase.firestore.FieldValue.arrayUnion(
-                  shelfBoxsendingImageDataObj.ImgName
-                ),
-            },
+            [fieldName]: firebase.firestore.FieldValue.arrayUnion(
+              shelfBoxsendingImageDataObj.ImgName
+            ),
           });
       });
     })
