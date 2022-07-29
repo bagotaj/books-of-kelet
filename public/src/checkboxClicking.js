@@ -1,7 +1,12 @@
 function isBoxClicked(clickingDataObj) {
-  let shelfBoxCoordsObj = searchBasicsShelvesData(backgroundShelvesTitle)[0]
-    .shelfBoxCoords;
-  let boxKeyValue;
+  let basicsShelvesData = searchBasicsShelvesData(backgroundShelvesTitle);
+  let shelfBoxCoordsObj;
+
+  if (basicsShelvesData) {
+    shelfBoxCoordsObj = basicsShelvesData[0].shelfBoxCoords;
+  } else {
+    shelfBoxCoordsObj = savedBasicsShelvesData[0].shelfBoxCoords;
+  }
 
   for (const key in shelfBoxCoordsObj) {
     let rectangleVectors = [
@@ -18,12 +23,9 @@ function isBoxClicked(clickingDataObj) {
     );
 
     if (clicked) {
-      clickingDataObj.function();
-      boxKeyValue = key;
+      return key;
     }
   }
-
-  return boxKeyValue;
 }
 
 function checkBoxClicking(mouseVector, rectangleVectors, basicSet) {
