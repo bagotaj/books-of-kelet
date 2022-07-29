@@ -19,11 +19,17 @@ function getImage(mainCanvas, ImgName) {
       }
 
       if (mainCanvas.id === 'canvasEdit') {
-        makeShelfGridFromCoords({
-          ImgName: ImgName,
-          passedctx: ctxEdit,
-          passedcanvas: canvasEdit,
-        });
+        if (booksFromLocalStorageBoolean) {
+          drawBoundingBoxes(imgNewSizeRatio, ImgName);
+          console.log('img ratio', imgNewSizeRatio);
+          createBookTitlesTable();
+        } else {
+          makeShelfGridFromCoords({
+            ImgName: ImgName,
+            passedctx: ctxEdit,
+            passedcanvas: canvasEdit,
+          });
+        }
       }
     })
     .catch((error) => {
@@ -102,14 +108,43 @@ function getBasicsShelvesData() {
     });
 }
 
-function getShelvesData() {
+function getShelvesData(imageName) {
   dbconnection
     .collection('shelves')
+    .where('imageTitle', '==', imageName)
     .get()
     .then((doc) => {
-      doc.forEach((basicShelf) => {
-        makeStartPageButtonsImageUpload(basicShelf.data());
-        savedBasicsShelvesData.push(basicShelf.data());
+      doc.forEach((querySnapshot) => {
+        imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
+
+function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
+  let basicShelf = dbconnection
+    .collection('basics')
+    .where('basicShelfTitle', '==', backgroundShelvesTitle);
+
+  basicShelf
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((shelf) => {
+        if (!shelf.exists) {
+          throw 'Document does not exist!';
+        }
+
+        for (const key in shelf.data().shelfBoxCoords) {
+          if (key === searchingImageKeyValue) {
+            let imageName = shelf.data().shelfBoxCoords[key][4];
+            booksFromLocalStorageBoolean = true;
+            getImage(canvasEdit, imageName);
+            getShelvesData(imageName);
+          }
+        }
       });
     })
     .catch((error) => {
