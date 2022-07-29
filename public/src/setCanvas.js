@@ -1,6 +1,7 @@
-function setCanvasHeightIndex() {
+function setCanvasHeightIndex(canvasWrapperIndexWidth) {
   let canvasHeight =
-    (window.innerWidth * backgroundShelvesHeight) / backgroundShelvesWidth;
+    (canvasWrapperIndexWidth * backgroundShelvesHeight) /
+    backgroundShelvesWidth;
 
   return canvasHeight;
 }
@@ -9,13 +10,24 @@ function setCanvasWrapperIndex(canvas, imageURL) {
   const canvasWrapperIndexClass = document.querySelectorAll(
     '.canvas-wrapper-index'
   );
-  let canvasHeight = setCanvasHeightIndex();
+  let canvasWrapperIndexWidth = canvasWrapperIndexClass[0].offsetWidth;
+  let canvasHeight = setCanvasHeightIndex(canvasWrapperIndexWidth);
+  let canvasWidth = canvasWrapperIndexWidth;
 
   canvas.height = canvasHeight;
+  canvas.width = canvasWidth;
+  console.log(
+    'edit',
+    backgroundShelvesHeight,
+    backgroundShelvesWidth,
+    'canvas height',
+    canvas.height
+  );
   imgSizeRatioBookTitle =
     7.56 / ((canvasHeight * 0.8) / (backgroundShelvesHeight * 0.8));
   shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
   canvasWrapperIndexClass[0].style.height = canvasHeight;
+  canvasWrapperIndexClass[0].style.width = canvasWidth;
   canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
 }
 
@@ -31,7 +43,6 @@ function setImageuploadCanvasBackground(sendingData) {
 
   img = new Image();
   img.src = sendingData.blobURL;
-
   img.onload = function () {
     URL.revokeObjectURL(this.src);
 
@@ -59,6 +70,13 @@ function setImageuploadCanvasBackground(sendingData) {
     }
 
     if (sendingData.buttonId === 'imageuploadcanvas') {
+      let imageHeightData = {
+        original: img.height,
+        resized: backgroundShelvesHeight,
+      };
+
+      imgNewSizeRatio = makeImgNewSizeRatioNumber(imageHeightData);
+
       canvas.height = 500;
       canvas.width = (img.width * 500) / img.height;
 
@@ -75,24 +93,26 @@ function setImageuploadCanvasBackground(sendingData) {
           'utf-8'
         );
       }, mime_type);
-    } else {
-      let canvasHeight = setCanvasHeightIndex();
-
-      canvas.height = canvasHeight;
-      imgSizeRatioBookTitle =
-        7.56 / ((canvasHeight * 0.8) / (backgroundShelvesHeight * 0.8));
-      shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
-      canvas.width = img.width * shelvesCoordsRatio;
-
-      canvasctx.clearRect(0, 0, canvas.width, canvas.height);
-      canvasctx.drawImage(
-        img,
-        0,
-        0,
-        img.width * shelvesCoordsRatio,
-        img.height * shelvesCoordsRatio
-      );
     }
+    // else {
+    //   console.log('run else branch');
+    //   let canvasHeight = setCanvasHeightIndex();
+
+    //   canvas.height = canvasHeight;
+    //   imgSizeRatioBookTitle =
+    //     7.56 / ((canvasHeight * 0.8) / (backgroundShelvesHeight * 0.8));
+    //   shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
+    //   canvas.width = img.width * shelvesCoordsRatio;
+
+    //   canvasctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   canvasctx.drawImage(
+    //     img,
+    //     0,
+    //     0,
+    //     img.width * shelvesCoordsRatio,
+    //     img.height * shelvesCoordsRatio
+    //   );
+    // }
 
     if (sendingData.buttonId === 'selectButtonNewBasicShelf') {
       gridXCoords.push(0, canvas.width);
