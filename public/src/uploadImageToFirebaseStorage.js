@@ -84,10 +84,11 @@ uploadButton.addEventListener('click', (e) => {
       imageTitle: ImgName,
       shelfCoords: {},
       shelfName: clickedShelfBoxKeyNumber,
+      imgNewSizeRatio: imgNewSizeRatio,
     };
 
     let shelfBoxsendingImageDataObj = {
-      basicShelfTitle: backgroundShelvesTitles,
+      basicShelfTitle: backgroundShelvesTitle,
       keyValue: clickedShelfBoxKeyNumber,
       ImgName: ImgName,
     };
@@ -95,7 +96,6 @@ uploadButton.addEventListener('click', (e) => {
     uploadFile = resizedLocalImageFile;
     addShelvesToFirestore(dataOfImageToFirebase);
     addImageNameToBasicsShelfBoxCoords(shelfBoxsendingImageDataObj);
-    console.log('save canvas image / resized', resizedLocalImageFile);
   }
 
   // Namebox - give the name to the image file
