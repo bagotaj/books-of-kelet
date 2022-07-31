@@ -1,6 +1,6 @@
 let savedBasicsShelvesData = [];
 let resizedLocalImageFile;
-let setClickImageuploadCanvas;
+let setClickCanvas;
 let setUploadImageupload;
 let clickedShelfBoxKeyNumber;
 let booksFromLocalStorageBoolean = false;
