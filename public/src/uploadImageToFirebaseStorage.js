@@ -35,7 +35,6 @@ function selectImage(e) {
 
   input.onchange = (e) => {
     localImageFiles = e.target.files;
-    console.log('select', localImageFiles);
     let fileName = localImageFiles[0].name;
 
     reader = new FileReader();
@@ -68,8 +67,10 @@ uploadButton.addEventListener('click', (e) => {
   let buttonId = e.target.id;
   let uploadFile = localImageFiles[0];
 
+  console.log('upload', imgNewSizeRatio);
+
   // setting what you can do on canvas - draw grid
-  setClickImageuploadCanvas = 'uploadimage';
+  setClickCanvas = 'uploadimage';
 
   // if smallshelf saving canvas image
   if (setUploadImageupload === 'smallshelf') {
