@@ -30,7 +30,7 @@ imageuploadcanvas.addEventListener(
   function (event) {
     let newCoords = getMousePosition(imageuploadcanvas, event);
 
-    if (setClickImageuploadCanvas === 'grid') {
+    if (setClickCanvas === 'grid') {
       clickedShelfBoxKeyNumber = isBoxClicked({
         newCoords: newCoords,
       });
@@ -42,7 +42,7 @@ imageuploadcanvas.addEventListener(
       console.log('return value isBoxClicked', clickedShelfBoxKeyNumber);
     }
 
-    if (setClickImageuploadCanvas === 'uploadimage') {
+    if (setClickCanvas === 'uploadimage') {
       drawAndCalculateGrid(newCoords);
     }
   },
