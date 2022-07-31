@@ -7,7 +7,7 @@ const saveShelvesButton = document.querySelector('#saveShelves');
 
 if (saveShelvesButton) {
   saveShelvesButton.addEventListener('click', () => {
-    setClickImageuploadCanvas = 'grid';
+    setClickCanvas = 'grid';
     saveShelves();
 
     saveNewShelfButtons.classList.add('displaynone');
