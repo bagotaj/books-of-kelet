@@ -6,30 +6,7 @@ function getImage(mainCanvas, ImgName) {
       if (mainCanvas === 'bookshelves') {
         setBookshelvesBackgroundImage(url);
       } else {
-        setCanvasWrapperIndex(mainCanvas, url);
-      }
-    })
-    .then(() => {
-      if (mainCanvas.id === 'imageuploadcanvas') {
-        makeShelfGridFromCoords({
-          ImgName: ImgName,
-          passedctx: ctxImageUpload,
-          passedcanvas: imageuploadcanvas,
-        });
-      }
-
-      if (mainCanvas.id === 'canvasEdit') {
-        if (booksFromLocalStorageBoolean) {
-          drawBoundingBoxes(imgNewSizeRatio, ImgName);
-          console.log('img ratio', imgNewSizeRatio);
-          createBookTitlesTable();
-        } else {
-          makeShelfGridFromCoords({
-            ImgName: ImgName,
-            passedctx: ctxEdit,
-            passedcanvas: canvasEdit,
-          });
-        }
+        setCanvasWrapperIndex(mainCanvas, url, ImgName);
       }
     })
     .catch((error) => {
@@ -116,6 +93,7 @@ function getShelvesData(imageName) {
     .then((doc) => {
       doc.forEach((querySnapshot) => {
         imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
+        console.log('get shelves data', imgNewSizeRatio);
       });
     })
     .catch((error) => {
@@ -132,6 +110,8 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
   basicShelf
     .get()
     .then((querySnapshot) => {
+      setClickCanvas = 'books';
+
       querySnapshot.forEach((shelf) => {
         if (!shelf.exists) {
           throw 'Document does not exist!';
@@ -141,8 +121,8 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
           if (key === searchingImageKeyValue) {
             let imageName = shelf.data().shelfBoxCoords[key][4];
             booksFromLocalStorageBoolean = true;
-            getImage(canvasEdit, imageName);
             getShelvesData(imageName);
+            getImage(canvasEdit, imageName);
           }
         }
       });
