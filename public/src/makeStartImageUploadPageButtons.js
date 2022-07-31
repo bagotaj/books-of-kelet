@@ -8,12 +8,13 @@ function makeStartPageButtonsImageUpload(shelfData) {
   shelfButton.setAttribute('class', 'normalbtn');
   shelfButton.dataset.id = dataIdCounter;
   shelfButton.addEventListener('click', (e) => {
-    setClickImageuploadCanvas = 'grid';
+    setClickCanvas = 'grid';
     let whichCanvas = document.querySelector('canvas');
 
     setBackgroundShelvesVariables(shelfData);
 
     if (whichCanvas.id === 'canvasEdit') {
+      booksFromLocalStorageBoolean = false;
       getImage(canvasEdit, backgroundShelvesTitle);
     }
 
@@ -23,11 +24,7 @@ function makeStartPageButtonsImageUpload(shelfData) {
       startPageButtons.classList.add('displaynone');
       addNewShelfImageButtons.classList.remove('displaynone');
 
-      // let url = `../public/assets/img/kelet-header.jpeg`;
-      // setCanvasWrapperIndex(imageuploadcanvas, url);
       getImage(imageuploadcanvas, backgroundShelvesTitle);
-      // till I use url and setCanvas
-      // makeShelfGridFromCoords();
     }
   });
 
