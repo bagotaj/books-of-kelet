@@ -30,7 +30,7 @@ canvasEdit.addEventListener(
   (event) => {
     newCoords = getMousePosition(canvasEdit, event);
 
-    if (setClickImageuploadCanvas === 'grid') {
+    if (setClickCanvas === 'grid') {
       clickedShelfBoxKeyNumber = isBoxClicked({
         newCoords: newCoords,
       });
@@ -38,7 +38,9 @@ canvasEdit.addEventListener(
       if (clickedShelfBoxKeyNumber) {
         getImageNameFromBasicsShelfBoxCoords(clickedShelfBoxKeyNumber);
       }
-    } else {
+    }
+
+    if (setClickCanvas === 'books') {
       addNewBookCoords(newCoords);
 
       for (let i = 0; i < bookTitles.length; i++) {
