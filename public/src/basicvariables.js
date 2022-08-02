@@ -10,6 +10,7 @@ let backgroundShelvesWidth = 1359;
 let backgroundShelvesHeight = 500;
 // Index uses it
 let backgroundShelvesTitle = 'kelet-header';
+let shelfCoordsObj;
 const canvasTop = document.getElementById('canvas');
 let imgNewSizeRatio = 6.048;
 let imgSizeRatioBookTitle = 0;
