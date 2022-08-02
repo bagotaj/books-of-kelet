@@ -23,6 +23,9 @@ function isBoxClicked(clickingDataObj) {
     );
 
     if (clicked) {
+      if (clickingDataObj.type == 'imageupload') {
+        shelfCoordsObj = makeShelfCoords(shelfBoxCoordsObj[key]);
+      }
       return key;
     }
   }
