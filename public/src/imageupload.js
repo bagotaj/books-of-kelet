@@ -33,13 +33,12 @@ imageuploadcanvas.addEventListener(
     if (setClickCanvas === 'grid') {
       clickedShelfBoxKeyNumber = isBoxClicked({
         newCoords: newCoords,
+        type: 'imageupload',
       });
 
       if (clickedShelfBoxKeyNumber) {
         selectImage(event);
       }
-
-      console.log('return value isBoxClicked', clickedShelfBoxKeyNumber);
     }
 
     if (setClickCanvas === 'uploadimage') {
