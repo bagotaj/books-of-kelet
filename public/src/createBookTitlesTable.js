@@ -16,14 +16,18 @@ function createBookTitlesTable() {
       buttonSave.innerText = 'Mentés';
       buttonSave.setAttribute('type', 'button');
       buttonSave.setAttribute('class', 'normalbtn');
-      buttonSave.addEventListener('click', () => dataManipulation('save', i));
+      buttonSave.addEventListener('click', () => {
+        dataManipulation('save', i);
+        drawBoundingBoxes(imgNewSizeRatio, backgroundShelvesTitle);
+      });
       let buttonDelete = document.createElement('button');
       buttonDelete.innerText = 'Törlés';
       buttonDelete.setAttribute('type', 'button');
       buttonDelete.setAttribute('class', 'normalbtn');
-      buttonDelete.addEventListener('click', () =>
-        dataManipulation('delete', i)
-      );
+      buttonDelete.addEventListener('click', () => {
+        dataManipulation('delete', i);
+        drawBoundingBoxes(imgNewSizeRatio, backgroundShelvesTitle);
+      });
 
       const fieldOfColumns = [input, buttonSave, buttonDelete];
 
