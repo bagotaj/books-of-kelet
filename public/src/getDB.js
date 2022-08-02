@@ -93,7 +93,6 @@ function getShelvesData(imageName) {
     .then((doc) => {
       doc.forEach((querySnapshot) => {
         imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
-        console.log('get shelves data', imgNewSizeRatio);
       });
     })
     .catch((error) => {
