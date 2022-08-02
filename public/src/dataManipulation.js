@@ -45,3 +45,28 @@ function makeImgNewSizeRatioNumber(imageHeightData) {
 
   return ratioNumber;
 }
+
+function makeShelfCoords(shelfDataArr) {
+  let centroidX = 0;
+  let centroidY = 0;
+  // -1 because the last element of the array is the image name
+  let amountOfCoords;
+  if (shelfDataArr.length > 4) {
+    amountOfCoords = shelfDataArr.length - 1;
+  } else {
+    amountOfCoords = shelfDataArr.length;
+  }
+
+  for (let i = 0; i < amountOfCoords; i++) {
+    centroidX += shelfDataArr[i].x;
+    centroidY += shelfDataArr[i].y;
+    console.log('data manipulation', shelfDataArr[i].x, centroidY);
+  }
+
+  let centroidCoords = {
+    x: Math.round(centroidX / amountOfCoords),
+    y: Math.round(centroidY / amountOfCoords),
+  };
+
+  return centroidCoords;
+}
