@@ -9,6 +9,7 @@ function setCanvasWrapperIndex(canvas, imageURL, ImgName) {
   const canvasWrapperIndexClass = document.querySelectorAll(
     '.canvas-wrapper-index'
   );
+  let canvasWrapperIndexClassWidth = canvasWrapperIndexClass[0].offsetWidth;
 
   img = new Image();
   img.src = imageURL;
@@ -17,16 +18,22 @@ function setCanvasWrapperIndex(canvas, imageURL, ImgName) {
 
     let imageWidth = img.width;
     let imageHeight = img.height;
+    let canvasHeight;
+    let canvasWidth;
 
-    let canvasHeight = imageHeight;
-    let canvasWidth = imageWidth;
+    if (imageWidth > canvasWrapperIndexClassWidth) {
+      canvasWidth = canvasWrapperIndexClassWidth;
+      canvasHeight = (canvasWrapperIndexClassWidth * imageHeight) / imageWidth;
+    } else {
+      canvasHeight = imageHeight;
+      canvasWidth = imageWidth;
+    }
 
     canvas.height = canvasHeight;
     canvas.width = canvasWidth;
 
-    imgSizeRatioBookTitle =
-      7.56 / ((canvasHeight * 0.8) / (backgroundShelvesHeight * 0.8));
-    shelvesCoordsRatio = canvasHeight / backgroundShelvesHeight;
+    imgSizeRatioBookTitle = 7.56 / ((canvasHeight * 0.8) / (imageHeight * 0.8));
+    shelvesCoordsRatio = canvasHeight / imageHeight;
     canvasWrapperIndexClass[0].style.height = canvasHeight;
     canvasWrapperIndexClass[0].style.width = canvasWidth;
     canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
