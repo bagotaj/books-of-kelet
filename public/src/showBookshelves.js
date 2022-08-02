@@ -43,23 +43,29 @@ function drawBookshelvesPoint(shelfName) {
     .then((querySnapshot) => {
       let shelves = [];
 
-      querySnapshot.forEach((shelf) => {
-        shelves.push(shelf.data());
-      });
+      if (Array.isArray(querySnapshot) && querySnapshot.length !== 0) {
+        querySnapshot.forEach((shelf) => {
+          shelves.push(shelf.data());
+        });
+      }
 
       return shelves;
     })
     .then((shelves) => {
-      let pointXShelves = shelves[0]['shelfCoords']['x'];
-      let pointYShelves = shelves[0]['shelfCoords']['y'];
+      if (shelves.length !== 0) {
+        let pointXShelves = shelves[0]['shelfCoords']['x'];
+        let pointYShelves = shelves[0]['shelfCoords']['y'];
 
-      if (clickedShelfPoint) {
-        clearInterval(blinkShelvesPoint);
+        if (clickedShelfPoint) {
+          clearInterval(blinkShelvesPoint);
+        }
+
+        blinkShelvesPoint = setInterval(() => {
+          blinkShelfPoint(pointXShelves, pointYShelves);
+        }, 1000);
+      } else {
+        alert('Hiba történt');
       }
-
-      blinkShelvesPoint = setInterval(() => {
-        blinkShelfPoint(pointXShelves, pointYShelves);
-      }, 1000);
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
