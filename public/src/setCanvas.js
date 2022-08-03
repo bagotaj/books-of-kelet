@@ -1,15 +1,32 @@
 function setCanvasHeightIndex(imageWidth) {
-  let canvasHeight =
+  let canvasDOMHeight =
     (imageWidth * backgroundShelvesHeight) / backgroundShelvesWidth;
 
-  return canvasHeight;
+  return canvasDOMHeight;
 }
 
-function setCanvasWrapperIndex(canvas, imageURL, ImgName) {
-  const canvasWrapperIndexClass = document.querySelectorAll(
-    '.canvas-wrapper-index'
-  );
-  let canvasWrapperIndexClassWidth = canvasWrapperIndexClass[0].offsetWidth;
+function setCanvasWrapperIndex(canvasDOM, imageURL, ImgName) {
+  const isEmpty = Object.keys(backgroundBookShelfImage).length === 0;
+  if (isEmpty) {
+    backgroundBookShelfImage = {
+      canvasDOM: canvasDOM,
+      imageURL: imageURL,
+      ImgName: ImgName,
+    };
+  }
+  let canvasWrapperIndexClass;
+  let canvasWrapperIndexClassWidth;
+  console.log('image size ratio', imgSizeRatioBookTitle);
+
+  if (canvasDOM.id == 'canvasBookTitles') {
+    canvasWrapperIndexClass = document.getElementById('book-shelves-id');
+    canvasWrapperIndexClassWidth = 667;
+  } else {
+    canvasWrapperIndexClass = document.querySelectorAll(
+      '.canvas-wrapper-index'
+    )[0];
+    canvasWrapperIndexClassWidth = canvasWrapperIndexClass.offsetWidth;
+  }
 
   img = new Image();
   img.src = imageURL;
@@ -18,28 +35,43 @@ function setCanvasWrapperIndex(canvas, imageURL, ImgName) {
 
     let imageWidth = img.width;
     let imageHeight = img.height;
-    let canvasHeight;
-    let canvasWidth;
+    let canvasDOMHeight;
+    let canvasDOMWidth;
 
     if (imageWidth > canvasWrapperIndexClassWidth) {
-      canvasWidth = canvasWrapperIndexClassWidth;
-      canvasHeight = (canvasWrapperIndexClassWidth * imageHeight) / imageWidth;
+      canvasDOMWidth = canvasWrapperIndexClassWidth;
+      canvasDOMHeight =
+        (canvasWrapperIndexClassWidth * imageHeight) / imageWidth;
+    } else if (canvasDOM.id == 'canvasBookTitles') {
+      let canvasWrapperIndexDOM = document.querySelectorAll(
+        '.canvas-wrapper-index'
+      )[0];
+      canvasDOMHeight = canvasWrapperIndexDOM.offsetHeight * 0.8;
+      canvasDOMWidth = (imageWidth * canvasDOMHeight) / imageHeight;
     } else {
-      canvasHeight = imageHeight;
-      canvasWidth = imageWidth;
+      canvasDOMHeight = imageHeight;
+      canvasDOMWidth = imageWidth;
     }
 
-    canvas.height = canvasHeight;
-    canvas.width = canvasWidth;
+    canvasDOM.height = canvasDOMHeight;
+    canvasDOM.width = canvasDOMWidth;
 
-    imgSizeRatioBookTitle = 7.56 / ((canvasHeight * 0.8) / (imageHeight * 0.8));
-    shelvesCoordsRatio = canvasHeight / imageHeight;
-    canvasWrapperIndexClass[0].style.height = canvasHeight;
-    canvasWrapperIndexClass[0].style.width = canvasWidth;
-    canvasWrapperIndexClass[0].style.backgroundImage = `url(${imageURL})`;
-    canvasWrapperIndexClass[0].style.backgroundPosition = 'center';
+    if (canvasDOM.id !== 'canvasBookTitles') {
+      // console.log(
+      //   'set img size ratio book title',
+      //   canvasDOMHeight,
+      //   imageHeight
+      // );
+      imgSizeRatioBookTitle =
+        7.56 / ((canvasDOMHeight * 0.8) / (imageHeight * 0.8));
+      shelvesCoordsRatio = canvasDOMHeight / imageHeight;
+    }
+    canvasWrapperIndexClass.style.height = canvasDOMHeight;
+    canvasWrapperIndexClass.style.width = canvasDOMWidth;
+    canvasWrapperIndexClass.style.backgroundImage = `url(${imageURL})`;
+    canvasWrapperIndexClass.style.backgroundPosition = 'center';
 
-    if (canvas.id === 'imageuploadcanvas') {
+    if (canvasDOM.id === 'imageuploadcanvas') {
       makeShelfGridFromCoords({
         ImgName: ImgName,
         passedctx: ctxImageUpload,
@@ -47,7 +79,7 @@ function setCanvasWrapperIndex(canvas, imageURL, ImgName) {
       });
     }
 
-    if (canvas.id === 'canvasEdit') {
+    if (canvasDOM.id === 'canvasEdit') {
       if (booksFromLocalStorageBoolean) {
         drawBoundingBoxes(imgNewSizeRatio, ImgName);
         createBookTitlesTable();
