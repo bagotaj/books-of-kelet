@@ -67,8 +67,6 @@ uploadButton.addEventListener('click', (e) => {
   let buttonId = e.target.id;
   let uploadFile = localImageFiles[0];
 
-  console.log('upload', imgNewSizeRatio);
-
   // setting what you can do on canvas - draw grid
   setClickCanvas = 'uploadimage';
 
@@ -83,7 +81,7 @@ uploadButton.addEventListener('click', (e) => {
     let dataOfImageToFirebase = {
       basicShelf: backgroundShelvesTitle,
       imageTitle: ImgName,
-      shelfCoords: {},
+      shelfCoords: shelfCoordsObj,
       shelfName: clickedShelfBoxKeyNumber,
       imgNewSizeRatio: imgNewSizeRatio,
     };
