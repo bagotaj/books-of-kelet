@@ -3,11 +3,12 @@ function getImage(mainCanvas, ImgName) {
     .ref(`assets/img/${ImgName}.jpeg`)
     .getDownloadURL()
     .then((url) => {
-      if (mainCanvas === 'bookshelves') {
-        setBookshelvesBackgroundImage(url);
-      } else {
-        setCanvasWrapperIndex(mainCanvas, url, ImgName);
-      }
+      console.log(mainCanvas, ImgName);
+      // if (mainCanvas === 'bookshelves') {
+      //   setBookshelvesBackgroundImage(url);
+      // } else {
+      setCanvasWrapperIndex(mainCanvas, url, ImgName);
+      // }
     })
     .catch((error) => {
       // Handle any errors
