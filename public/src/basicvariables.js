@@ -4,12 +4,15 @@ let setClickCanvas;
 let setUploadImageupload;
 let clickedShelfBoxKeyNumber;
 let booksFromLocalStorageBoolean = false;
+let maxBackgroundShelfWidth = 1359;
+let maxBackgroundShelfHeight = 500;
 // Index uses it
 let backgroundShelvesWidth = 1359;
 // Edit and Index use it
 let backgroundShelvesHeight = 500;
 // Index uses it
 let backgroundShelvesTitle = 'kelet-header';
+let backgroundBookShelfImage = {};
 let shelfCoordsObj;
 const canvasTop = document.getElementById('canvas');
 let imgNewSizeRatio = 6.048;
