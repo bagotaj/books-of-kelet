@@ -21,7 +21,7 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
     bookshelves.classList.add('book-shelves-left');
   }
   bookshelves.style.display = 'block';
-  getImage('bookshelves', bookTitlesOnImage);
+  getImage(canvasBookTitle, bookTitlesOnImage);
   bookshelves.style.backgroundRepeat = 'no-repeat';
   bookshelves.style.backgroundSize = 'cover';
 
@@ -34,20 +34,16 @@ function setBookshelvesBackgroundImage(imageURL) {
 }
 
 function drawBookshelvesPoint(shelfName) {
-  let bookShelfPointData = dbconnection
+  dbconnection
     .collection('shelves')
-    .where('shelfName', '==', shelfName);
-
-  bookShelfPointData
+    .where('shelfName', '==', shelfName)
     .get()
-    .then((querySnapshot) => {
+    .then((doc) => {
       let shelves = [];
 
-      if (Array.isArray(querySnapshot) && querySnapshot.length !== 0) {
-        querySnapshot.forEach((shelf) => {
-          shelves.push(shelf.data());
-        });
-      }
+      doc.forEach((shelf) => {
+        shelves.push(shelf.data());
+      });
 
       return shelves;
     })
