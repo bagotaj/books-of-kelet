@@ -12,6 +12,7 @@ let backgroundShelvesWidth = 1359;
 let backgroundShelvesHeight = 500;
 // Index uses it
 let backgroundShelvesTitle = 'kelet-header';
+let backgroundBasicShelfImage = {};
 let backgroundBookShelfImage = {};
 let shelfCoordsObj;
 const canvasTop = document.getElementById('canvas');
