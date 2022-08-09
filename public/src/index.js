@@ -6,14 +6,16 @@ function initializeSite() {
 
   function createCanvas() {
     const result = document.getElementById('canvas');
-    result.width = window.innerWidth;
+    // result.width = window.innerWidth;
+    result.width = window.visualViewport.width;
     getImage(result, backgroundShelvesTitle);
 
     return result;
   }
 
   window.addEventListener('resize', function () {
-    canvas.width = window.innerWidth;
+    // canvas.width = window.innerWidth;
+    canvas.width = window.visualViewport.width;
 
     const isEmptyBasic = Object.keys(backgroundBasicShelfImage).length === 0;
     if (!isEmptyBasic) {
