@@ -8,7 +8,6 @@ function initializeSite() {
     const result = document.getElementById('canvas');
     result.width = window.innerWidth;
     getImage(result, backgroundShelvesTitle);
-    setBookShelvesClassIndex();
 
     return result;
   }
@@ -16,10 +15,22 @@ function initializeSite() {
   window.addEventListener('resize', function () {
     canvas.width = window.innerWidth;
 
-    if (window.innerWidth < backgroundShelvesWidth) {
-      getImage(canvas, backgroundShelvesTitle);
-      setBookShelvesClassIndex();
-      createBookTitleCanvas();
+    const isEmptyBasic = Object.keys(backgroundBasicShelfImage).length === 0;
+    if (!isEmptyBasic) {
+      setCanvasWrapperIndex(
+        backgroundBasicShelfImage.canvasDOM,
+        backgroundBasicShelfImage.imageURL,
+        backgroundBasicShelfImage.ImgName
+      );
+    }
+
+    const isEmptyBook = Object.keys(backgroundBookShelfImage).length === 0;
+    if (!isEmptyBook) {
+      setCanvasWrapperIndex(
+        backgroundBookShelfImage.canvasDOM,
+        backgroundBookShelfImage.imageURL,
+        backgroundBookShelfImage.ImgName
+      );
     }
   });
 }
