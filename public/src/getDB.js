@@ -1,9 +1,9 @@
-function getImage(mainCanvas, ImgName) {
+function getImage(imgDataObj) {
   storageconnection
-    .ref(`assets/img/${ImgName}.jpeg`)
+    .ref(`assets/img/${imgDataObj.ImgName}.jpeg`)
     .getDownloadURL()
     .then((url) => {
-      setCanvasWrapperIndex(mainCanvas, url, ImgName);
+      imgDataObj.argFunction(imgDataObj.mainCanvas, url, imgDataObj.ImgName);
     })
     .catch((error) => {
       // Handle any errors
@@ -81,14 +81,50 @@ function getBasicsShelvesData() {
     });
 }
 
-function getShelvesData(imageName) {
-  dbconnection
+function getShelvesData(mainCanvas, url, ImgName) {
+  let shelfData = dbconnection
     .collection('shelves')
-    .where('imageTitle', '==', imageName)
+    .where('imageTitle', '==', ImgName);
+
+  shelfData
     .get()
     .then((doc) => {
       doc.forEach((querySnapshot) => {
-        imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
+        if (!querySnapshot.exists) {
+          throw 'Document does not exist!';
+        }
+
+        if (mainCanvas.id === 'canvasEdit') {
+          imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
+          let imgDataObj = {
+            mainCanvas: canvasEdit,
+            ImgName: ImgName,
+            argFunction: setCanvasWrapperIndex,
+          };
+
+          getImage(imgDataObj);
+        }
+
+        if (mainCanvas.id === 'canvasBookTitles') {
+          let basicShelfTitle;
+
+          basicShelfTitle = querySnapshot.data().basicShelf;
+
+          let img = makeImage({
+            src: url,
+            function: function () {
+              let dataObj = {
+                basicShelfTitle: basicShelfTitle,
+                basicShelfParams: {
+                  x: img.width,
+                  y: img.height,
+                },
+              };
+
+              setBackgroundShelvesVariables(dataObj);
+            },
+          });
+        }
       });
     })
     .catch((error) => {
@@ -116,8 +152,7 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
           if (key === searchingImageKeyValue) {
             let imageName = shelf.data().shelfBoxCoords[key][4];
             booksFromLocalStorageBoolean = true;
-            getShelvesData(imageName);
-            getImage(canvasEdit, imageName);
+            getShelvesData(canvasEdit, 'url', imageName);
           }
         }
       });
