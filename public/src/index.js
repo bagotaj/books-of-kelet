@@ -8,7 +8,15 @@ function initializeSite() {
     const result = document.getElementById('canvas');
     // result.width = window.innerWidth;
     result.width = window.visualViewport.width;
-    getImage(result, backgroundShelvesTitle);
+    if (backgroundShelvesTitle) {
+      let imgDataObj = {
+        mainCanvas: result,
+        ImgName: backgroundShelvesTitle,
+        argFunction: setCanvasWrapperIndex,
+      };
+
+      getImage(imgDataObj);
+    }
 
     return result;
   }
