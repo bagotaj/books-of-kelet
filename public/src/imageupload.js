@@ -17,7 +17,13 @@ window.addEventListener('resize', function () {
     getBasicsShelvesData();
 
     if (!addNewShelfImageButtons.classList.contains('displaynone')) {
-      getImage(imageuploadcanvas, backgroundShelvesTitle);
+      let imgDataObj = {
+        mainCanvas: imageuploadcanvas,
+        ImgName: backgroundShelvesTitle,
+        argFunction: setCanvasWrapperIndex,
+      };
+
+      getImage(imgDataObj);
     }
   }
 });
