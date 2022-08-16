@@ -15,7 +15,13 @@ function makeStartPageButtonsImageUpload(shelfData) {
 
     if (whichCanvas.id === 'canvasEdit') {
       booksFromLocalStorageBoolean = false;
-      getImage(canvasEdit, backgroundShelvesTitle);
+      let imgDataObj = {
+        mainCanvas: canvasEdit,
+        ImgName: backgroundShelvesTitle,
+        argFunction: setCanvasWrapperIndex,
+      };
+
+      getImage(imgDataObj);
     }
 
     if (whichCanvas.id === 'imageuploadcanvas') {
@@ -24,7 +30,13 @@ function makeStartPageButtonsImageUpload(shelfData) {
       startPageButtons.classList.add('displaynone');
       addNewShelfImageButtons.classList.remove('displaynone');
 
-      getImage(imageuploadcanvas, backgroundShelvesTitle);
+      let imgDataObj = {
+        mainCanvas: imageuploadcanvas,
+        ImgName: backgroundShelvesTitle,
+        argFunction: setCanvasWrapperIndex,
+      };
+
+      getImage(imgDataObj);
     }
   });
 
