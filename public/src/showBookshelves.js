@@ -21,7 +21,20 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
     bookshelves.classList.add('book-shelves-left');
   }
   bookshelves.style.display = 'block';
-  getImage(canvasBookTitle, bookTitlesOnImage);
+  let imgDataObj1 = {
+    mainCanvas: canvasBookTitle,
+    ImgName: bookTitlesOnImage,
+    argFunction: getShelvesData,
+  };
+
+  let imgDataObj2 = {
+    mainCanvas: canvasBookTitle,
+    ImgName: bookTitlesOnImage,
+    argFunction: setCanvasWrapperIndex,
+  };
+
+  getImage(imgDataObj1);
+  getImage(imgDataObj2);
   bookshelves.style.backgroundRepeat = 'no-repeat';
   bookshelves.style.backgroundSize = 'cover';
 
