@@ -78,7 +78,7 @@ uploadButton.addEventListener('click', (e) => {
     // canvasról lementeni a képet - max 500 pixel magas - és beküldeni az adatbázisba
     // kép lementve és tárolva: resizedLocalImageFile változóban
     // https://stackoverflow.com/questions/13938686/can-i-load-a-local-file-into-an-html-canvas-element
-    let dataOfImageToFirebase = {
+    dataOfImageToFirebase = {
       basicShelf: backgroundShelvesTitle,
       imageTitle: ImgName,
       shelfCoords: shelfCoordsObj,
