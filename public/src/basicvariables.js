@@ -1,4 +1,5 @@
 let savedBasicsShelvesData = [];
+let dataOfImageToFirebase = {};
 let resizedLocalImageFile;
 let setClickCanvas;
 let setUploadImageupload;
