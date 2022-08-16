@@ -96,6 +96,15 @@ function getShelvesData(mainCanvas, url, ImgName) {
 
         if (mainCanvas.id === 'canvasEdit') {
           imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
+
+          dataOfImageToFirebase = {
+            basicShelf: querySnapshot.data().basicShelf,
+            imageTitle: querySnapshot.data().imageTitle,
+            shelfCoords: querySnapshot.data().shelfCoords,
+            shelfName: querySnapshot.data().shelfName,
+            imgNewSizeRatio: imgNewSizeRatio,
+          };
+
           let imgDataObj = {
             mainCanvas: canvasEdit,
             ImgName: ImgName,
