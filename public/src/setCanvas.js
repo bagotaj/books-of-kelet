@@ -10,7 +10,10 @@ function setCanvasWrapperIndex(canvasDOM, imageURL, ImgName) {
   const isEmptyBook = Object.keys(backgroundBookShelfImage).length === 0;
 
   if (canvasDOM.id == 'canvas') {
-    if (isEmptyBasic) {
+    if (
+      isEmptyBasic ||
+      (!isEmptyBasic && ImgName !== backgroundBasicShelfImage.ImgName)
+    ) {
       backgroundBasicShelfImage = {
         canvasDOM: canvasDOM,
         imageURL: imageURL,
