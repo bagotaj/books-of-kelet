@@ -119,6 +119,16 @@ function getShelvesData(mainCanvas, url, ImgName) {
 
           basicShelfTitle = querySnapshot.data().basicShelf;
 
+          if (backgroundShelvesTitle !== basicShelfTitle) {
+            let imgDataObj = {
+              mainCanvas: canvas,
+              ImgName: querySnapshot.data().basicShelf,
+              argFunction: setCanvasWrapperIndex,
+            };
+
+            getImage(imgDataObj);
+          }
+
           let img = makeImage({
             src: url,
             function: function () {
