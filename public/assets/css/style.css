@@ -77,7 +77,7 @@ li:first-child {
 
 .searchbtn, .normalbtn {
   padding: 6px 12px;
-  margin-left: 16px;
+  margin: 0 8px;
   border: none;
   background-color: rgb(221, 221, 221);
   cursor: pointer;
@@ -148,6 +148,13 @@ button:hover {
 }
 
 @keyframes opac{from{opacity:0} to{opacity:1}}
+
+#shelvesButtons {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .canvas-wrapper-index div p, .canvas-label {
   background-color: rgb(191, 46, 46);
