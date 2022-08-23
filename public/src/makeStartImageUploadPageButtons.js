@@ -15,6 +15,9 @@ function makeStartPageButtonsImageUpload(shelfData) {
 
     if (whichCanvas.id === 'canvasEdit') {
       booksFromLocalStorageBoolean = false;
+      const tableBody = document.getElementById('tableBody');
+      tableBody.innerHTML = '';
+
       let imgDataObj = {
         mainCanvas: canvasEdit,
         ImgName: backgroundShelvesTitle,
