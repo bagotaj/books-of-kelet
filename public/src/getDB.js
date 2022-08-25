@@ -171,7 +171,11 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
           if (key === searchingImageKeyValue) {
             let imageName = shelf.data().shelfBoxCoords[key][4];
             booksFromLocalStorageBoolean = true;
-            getShelvesData(canvasEdit, 'url', imageName);
+            if (imageName === undefined) {
+              alert('Shelf does not exist');
+            } else {
+              getShelvesData(canvasEdit, 'url', imageName);
+            }
           }
         }
       });
