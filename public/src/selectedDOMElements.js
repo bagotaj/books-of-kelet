@@ -8,3 +8,6 @@ let addNewShelfImageButtons = document.querySelector(
 );
 let saveNewShelfButtons = document.querySelector('#saveNewShelfButtons');
 let buttonsPlace = document.querySelector('#shelvesButtons');
+let selectButtonNewBasicShelf = document.querySelector(
+  '#selectButtonNewBasicShelf'
+);
