@@ -5,9 +5,6 @@ let localImageFiles;
 let reader;
 
 // Select button
-let selectButtonNewBasicShelf = document.querySelector(
-  '#selectButtonNewBasicShelf'
-);
 selectButtonNewBasicShelf.addEventListener('click', (e) => {
   selectImage(e);
 
