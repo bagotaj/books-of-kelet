@@ -156,7 +156,10 @@ function setImageuploadCanvasBackground(sendingData) {
         addBasicsToFirestore(dataOfImageToFirebase);
       }
 
-      if (sendingData.buttonId === 'imageuploadcanvas') {
+      if (
+        sendingData.buttonId === 'imageuploadcanvas' ||
+        sendingData.buttonId === 'selectButtonNewBasicShelf'
+      ) {
         let imageHeightData = {
           original: img.height,
           resized: backgroundShelvesHeight,
