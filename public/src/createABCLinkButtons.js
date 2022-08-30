@@ -76,7 +76,6 @@ function createABCLinkButtons() {
       a.classList.add('a-clicked');
       let letterStart = e.target.value;
       searchData(letterStart);
-      createMainBookTitlesTable();
     });
 
     div.appendChild(a);
