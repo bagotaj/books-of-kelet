@@ -86,3 +86,20 @@ function addImageNameToBasicsShelfBoxCoords(shelfBoxsendingImageDataObj) {
       // alert('Error adding document: ', error.message);
     });
 }
+
+function addDataToBooks(bookData) {
+  let books = dbconnection.collection('books').doc(bookData.id);
+
+  books
+    .update({
+      paragraph: bookData.paragraph,
+      searchparagraph: bookData.searchparagraph,
+    })
+    .then(() => {
+      console.log('Document successfully written!');
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
