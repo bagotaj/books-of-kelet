@@ -160,8 +160,6 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
   basicShelf
     .get()
     .then((querySnapshot) => {
-      setClickCanvas = 'books';
-
       querySnapshot.forEach((shelf) => {
         if (!shelf.exists) {
           throw 'Document does not exist!';
@@ -170,15 +168,49 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
         for (const key in shelf.data().shelfBoxCoords) {
           if (key === searchingImageKeyValue) {
             let imageName = shelf.data().shelfBoxCoords[key][4];
-            booksFromLocalStorageBoolean = true;
+
             if (imageName === undefined) {
               alert('Shelf does not exist');
             } else {
+              booksFromLocalStorageBoolean = true;
+              setClickCanvas = 'books';
+              getBooks(imageName);
               getShelvesData(canvasEdit, 'url', imageName);
             }
           }
         }
       });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      alert('Error adding document: ', error.message);
+    });
+}
+
+function getBooks(imageTitle) {
+  let books = dbconnection
+    .collection('books')
+    .where('imageTitle', '==', imageTitle);
+
+  books
+    .get()
+    .then((querySnapshot) => {
+      let books = [];
+
+      querySnapshot.forEach((book) => {
+        if (!book.exists) {
+          throw 'Book does not exist!';
+        }
+
+        if (book.data()['display'] === 'on') {
+          let bookData = book.data();
+          bookData.id = book.id;
+
+          books.push(bookData);
+        }
+      });
+
+      saveItemToLocalStorage('bookTitles', books);
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
