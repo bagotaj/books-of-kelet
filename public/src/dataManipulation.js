@@ -2,24 +2,31 @@ function dataManipulation(type, index, newcoords) {
   const data = document.getElementById(index);
 
   if (type === 'save') {
-    if (index === 'newBookTitleInput') {
-      bookTitles.push({
-        display: 'on',
-        boundingBox: {
-          vertices: [
-            {
-              x: newcoords.x * imgNewSizeRatio,
-              y: newcoords.y * imgNewSizeRatio,
-            },
-          ],
-        },
-        paragraph: data.value,
-      });
-
-      data.value = '';
-    } else {
+    if (bookTitles[index] !== undefined && bookTitles[index].id !== undefined) {
       bookTitles[index]['paragraph'] = data.value;
-      data.value = '';
+      bookTitles[index]['searchparagraph'] = data.value.toLowerCase();
+
+      addDataToBooks(bookTitles[index]);
+    } else {
+      if (index === 'newBookTitleInput') {
+        bookTitles.push({
+          display: 'on',
+          boundingBox: {
+            vertices: [
+              {
+                x: newcoords.x * imgNewSizeRatio,
+                y: newcoords.y * imgNewSizeRatio,
+              },
+            ],
+          },
+          paragraph: data.value,
+        });
+
+        data.value = '';
+      } else {
+        bookTitles[index]['paragraph'] = data.value;
+        data.value = '';
+      }
     }
 
     saveItemToLocalStorage('bookTitles', bookTitles);
