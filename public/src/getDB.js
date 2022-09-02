@@ -174,6 +174,7 @@ function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
             } else {
               booksFromLocalStorageBoolean = true;
               setClickCanvas = 'books';
+
               getBooks(imageName);
               getShelvesData(canvasEdit, 'url', imageName);
             }
@@ -210,7 +211,11 @@ function getBooks(imageTitle) {
         }
       });
 
-      saveItemToLocalStorage('bookTitles', books);
+      if (books.length !== 0) {
+        saveItemToLocalStorage('bookTitles', books);
+      } else {
+        throw 'This shelf does not have books!';
+      }
     })
     .catch((error) => {
       console.error('Error adding document: ', error);
