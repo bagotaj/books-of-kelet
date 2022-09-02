@@ -121,8 +121,6 @@ function makeShelfBox() {
   }
 }
 
-function makeShelfBoxCenterPoint() {}
-
 function saveShelves() {
   gridCoordsArr = [];
 
@@ -153,6 +151,7 @@ function makeShelfGridFromCoords(imgDataObj) {
   let filteredShelfGridCoords = searchBasicsShelvesData(imgDataObj.ImgName);
 
   let shelfGridCoordsObj = filteredShelfGridCoords[0].shelfGridCoords;
+  let shelfBoxCoordsObj = filteredShelfGridCoords[0].shelfBoxCoords;
 
   for (const key in shelfGridCoordsObj) {
     let x = shelfGridCoordsObj[key].x * shelvesCoordsRatio;
@@ -166,4 +165,39 @@ function makeShelfGridFromCoords(imgDataObj) {
 
     drawGrid(drawGridDataObj);
   }
+
+  for (const key in shelfBoxCoordsObj) {
+    let drawData = {
+      boxCoords: shelfBoxCoordsObj[key],
+      ctx: imgDataObj.passedctx,
+    };
+    drawShelfBoxes(drawData);
+  }
+}
+
+function drawShelfBoxes(drawData) {
+  let rectWidth =
+    drawData.boxCoords[2].x * shelvesCoordsRatio -
+    drawData.boxCoords[0].x * shelvesCoordsRatio;
+  let rectHeight =
+    drawData.boxCoords[1].y * shelvesCoordsRatio -
+    drawData.boxCoords[0].y * shelvesCoordsRatio;
+
+  if (drawData.boxCoords.length > 4) {
+    drawData.ctx.fillStyle = 'green';
+  } else {
+    drawData.ctx.fillStyle = 'white';
+  }
+  drawData.ctx.globalAlpha = 0.2;
+  drawData.ctx.fillRect(
+    drawData.boxCoords[0].x * shelvesCoordsRatio,
+    drawData.boxCoords[0].y * shelvesCoordsRatio,
+    rectWidth,
+    rectHeight
+  );
+}
+
+function drawDot(data) {
+  ctxEdit.arc(data.x, data.y, 10, 0, Math.PI * 2, true);
+  ctxEdit.fill();
 }
