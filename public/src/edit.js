@@ -35,6 +35,8 @@ canvasEdit.addEventListener(
         newCoords: newCoords,
       });
 
+      drawDot(newCoords);
+
       if (clickedShelfBoxKeyNumber) {
         getImageNameFromBasicsShelfBoxCoords(clickedShelfBoxKeyNumber);
       }
