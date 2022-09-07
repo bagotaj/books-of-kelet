@@ -10,6 +10,8 @@ function createCanvasEdit() {
   const result = document.getElementById('canvasEdit');
   result.width = window.innerWidth;
   result.height = backgroundShelvesHeight;
+  getBasicsShelvesData();
+
   return result;
 }
 
@@ -25,26 +27,40 @@ let newCoords = { x: '', y: '' };
 
 canvasEdit.addEventListener(
   'click',
-  function (event) {
+  (event) => {
     newCoords = getMousePosition(canvasEdit, event);
 
-    addNewBookCoords(newCoords);
+    if (setClickCanvas === 'grid') {
+      clickedShelfBoxKeyNumber = isBoxClicked({
+        newCoords: newCoords,
+      });
 
-    for (let i = 0; i < bookTitles.length; i++) {
-      let bookTitlesCoords = bookTitles[i]['boundingBox']['vertices'];
+      drawDot(newCoords);
 
-      let inputField = document.getElementById(i);
-
-      let elementWasClicked = false;
-
-      if (bookTitlesCoords.length === 1) {
-        return;
-      } else {
-        elementWasClicked = checkBoxClicking(newCoords, bookTitlesCoords);
+      if (clickedShelfBoxKeyNumber) {
+        getImageNameFromBasicsShelfBoxCoords(clickedShelfBoxKeyNumber);
       }
+    }
 
-      if (elementWasClicked) {
-        inputField.scrollIntoView();
+    if (setClickCanvas === 'books') {
+      addNewBookCoords(newCoords);
+
+      for (let i = 0; i < bookTitles.length; i++) {
+        let bookTitlesCoords = bookTitles[i]['boundingBox']['vertices'];
+
+        let inputField = document.getElementById(i);
+
+        let elementWasClicked = false;
+
+        if (bookTitlesCoords.length === 1) {
+          return;
+        } else {
+          elementWasClicked = checkBoxClicking(newCoords, bookTitlesCoords);
+        }
+
+        if (elementWasClicked) {
+          inputField.scrollIntoView();
+        }
       }
     }
   },
@@ -52,5 +68,3 @@ canvasEdit.addEventListener(
 );
 
 const edit = true;
-
-MakeThumbnailsTableBody();

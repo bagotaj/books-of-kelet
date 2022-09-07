@@ -37,6 +37,13 @@
       </nav>
     </header>
     <div class="loginContainer displaynone">
+      <div
+        class="container form-width alert alert-danger margin-bottom-30 displaynone"
+        id="emailVerificationMessage"
+      >
+        Nézd meg a postafiókod és igazold vissza az emailcímed!
+        <span>Nem jött email?</span>
+      </div>
       <div class="container form-width" id="loginForm">
         <h1>Belépés</h1>
         <form>
@@ -80,7 +87,7 @@
           <div class="mb-3">
             <label for="regEmail1" class="form-label">Email cím</label>
             <input
-              type="regemail"
+              type="email"
               class="form-control"
               id="regEmail1"
               aria-describedby="emailHelp"
@@ -175,19 +182,14 @@
 
     <script src="./assets/data/dbbooks.js"></script>
     <script src="./src/firebaseapikey.js"></script>
-    <script src="./src/localStorageItems.js"></script>
-    <script src="./src/makeSortedBookTitles.js"></script>
-    <script src="./src/makeSortedBookTitlesByABC.js"></script>
     <script src="./src/basicvariables.js"></script>
-    <script src="./src/drawBoundingBoxes.js"></script>
+    <script src="./src/makeImage.js"></script>
     <script src="./src/showBookshelves.js"></script>
     <script src="./src/drawBookTitlePoint.js"></script>
     <script src="./src/createABCLinkButtons.js"></script>
-    <script src="./src/makePagination.js"></script>
     <script src="./src/createMainBookTitlesTable.js"></script>
     <script src="./src/getDB.js"></script>
     <script src="./src/login.js"></script>
-    <script src="./src/drawBooksImage.js"></script>
     <script src="./src/setCanvas.js"></script>
     <script src="./src/index.js"></script>
     <script src="./src/bookTitleCanvas.js"></script>

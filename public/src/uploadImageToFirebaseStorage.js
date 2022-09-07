@@ -5,9 +5,6 @@ let localImageFiles;
 let reader;
 
 // Select button
-let selectButtonNewBasicShelf = document.querySelector(
-  '#selectButtonNewBasicShelf'
-);
 selectButtonNewBasicShelf.addEventListener('click', (e) => {
   selectImage(e);
 
@@ -35,7 +32,6 @@ function selectImage(e) {
 
   input.onchange = (e) => {
     localImageFiles = e.target.files;
-    console.log('select', localImageFiles);
     let fileName = localImageFiles[0].name;
 
     reader = new FileReader();
@@ -69,7 +65,7 @@ uploadButton.addEventListener('click', (e) => {
   let uploadFile = localImageFiles[0];
 
   // setting what you can do on canvas - draw grid
-  setClickImageuploadCanvas = 'uploadimage';
+  setClickCanvas = 'uploadimage';
 
   // if smallshelf saving canvas image
   if (setUploadImageupload === 'smallshelf') {
@@ -79,8 +75,23 @@ uploadButton.addEventListener('click', (e) => {
     // canvasról lementeni a képet - max 500 pixel magas - és beküldeni az adatbázisba
     // kép lementve és tárolva: resizedLocalImageFile változóban
     // https://stackoverflow.com/questions/13938686/can-i-load-a-local-file-into-an-html-canvas-element
+    dataOfImageToFirebase = {
+      basicShelf: backgroundShelvesTitle,
+      imageTitle: ImgName,
+      shelfCoords: shelfCoordsObj,
+      shelfName: clickedShelfBoxKeyNumber,
+      imgNewSizeRatio: imgNewSizeRatio,
+    };
+
+    let shelfBoxsendingImageDataObj = {
+      basicShelfTitle: backgroundShelvesTitle,
+      keyValue: clickedShelfBoxKeyNumber,
+      ImgName: ImgName,
+    };
+
     uploadFile = resizedLocalImageFile;
-    console.log('save canvas image', uploadFile);
+    addShelvesToFirestore(dataOfImageToFirebase);
+    addImageNameToBasicsShelfBoxCoords(shelfBoxsendingImageDataObj);
   }
 
   // Namebox - give the name to the image file
@@ -113,7 +124,15 @@ uploadButton.addEventListener('click', (e) => {
         saveNewShelfButtons.classList.remove('displaynone');
       }
 
-      const blobURL = URL.createObjectURL(localImageFiles[0]);
+      let sendingImage;
+
+      if (setUploadImageupload === 'smallshelf') {
+        sendingImage = resizedLocalImageFile;
+      } else {
+        sendingImage = localImageFiles[0];
+      }
+
+      const blobURL = URL.createObjectURL(sendingImage);
       let sendingData = {
         canvasTitle: imageuploadcanvas,
         blobURL: blobURL,

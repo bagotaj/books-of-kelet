@@ -10,7 +10,21 @@ window.addEventListener('resize', function () {
   imageuploadcanvas.width = window.innerWidth;
 
   if (window.innerWidth < backgroundShelvesWidth) {
+    while (buttonsPlace.firstChild) {
+      buttonsPlace.removeChild(buttonsPlace.firstChild);
+    }
+
     getBasicsShelvesData();
+
+    if (!addNewShelfImageButtons.classList.contains('displaynone')) {
+      let imgDataObj = {
+        mainCanvas: imageuploadcanvas,
+        ImgName: backgroundShelvesTitle,
+        argFunction: setCanvasWrapperIndex,
+      };
+
+      getImage(imgDataObj);
+    }
   }
 });
 
@@ -22,26 +36,18 @@ imageuploadcanvas.addEventListener(
   function (event) {
     let newCoords = getMousePosition(imageuploadcanvas, event);
 
-    if (setClickImageuploadCanvas === 'grid') {
-      let shelfBoxCoordsObj = savedBasicsShelvesData[0].shelfBoxCoords;
+    if (setClickCanvas === 'grid') {
+      clickedShelfBoxKeyNumber = isBoxClicked({
+        newCoords: newCoords,
+        type: 'imageupload',
+      });
 
-      for (const key in shelfBoxCoordsObj) {
-        let rectangleVectors = [
-          shelfBoxCoordsObj[key]['0'],
-          shelfBoxCoordsObj[key]['2'],
-          shelfBoxCoordsObj[key]['3'],
-          shelfBoxCoordsObj[key]['1'],
-        ];
-
-        let clicked = checkBoxClicking(newCoords, rectangleVectors, true);
-
-        if (clicked) {
-          selectImage(event);
-        }
+      if (clickedShelfBoxKeyNumber) {
+        selectImage(event);
       }
     }
 
-    if (setClickImageuploadCanvas === 'uploadimage') {
+    if (setClickCanvas === 'uploadimage') {
       drawAndCalculateGrid(newCoords);
     }
   },

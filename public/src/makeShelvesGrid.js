@@ -4,12 +4,15 @@ let gridCoordsArr = [];
 let shelfBoxCoordsArr = [];
 
 const saveShelvesButton = document.querySelector('#saveShelves');
-saveShelvesButton.addEventListener('click', () => {
-  setClickImageuploadCanvas = 'grid';
-  saveShelves();
 
-  saveNewShelfButtons.classList.add('displaynone');
-});
+if (saveShelvesButton) {
+  saveShelvesButton.addEventListener('click', () => {
+    setClickCanvas = 'grid';
+    saveShelves();
+
+    saveNewShelfButtons.classList.add('displaynone');
+  });
+}
 
 function drawAndCalculateGrid(newCoords) {
   let x = newCoords.x;
@@ -38,27 +41,39 @@ function drawAndCalculateGrid(newCoords) {
     gridYCoords.push(y);
   }
 
-  drawGrid({ x: x, y: y });
+  let drawGridDataObj = {
+    coords: { x: x, y: y },
+    ctx: ctxImageUpload,
+    canvas: imageuploadcanvas,
+  };
+
+  drawGrid(drawGridDataObj);
 }
 
-function drawGrid(coords) {
-  ctxImageUpload.beginPath();
-  ctxImageUpload.setLineDash([5, 15]);
-  ctxImageUpload.lineWidth = 2;
-  ctxImageUpload.strokeStyle = 'white';
-  ctxImageUpload.moveTo(coords.x, 0);
-  ctxImageUpload.lineTo(coords.x, imageuploadcanvas.height);
-  ctxImageUpload.closePath();
-  ctxImageUpload.stroke();
+function drawGrid(drawGridDataObj) {
+  drawGridDataObj.ctx.beginPath();
+  drawGridDataObj.ctx.setLineDash([5, 15]);
+  drawGridDataObj.ctx.lineWidth = 2;
+  drawGridDataObj.ctx.strokeStyle = 'white';
+  drawGridDataObj.ctx.moveTo(drawGridDataObj.coords.x, 0);
+  drawGridDataObj.ctx.lineTo(
+    drawGridDataObj.coords.x,
+    drawGridDataObj.canvas.height
+  );
+  drawGridDataObj.ctx.closePath();
+  drawGridDataObj.ctx.stroke();
 
-  ctxImageUpload.beginPath();
-  ctxImageUpload.setLineDash([5, 15]);
-  ctxImageUpload.lineWidth = 2;
-  ctxImageUpload.strokeStyle = 'white';
-  ctxImageUpload.moveTo(0, coords.y);
-  ctxImageUpload.lineTo(imageuploadcanvas.width, coords.y);
-  ctxImageUpload.closePath();
-  ctxImageUpload.stroke();
+  drawGridDataObj.ctx.beginPath();
+  drawGridDataObj.ctx.setLineDash([5, 15]);
+  drawGridDataObj.ctx.lineWidth = 2;
+  drawGridDataObj.ctx.strokeStyle = 'white';
+  drawGridDataObj.ctx.moveTo(0, drawGridDataObj.coords.y);
+  drawGridDataObj.ctx.lineTo(
+    drawGridDataObj.canvas.width,
+    drawGridDataObj.coords.y
+  );
+  drawGridDataObj.ctx.closePath();
+  drawGridDataObj.ctx.stroke();
 }
 
 function makeGridCoords() {
@@ -132,13 +147,57 @@ function saveShelves() {
   addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj);
 }
 
-function makeShelfGridFromCoords() {
-  let shelfGridCoordsObj = savedBasicsShelvesData[0].shelfGridCoords;
+function makeShelfGridFromCoords(imgDataObj) {
+  let filteredShelfGridCoords = searchBasicsShelvesData(imgDataObj.ImgName);
+
+  let shelfGridCoordsObj = filteredShelfGridCoords[0].shelfGridCoords;
+  let shelfBoxCoordsObj = filteredShelfGridCoords[0].shelfBoxCoords;
 
   for (const key in shelfGridCoordsObj) {
     let x = shelfGridCoordsObj[key].x * shelvesCoordsRatio;
     let y = shelfGridCoordsObj[key].y * shelvesCoordsRatio;
 
-    drawGrid({ x: x, y: y });
+    let drawGridDataObj = {
+      coords: { x: x, y: y },
+      ctx: imgDataObj.passedctx,
+      canvas: imgDataObj.passedcanvas,
+    };
+
+    drawGrid(drawGridDataObj);
   }
+
+  for (const key in shelfBoxCoordsObj) {
+    let drawData = {
+      boxCoords: shelfBoxCoordsObj[key],
+      ctx: imgDataObj.passedctx,
+    };
+    drawShelfBoxes(drawData);
+  }
+}
+
+function drawShelfBoxes(drawData) {
+  let rectWidth =
+    drawData.boxCoords[2].x * shelvesCoordsRatio -
+    drawData.boxCoords[0].x * shelvesCoordsRatio;
+  let rectHeight =
+    drawData.boxCoords[1].y * shelvesCoordsRatio -
+    drawData.boxCoords[0].y * shelvesCoordsRatio;
+
+  if (drawData.boxCoords.length > 4) {
+    drawData.ctx.fillStyle = 'green';
+  } else {
+    drawData.ctx.fillStyle = 'white';
+  }
+  drawData.ctx.globalAlpha = 0.2;
+  drawData.ctx.fillRect(
+    drawData.boxCoords[0].x * shelvesCoordsRatio,
+    drawData.boxCoords[0].y * shelvesCoordsRatio,
+    rectWidth,
+    rectHeight
+  );
+}
+
+function drawDot(data) {
+  ctxEdit.arc(data.x, data.y, 10, 0, Math.PI * 2, true);
+  ctxEdit.fill();
 }

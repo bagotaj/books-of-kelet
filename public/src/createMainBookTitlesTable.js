@@ -37,6 +37,7 @@ function createMainBookTitlesTable(books) {
           canvasLabel.classList.remove('displaynone');
         }
 
+        backgroundBookShelfImage = {};
         showBookshelves(
           books[i]['imageTitle'],
           books[i]['shelfName'],

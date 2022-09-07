@@ -68,7 +68,14 @@
       </nav>
     </header>
     <div class="loginContainer displaynone">
-      <div class="container" id="loginForm">
+      <div
+        class="container form-width alert alert-danger margin-bottom-30 displaynone"
+        id="emailVerificationMessage"
+      >
+        Nézd meg a postafiókod és igazold vissza az emailcímed!
+        <span>Nem jött email?</span>
+      </div>
+      <div class="container form-width" id="loginForm">
         <h1>Belépés</h1>
         <form>
           <div class="mb-3">
@@ -99,7 +106,7 @@
           </button>
         </form>
       </div>
-      <div class="container displaynone" id="registrationForm">
+      <div class="container form-width displaynone" id="registrationForm">
         <h1>Regisztráció</h1>
         <form>
           <div class="mb-3">
@@ -138,9 +145,10 @@
       </div>
     </div>
     <div class="container loggedinContentContainer displaynone">
-      <div class="canvas-wrapper-edit">
+      <div class="canvas-wrapper-index">
         <canvas id="canvasEdit"></canvas>
       </div>
+      <div id="shelvesButtons"></div>
       <div>
         <table class="thumbnailImageTable">
           <tbody id="thumbnailsTableBody"></tbody>
@@ -197,7 +205,10 @@
     <script src="./src/makeSortedBookTitles.js"></script>
     <script src="./src/makeSortedBookTitlesByABC.js"></script>
     <script src="./src/basicvariables.js"></script>
+    <script src="./src/makeImage.js"></script>
+    <script src="./src/selectedDOMElements.js"></script>
     <script src="./src/getDB.js"></script>
+    <script src="./src/addDB.js"></script>
     <script src="./src/login.js"></script>
     <script src="./src/thumbnailImageTableMaker.js"></script>
     <script src="./src/drawBoundingBoxes.js"></script>
@@ -207,6 +218,9 @@
     <script src="./src/addNewBookItem.js"></script>
     <script src="./src/getmouseposition.js"></script>
     <script src="./src/checkboxClicking.js"></script>
+    <script src="./src/makeShelvesGrid.js"></script>
+    <script src="./src/setCanvas.js"></script>
+    <script src="./src/makeStartImageUploadPageButtons.js"></script>
     <script src="./src/edit.js"></script>
   </body>
 </html>

@@ -37,7 +37,14 @@
       </nav>
     </header>
     <div class="loginContainer displaynone">
-      <div class="container" id="loginForm">
+      <div
+        class="container form-width alert alert-danger margin-bottom-30 displaynone"
+        id="emailVerificationMessage"
+      >
+        Nézd meg a postafiókod és igazold vissza az emailcímed!
+        <span>Nem jött email?</span>
+      </div>
+      <div class="container form-width" id="loginForm">
         <h1>Belépés</h1>
         <form>
           <div class="mb-3">
@@ -60,17 +67,15 @@
             <label for="inputPassword1" class="form-label">Jelszó</label>
             <input type="password" class="form-control" id="inputPassword1" />
           </div>
-          <div class="mb-3">
-            <button type="submit" class="normalbtn" id="submitButton">
-              Belépés
-            </button>
-            <button type="button" class="normalbtn" id="switch-register">
-              Regisztráció
-            </button>
-          </div>
+          <button type="submit" class="normalbtn" id="submitButton">
+            Belépés
+          </button>
+          <button type="button" class="normalbtn" id="switch-register">
+            Regisztráció
+          </button>
         </form>
       </div>
-      <div class="container displaynone" id="registrationForm">
+      <div class="container form-width displaynone" id="registrationForm">
         <h1>Regisztráció</h1>
         <form>
           <div class="mb-3">
@@ -99,14 +104,12 @@
             >
             <input type="password" class="form-control" id="repeatPassword1" />
           </div>
-          <div class="mb-3">
-            <button type="submit" class="normalbtn" id="regSubmitButton">
-              Regisztráció
-            </button>
-            <button type="button" class="normalbtn" id="switch-login">
-              Van már felhasználói fiókod? Belépés
-            </button>
-          </div>
+          <button type="submit" class="normalbtn" id="regSubmitButton">
+            Submit
+          </button>
+          <button type="button" class="normalbtn" id="switch-login">
+            Already have an account? Login
+          </button>
         </form>
       </div>
     </div>
@@ -186,10 +189,12 @@
     <script src="./src/firebaseapikey.js"></script>
     <script src="./src/getDB.js"></script>
     <script src="./src/basicvariables.js"></script>
+    <script src="./src/makeImage.js"></script>
     <script src="./src/selectedDOMElements.js"></script>
     <script src="./src/makeStartImageUploadPageButtons.js"></script>
     <script src="./src/uploadImageToFirebaseStorage.js"></script>
     <script src="./src/login.js"></script>
+    <script src="./src/dataManipulation.js"></script>
     <script src="./src/getmouseposition.js"></script>
     <script src="./src/checkBoxClicking.js"></script>
     <script src="./src/createFirebaseDB.js"></script>

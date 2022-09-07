@@ -1,21 +1,14 @@
-function getImage(mainCanvas, ImgName) {
+function getImage(imgDataObj) {
   storageconnection
-    .ref(`assets/img/${ImgName}.jpeg`)
+    .ref(`assets/img/${imgDataObj.ImgName}.jpeg`)
     .getDownloadURL()
     .then((url) => {
-      if (mainCanvas === 'bookshelves') {
-        setBookshelvesBackgroundImage(url);
-      } else {
-        setCanvasWrapperIndex(mainCanvas, url);
-
-        if (mainCanvas.id === 'imageuploadcanvas') {
-          makeShelfGridFromCoords();
-        }
-      }
+      imgDataObj.argFunction(imgDataObj.mainCanvas, url, imgDataObj.ImgName);
     })
     .catch((error) => {
       // Handle any errors
-      alert('error in saving the image', error);
+      alert('error in downloading the image');
+      console.log(error.message);
     });
 }
 
@@ -81,6 +74,148 @@ function getBasicsShelvesData() {
         makeStartPageButtonsImageUpload(basicShelf.data());
         savedBasicsShelvesData.push(basicShelf.data());
       });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
+
+function getShelvesData(mainCanvas, url, ImgName) {
+  let shelfData = dbconnection
+    .collection('shelves')
+    .where('imageTitle', '==', ImgName);
+
+  shelfData
+    .get()
+    .then((doc) => {
+      doc.forEach((querySnapshot) => {
+        if (!querySnapshot.exists) {
+          throw 'Document does not exist!';
+        }
+
+        if (mainCanvas.id === 'canvasEdit') {
+          imgNewSizeRatio = querySnapshot.data().imgNewSizeRatio;
+
+          dataOfImageToFirebase = {
+            basicShelf: querySnapshot.data().basicShelf,
+            imageTitle: querySnapshot.data().imageTitle,
+            shelfCoords: querySnapshot.data().shelfCoords,
+            shelfName: querySnapshot.data().shelfName,
+            imgNewSizeRatio: imgNewSizeRatio,
+          };
+
+          let imgDataObj = {
+            mainCanvas: canvasEdit,
+            ImgName: ImgName,
+            argFunction: setCanvasWrapperIndex,
+          };
+
+          getImage(imgDataObj);
+        }
+
+        if (mainCanvas.id === 'canvasBookTitles') {
+          let basicShelfTitle;
+
+          basicShelfTitle = querySnapshot.data().basicShelf;
+
+          if (backgroundShelvesTitle !== basicShelfTitle) {
+            let imgDataObj = {
+              mainCanvas: canvas,
+              ImgName: querySnapshot.data().basicShelf,
+              argFunction: setCanvasWrapperIndex,
+            };
+
+            getImage(imgDataObj);
+          }
+
+          let img = makeImage({
+            src: url,
+            function: function () {
+              let dataObj = {
+                basicShelfTitle: basicShelfTitle,
+                basicShelfParams: {
+                  x: img.width,
+                  y: img.height,
+                },
+              };
+
+              setBackgroundShelvesVariables(dataObj);
+            },
+          });
+        }
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
+
+function getImageNameFromBasicsShelfBoxCoords(searchingImageKeyValue) {
+  let basicShelf = dbconnection
+    .collection('basics')
+    .where('basicShelfTitle', '==', backgroundShelvesTitle);
+
+  basicShelf
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((shelf) => {
+        if (!shelf.exists) {
+          throw 'Document does not exist!';
+        }
+
+        for (const key in shelf.data().shelfBoxCoords) {
+          if (key === searchingImageKeyValue) {
+            let imageName = shelf.data().shelfBoxCoords[key][4];
+
+            if (imageName === undefined) {
+              alert('Shelf does not exist');
+            } else {
+              booksFromLocalStorageBoolean = true;
+              setClickCanvas = 'books';
+
+              getBooks(imageName);
+              getShelvesData(canvasEdit, 'url', imageName);
+            }
+          }
+        }
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      alert('Error adding document: ', error.message);
+    });
+}
+
+function getBooks(imageTitle) {
+  let books = dbconnection
+    .collection('books')
+    .where('imageTitle', '==', imageTitle);
+
+  books
+    .get()
+    .then((querySnapshot) => {
+      let books = [];
+
+      querySnapshot.forEach((book) => {
+        if (!book.exists) {
+          throw 'Book does not exist!';
+        }
+
+        if (book.data()['display'] === 'on') {
+          let bookData = book.data();
+          bookData.id = book.id;
+
+          books.push(bookData);
+        }
+      });
+
+      if (books.length !== 0) {
+        saveItemToLocalStorage('bookTitles', books);
+      } else {
+        throw 'This shelf does not have books!';
+      }
     })
     .catch((error) => {
       console.error('Error adding document: ', error);

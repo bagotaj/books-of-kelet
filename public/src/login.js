@@ -4,16 +4,23 @@ const checkLogin = (() => {
   const loggedinContentContainer = document.querySelector(
     '.loggedinContentContainer'
   );
+  const emailVerificationMessage = document.querySelector(
+    '#emailVerificationMessage'
+  );
+
   loginContainer.classList.remove('displaynone');
 
   const loggedinContainerContent = document.querySelector('.content');
 
   firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
+    // if (user !== null && user.emailVerified === true) {
+    if (user !== null) {
       let uid = user.uid;
       loginContainer.classList.add('displaynone');
       loggedinContainer.classList.remove('displaynone');
       loggedinContentContainer.classList.remove('displaynone');
+      emailVerificationMessage.classList.add('displaynone');
+
       if (user.displayName !== null) {
         loggedinContainerContent.textContent = `Belépve: ${user.displayName}!`;
       }
@@ -23,6 +30,10 @@ const checkLogin = (() => {
       createABCLinkButtons();
       setSearchField();
     } else {
+      if (user !== null) {
+        emailVerificationMessage.classList.remove('displaynone');
+      }
+
       loginContainer.classList.remove('displaynone');
       loggedinContainer.classList.add('displaynone');
       loggedinContentContainer.classList.add('displaynone');
@@ -68,7 +79,7 @@ loginSubmitButton.addEventListener('click', (event) => {
     .signInWithEmailAndPassword(emailInput.value, passwordInput.value)
     .then((userCredential) => {
       // Signed in
-      const user = firebase.auth().currentUser;
+      const user = userCredential.user;
       user
         .updateProfile({
           displayName: usernameInput.value,
@@ -110,7 +121,7 @@ registrationFormButton.addEventListener('click', (event) => {
       )
       .then((userCredential) => {
         // Signed in
-        const user = firebase.auth().currentUser;
+        const user = userCredential.user;
         user
           .updateProfile({
             displayName: regUsernameInput.value,
@@ -123,6 +134,12 @@ registrationFormButton.addEventListener('click', (event) => {
           .catch(function (error) {
             console.error(error.message);
           });
+
+        // Email verification
+        user.sendEmailVerification().then(() => {
+          // Email verification sent!
+          console.log('Email sent');
+        });
       })
       .then(() => {
         regUsernameInput.value = '';
@@ -139,3 +156,18 @@ registrationFormButton.addEventListener('click', (event) => {
     alert('Passwords do not match!');
   }
 });
+
+const emailVerificationButton = document.querySelector(
+  '#emailVerificationMessage span'
+);
+
+emailVerificationButton.addEventListener('click', sendEmailVerification);
+
+function sendEmailVerification() {
+  firebase
+    .auth()
+    .currentUser.sendEmailVerification()
+    .then(() => {
+      alert('Visszaigazoló email elküldve');
+    });
+}

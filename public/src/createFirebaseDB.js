@@ -2,22 +2,14 @@ function createFirebaseDBBooks() {
   let newDB = {};
   let newDB2 = [];
 
-  // Changing !!!!!
-  let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
-  let basicShelf = 'kelet-header';
-  let imageTitle = 'IMG_3893';
-  let shelfName = '7C';
-  let shelfCoords = {
-    x: 955,
-    y: 324,
-  };
   // Books data from local storage
+  let booksFromLocalStorage = getItemFromLocalStorage('bookTitles');
 
   booksFromLocalStorage.forEach((book) => {
-    book['basicShelf'] = basicShelf;
-    book['imageTitle'] = imageTitle;
-    book['shelfName'] = shelfName;
-    book['shelfCoords'] = shelfCoords;
+    book['basicShelf'] = dataOfImageToFirebase.basicShelf;
+    book['imageTitle'] = dataOfImageToFirebase.imageTitle;
+    book['shelfName'] = dataOfImageToFirebase.shelfName;
+    book['shelfCoords'] = dataOfImageToFirebase.shelfCoords;
     (book['searchparagraph'] = book['paragraph'].toLowerCase()),
       newDB2.push(book);
   });

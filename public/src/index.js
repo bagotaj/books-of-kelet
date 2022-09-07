@@ -6,20 +6,41 @@ function initializeSite() {
 
   function createCanvas() {
     const result = document.getElementById('canvas');
-    result.width = window.innerWidth;
-    getImage(result, backgroundShelvesTitle);
-    setBookShelvesClassIndex();
+    // result.width = window.innerWidth;
+    result.width = window.visualViewport.width;
+    if (backgroundShelvesTitle) {
+      let imgDataObj = {
+        mainCanvas: result,
+        ImgName: backgroundShelvesTitle,
+        argFunction: setCanvasWrapperIndex,
+      };
+
+      getImage(imgDataObj);
+    }
 
     return result;
   }
 
   window.addEventListener('resize', function () {
-    canvas.width = window.innerWidth;
+    // canvas.width = window.innerWidth;
+    canvas.width = window.visualViewport.width;
 
-    if (window.innerWidth < backgroundShelvesWidth) {
-      getImage(canvas, backgroundShelvesTitle);
-      setBookShelvesClassIndex();
-      createBookTitleCanvas();
+    const isEmptyBasic = Object.keys(backgroundBasicShelfImage).length === 0;
+    if (!isEmptyBasic) {
+      setCanvasWrapperIndex(
+        backgroundBasicShelfImage.canvasDOM,
+        backgroundBasicShelfImage.imageURL,
+        backgroundBasicShelfImage.ImgName
+      );
+    }
+
+    const isEmptyBook = Object.keys(backgroundBookShelfImage).length === 0;
+    if (!isEmptyBook) {
+      setCanvasWrapperIndex(
+        backgroundBookShelfImage.canvasDOM,
+        backgroundBookShelfImage.imageURL,
+        backgroundBookShelfImage.ImgName
+      );
     }
   });
 }

@@ -21,7 +21,20 @@ function showBookshelves(bookTitlesOnImage, shelfName, shelfCoordsX) {
     bookshelves.classList.add('book-shelves-left');
   }
   bookshelves.style.display = 'block';
-  getImage('bookshelves', bookTitlesOnImage);
+  let imgDataObj1 = {
+    mainCanvas: canvasBookTitle,
+    ImgName: bookTitlesOnImage,
+    argFunction: getShelvesData,
+  };
+
+  let imgDataObj2 = {
+    mainCanvas: canvasBookTitle,
+    ImgName: bookTitlesOnImage,
+    argFunction: setCanvasWrapperIndex,
+  };
+
+  getImage(imgDataObj1);
+  getImage(imgDataObj2);
   bookshelves.style.backgroundRepeat = 'no-repeat';
   bookshelves.style.backgroundSize = 'cover';
 
@@ -34,32 +47,34 @@ function setBookshelvesBackgroundImage(imageURL) {
 }
 
 function drawBookshelvesPoint(shelfName) {
-  let bookShelfPointData = dbconnection
+  dbconnection
     .collection('shelves')
-    .where('shelfName', '==', shelfName);
-
-  bookShelfPointData
+    .where('shelfName', '==', shelfName)
     .get()
-    .then((querySnapshot) => {
+    .then((doc) => {
       let shelves = [];
 
-      querySnapshot.forEach((shelf) => {
+      doc.forEach((shelf) => {
         shelves.push(shelf.data());
       });
 
       return shelves;
     })
     .then((shelves) => {
-      let pointXShelves = shelves[0]['shelfCoords']['x'];
-      let pointYShelves = shelves[0]['shelfCoords']['y'];
+      if (shelves.length !== 0) {
+        let pointXShelves = shelves[0]['shelfCoords']['x'];
+        let pointYShelves = shelves[0]['shelfCoords']['y'];
 
-      if (clickedShelfPoint) {
-        clearInterval(blinkShelvesPoint);
+        if (clickedShelfPoint) {
+          clearInterval(blinkShelvesPoint);
+        }
+
+        blinkShelvesPoint = setInterval(() => {
+          blinkShelfPoint(pointXShelves, pointYShelves);
+        }, 1000);
+      } else {
+        alert('Hiba történt');
       }
-
-      blinkShelvesPoint = setInterval(() => {
-        blinkShelfPoint(pointXShelves, pointYShelves);
-      }, 1000);
     })
     .catch((error) => {
       console.error('Error adding document: ', error);

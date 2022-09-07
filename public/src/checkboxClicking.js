@@ -1,3 +1,36 @@
+function isBoxClicked(clickingDataObj) {
+  let basicsShelvesData = searchBasicsShelvesData(backgroundShelvesTitle);
+  let shelfBoxCoordsObj;
+
+  if (basicsShelvesData) {
+    shelfBoxCoordsObj = basicsShelvesData[0].shelfBoxCoords;
+  } else {
+    shelfBoxCoordsObj = savedBasicsShelvesData[0].shelfBoxCoords;
+  }
+
+  for (const key in shelfBoxCoordsObj) {
+    let rectangleVectors = [
+      shelfBoxCoordsObj[key]['0'],
+      shelfBoxCoordsObj[key]['2'],
+      shelfBoxCoordsObj[key]['3'],
+      shelfBoxCoordsObj[key]['1'],
+    ];
+
+    let clicked = checkBoxClicking(
+      clickingDataObj.newCoords,
+      rectangleVectors,
+      true
+    );
+
+    if (clicked) {
+      if (clickingDataObj.type == 'imageupload') {
+        shelfCoordsObj = makeShelfCoords(shelfBoxCoordsObj[key]);
+      }
+      return key;
+    }
+  }
+}
+
 function checkBoxClicking(mouseVector, rectangleVectors, basicSet) {
   if (basicSet) {
     imgNewSizeRatio = 1;

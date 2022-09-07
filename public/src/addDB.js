@@ -39,3 +39,67 @@ function addShelfBoxCoordsToFirestore(shelfBoxSendingDataObj) {
       // alert('Error adding document: ', error.message);
     });
 }
+
+function addShelvesToFirestore(dataOfImageToFirebase) {
+  dbconnection
+    .collection('shelves')
+    .doc()
+    .set(dataOfImageToFirebase)
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
+
+function addImageNameToBasicsShelfBoxCoords(shelfBoxsendingImageDataObj) {
+  let basicShelf = dbconnection
+    .collection('basics')
+    .where(
+      'basicShelfTitle',
+      '==',
+      shelfBoxsendingImageDataObj.basicShelfTitle
+    );
+
+  basicShelf
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((shelf) => {
+        if (!shelf.exists) {
+          throw 'Document does not exist!';
+        }
+
+        let fieldName =
+          'shelfBoxCoords.' + shelfBoxsendingImageDataObj.keyValue;
+
+        dbconnection
+          .collection('basics')
+          .doc(shelf.id)
+          .update({
+            [fieldName]: firebase.firestore.FieldValue.arrayUnion(
+              shelfBoxsendingImageDataObj.ImgName
+            ),
+          });
+      });
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
+
+function addDataToBooks(bookData) {
+  let books = dbconnection.collection('books').doc(bookData.id);
+
+  books
+    .update({
+      paragraph: bookData.paragraph,
+      searchparagraph: bookData.searchparagraph,
+    })
+    .then(() => {
+      console.log('Document successfully written!');
+    })
+    .catch((error) => {
+      console.error('Error adding document: ', error);
+      // alert('Error adding document: ', error.message);
+    });
+}
